@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,9 +66,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unit01/lehrerhandreichung_technisch.html" rel="next">
-<link href="../unit01/lehrerhandreichung_inhaltlich.html" rel="prev">
-<link href="..//images/logo.png" rel="icon" type="image/png">
+<link href="../pages/konfigurator_lst_paket.html" rel="next">
+<link href="../pages/schuelerseite_lst_stadtklima.html" rel="prev">
+<link href="../images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -107,14 +142,14 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../css/styles.css">
 <meta property="og:title" content="Oberflächentemperaturen in der Stadt – Summer in the City">
-<meta property="og:description" content="Schülerseite">
-<meta property="og:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig07_unterrichtsablauf.png">
+<meta property="og:description" content="Technische Lehrerhandreichung">
+<meta property="og:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig05_datenpaket.png">
 <meta property="og:site_name" content="Summer in the City">
 <meta property="og:image:height" content="1001">
 <meta property="og:image:width" content="1572">
 <meta name="twitter:title" content="Oberflächentemperaturen in der Stadt – Summer in the City">
-<meta name="twitter:description" content="Schülerseite">
-<meta name="twitter:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig07_unterrichtsablauf.png">
+<meta name="twitter:description" content="Technische Lehrerhandreichung">
+<meta name="twitter:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig05_datenpaket.png">
 <meta name="twitter:creator" content="@gisma">
 <meta name="twitter:image-height" content="1001">
 <meta name="twitter:image-width" content="1572">
@@ -337,7 +372,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Handreichungen</span></a>
+ <span class="menu-text">Summer in the City</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -345,26 +380,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/lehrerhandreichung_inhaltlich.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lehrerhandreichung: Summer in the city</span></a>
+  <a href="../pages/lehrerhandreichung_inhaltlich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unterrichtsidee und Materialpaket</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/schuelerseite_lst_stadtklima.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Schülerhandreichung: Summer in the city</span></a>
+  <a href="../pages/schuelerseite_lst_stadtklima.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arbeitsseite für Lernende</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Material selbst erstellen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/lehrerhandreichung_technisch.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Technische Anleitung</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/lehrerhandreichung_technisch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lehrerhandreichung: Erstellung der Unterlagen</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unit01/konfigurator_lst_paket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lehrerhandreichung: Konfigurator</span></a>
+  <a href="../pages/konfigurator_lst_paket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Konfigurator</span></a>
   </div>
 </li>
       </ul>
@@ -379,16 +425,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhalt</h2>
    
   <ul>
-  <li><a href="#eure-aufgabe" id="toc-eure-aufgabe" class="nav-link active" data-scroll-target="#eure-aufgabe">Eure Aufgabe</a></li>
-  <li><a href="#schritt-1-orientieren" id="toc-schritt-1-orientieren" class="nav-link" data-scroll-target="#schritt-1-orientieren">Schritt 1: Orientieren</a></li>
-  <li><a href="#schritt-2-oberflächen-markieren" id="toc-schritt-2-oberflächen-markieren" class="nav-link" data-scroll-target="#schritt-2-oberflächen-markieren">Schritt 2: Oberflächen markieren</a></li>
-  <li><a href="#schritt-3-mit-der-lst-karte-vergleichen" id="toc-schritt-3-mit-der-lst-karte-vergleichen" class="nav-link" data-scroll-target="#schritt-3-mit-der-lst-karte-vergleichen">Schritt 3: Mit der LST-Karte vergleichen</a></li>
-  <li><a href="#schritt-4-muster-erklären" id="toc-schritt-4-muster-erklären" class="nav-link" data-scroll-target="#schritt-4-muster-erklären">Schritt 4: Muster erklären</a></li>
-  <li><a href="#schritt-4-sichern" id="toc-schritt-4-sichern" class="nav-link" data-scroll-target="#schritt-4-sichern">Schritt 4: Sichern</a></li>
-  <li><a href="#reflexion" id="toc-reflexion" class="nav-link" data-scroll-target="#reflexion">Reflexion</a></li>
-  <li><a href="#material" id="toc-material" class="nav-link" data-scroll-target="#material">Material</a></li>
+  <li><a href="#wofür-diese-seite-gedacht-ist" id="toc-wofür-diese-seite-gedacht-ist" class="nav-link active" data-scroll-target="#wofür-diese-seite-gedacht-ist">Wofür diese Seite gedacht ist</a></li>
+  <li><a href="#standardweg-und-vertiefungsweg" id="toc-standardweg-und-vertiefungsweg" class="nav-link" data-scroll-target="#standardweg-und-vertiefungsweg">Standardweg und Vertiefungsweg</a></li>
+  <li><a href="#was-das-skript-erzeugt" id="toc-was-das-skript-erzeugt" class="nav-link" data-scroll-target="#was-das-skript-erzeugt">Was das Skript erzeugt</a></li>
+  <li><a href="#luftbild-statt-osm-als-zentrale-orientierung" id="toc-luftbild-statt-osm-als-zentrale-orientierung" class="nav-link" data-scroll-target="#luftbild-statt-osm-als-zentrale-orientierung">Luftbild statt OSM als zentrale Orientierung</a></li>
+  <li><a href="#lst-produkte-und-kartendarstellung" id="toc-lst-produkte-und-kartendarstellung" class="nav-link" data-scroll-target="#lst-produkte-und-kartendarstellung">LST-Produkte und Kartendarstellung</a></li>
+  <li><a href="#konfiguration" id="toc-konfiguration" class="nav-link" data-scroll-target="#konfiguration">Konfiguration</a></li>
+  <li><a href="#technischer-datenfluss" id="toc-technischer-datenfluss" class="nav-link" data-scroll-target="#technischer-datenfluss">Technischer Datenfluss</a></li>
+  <li><a href="#empfohlene-nutzung" id="toc-empfohlene-nutzung" class="nav-link" data-scroll-target="#empfohlene-nutzung">Empfohlene Nutzung</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/unit01/schuelerseite_lst_stadtklima.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/pages/lehrerhandreichung_technisch.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -397,7 +443,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title d-none d-lg-block">Oberflächentemperaturen in der Stadt</h1>
-<p class="subtitle lead">Schülerseite</p>
+<p class="subtitle lead">Technische Lehrerhandreichung</p>
 </div>
 
 
@@ -426,91 +472,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="eure-aufgabe" class="level1">
-<h1>Eure Aufgabe</h1>
-<p>Ihr untersucht, welche Oberflächen in der Stadt eher heiß oder eher kühl sind. Dafür arbeitet ihr zuerst mit einem Luftbild und danach mit einer LST-Karte. LST bedeutet Land Surface Temperature. Gemeint ist die Temperatur der Oberfläche, nicht die Lufttemperatur.</p>
-<p>Ihr zeichnet zuerst auf eine transparente Folie, welche Oberflächen ihr im Luftbild erkennt. Danach legt ihr dieselbe Folie auf die Temperaturkarte. So könnt ihr prüfen, ob eure markierten Flächen eher warm oder eher kühl erscheinen.</p>
+<section id="wofür-diese-seite-gedacht-ist" class="level1">
+<h1>Wofür diese Seite gedacht ist</h1>
+<p>Diese Seite ist nicht notwendig, um die Unterrichtseinheit durchzuführen. Für den direkten Einsatz gibt es das vorbereitete Köln-Paket auf der inhaltlichen Lehrerhandreichung. Diese technische Seite richtet sich an Lehrkräfte, Projektbetreuung oder fortgeschrittene Gruppen, die eigene Datenpakete erzeugen möchten: für eine andere Stadt, einen anderen Zeitraum, einen kleineren Ausschnitt oder andere hot/cold-Einstellungen.</p>
+<p>Der technische Workflow hat eine klare Aufgabe. Er soll nicht Unterrichtsinhalt werden, sondern Material erzeugen: LST-Karten, ein RGB-Luftbild, Verwaltungsgrenzen und ein vorbereitetes QGIS-Projekt. Die Lernenden arbeiten anschließend mit dem Material, nicht mit dem Skript.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/figures/fig07_unterrichtsablauf.png" class="img-fluid figure-img" style="width:95.0%"></p>
-<figcaption>Vier Arbeitsschritte für eure Analyse.</figcaption>
+<p><img src="../images/figures/fig05_datenpaket.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Das Datenpaket entsteht aus AOI, Zeitraum und Extremmodus.</figcaption>
 </figure>
 </div>
 </section>
-<section id="schritt-1-orientieren" class="level1">
-<h1>Schritt 1: Orientieren</h1>
-<p>Sucht zuerst bekannte Orientierungspunkte. Das können der Rhein, ein Park, ein großer Bahnhof, eine breite Straße, ein Gewerbegebiet oder ein Stadtbezirk sein. Ziel ist, dass ihr den Kartenausschnitt sicher lesen könnt.</p>
-</section>
-<section id="schritt-2-oberflächen-markieren" class="level1">
-<h1>Schritt 2: Oberflächen markieren</h1>
-<p>Legt die Folie auf das Luftbild. Markiert mindestens fünf unterschiedliche Oberflächen. Nutzt unterschiedliche Farben oder Symbole für Gebäude, Straßen, Parks, Wasser, offene Flächen und auffällige große Dächer.</p>
-</section>
-<section id="schritt-3-mit-der-lst-karte-vergleichen" class="level1">
-<h1>Schritt 3: Mit der LST-Karte vergleichen</h1>
-<p>Legt dieselbe Folie auf die LST-Karte. Schaut, welche markierten Flächen eher heiß, mittel oder kühl erscheinen. Achtet nicht auf einzelne Pixel, sondern auf größere Muster.</p>
-</section>
-<section id="schritt-4-muster-erklären" class="level1">
-<h1>Schritt 4: Muster erklären</h1>
-<p>Wählt zwei heiße und zwei kühle Bereiche aus. Beschreibt, welche Oberfläche dort liegt und welche Erklärung plausibel ist. Mögliche Begriffe sind Versiegelung, Verdunstung, Schatten, Wasser, Vegetation, Material und Bebauungsdichte.</p>
-</section>
-<section id="schritt-4-sichern" class="level1">
-<h1>Schritt 4: Sichern</h1>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Beobachtung</th>
-<th>Ort / Fläche</th>
-<th>Temperaturtendenz</th>
-<th>mögliche Erklärung</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td></td>
-<td>heiß / mittel / kühl</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td></td>
-<td>heiß / mittel / kühl</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td></td>
-<td>heiß / mittel / kühl</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td></td>
-<td>heiß / mittel / kühl</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td></td>
-<td>heiß / mittel / kühl</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="reflexion" class="level1">
-<h1>Reflexion</h1>
-<p>Welche Stelle auf der Karte hat euch überrascht? Beschreibt kurz, was ihr erwartet hattet und was die LST-Karte gezeigt hat.</p>
-<p>Welche Regel würdet ihr aus eurer Analyse ableiten? Formuliert sie vorsichtig, zum Beispiel: „Große versiegelte Flächen erscheinen in dieser Karte häufig wärmer als begrünte Flächen.“</p>
-</section>
-<section id="material" class="level1">
-<h1>Material</h1>
+<section id="standardweg-und-vertiefungsweg" class="level1">
+<h1>Standardweg und Vertiefungsweg</h1>
+<p>Der Standardweg für Lehrkräfte ist kurz: fertiges Paket herunterladen, Druckvorlagen nutzen, Stunde durchführen. Der technische Vertiefungsweg beginnt erst, wenn ein eigenes Paket erzeugt werden soll.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/figures/fig02_lst_meteorologisch.png" class="img-fluid figure-img" style="width:95.0%"></p>
-<figcaption>Luftemperatur und Oberflächentempatur unterscheiden sich</figcaption>
+<p><img src="../images/figures/fig10_standardweg_lehrkraft.svg" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Der technische Weg ist eine Erweiterung, nicht der Einstieg.</figcaption>
 </figure>
 </div>
+<p>Wer eigene Daten erzeugt, arbeitet mit drei Komponenten: einer Konfiguration, dem R-Skript und dem erzeugten QGIS-Projekt. Die Konfiguration legt AOI, Zeitraum, Extremmodus und Luftbildoption fest. Das Skript lädt Landsat-LST, berechnet heiße oder kalte Komposite und schreibt eine portable QGIS-Projektdatei. QGIS wird danach nur noch zum Anzeigen, Prüfen und Drucken verwendet.</p>
+</section>
+<section id="was-das-skript-erzeugt" class="level1">
+<h1>Was das Skript erzeugt</h1>
+<p>Das Skript legt für jedes Untersuchungsgebiet einen eigenen Ordner an. Der Ordnername wird aus <code>aoi_name</code> gebildet. Dadurch bleiben Daten für verschiedene Städte oder Stadtteile getrennt.</p>
+<pre class="text"><code>data/landsat_lst/&lt;aoi_name&gt;/
+├── 00_config/
+├── 01_aoi/
+├── 02_stac/
+├── 03_landsat_scenes/
+├── 04_extremes/
+├── 05_teaching_layers/
+├── 06_qgis_project/
+├── 99_logs/
+└── manifest.json</code></pre>
+<p>Die wichtigste Datei für Lehrkräfte ist die QGIS-Projektdatei:</p>
+<pre class="text"><code>06_qgis_project/&lt;aoi_name&gt;_lst_teaching_project.qgs</code></pre>
+<p>Sie kann direkt in QGIS geöffnet werden. Es ist kein PyQGIS-Aufruf, kein <code>qgis --code</code> und kein Terminal notwendig.</p>
+</section>
+<section id="luftbild-statt-osm-als-zentrale-orientierung" class="level1">
+<h1>Luftbild statt OSM als zentrale Orientierung</h1>
+<p>Für diese Unterrichtseinheit ist das RGB-Luftbild wichtiger als OSM. Die Lernenden sollen Gebäude, Parks, Wasser, Straßen und offene Flächen im Luftbild erkennen. Ein farbiges Luftbild ist dafür didaktisch stärker und technisch stabiler als ein großer OSM-Download.</p>
+<p>Das Skript bindet deshalb standardmäßig den NRW-DOP-RGB-WMS ein und kann zusätzlich ein lokales georeferenziertes RGB-Übersichtsraster erzeugen. Die zentrale WMS-Einstellung lautet:</p>
+<pre class="text"><code>url=https://www.wms.nrw.de/geobasis/wms_nw_dop?language=ger
+layers=nw_dop_rgb
+format=image/png
+crs=EPSG:25832</code></pre>
+<p>OSM ist im Startworkflow nicht erforderlich. Wenn OSM später ergänzt wird, sollte es als optionale Zusatzebene verstanden werden, nicht als Grundlage der Stunde.</p>
+</section>
+<section id="lst-produkte-und-kartendarstellung" class="level1">
+<h1>LST-Produkte und Kartendarstellung</h1>
+<p>Aus den Landsat-Szenen werden lokale LST-Raster in Grad Celsius erzeugt. Wolken, Wolkenschatten, Cirrus, Schnee und ungültige Pixel werden über das QA-Band maskiert. Danach werden heiße oder kalte Extremprodukte ausgewählt und als Komposite exportiert.</p>
+<p>Für den Unterricht ist meist der hot-Modus am verständlichsten. Er zeigt besonders gut, welche Oberflächen in heißen Situationen stark hervortreten. Der cold-Modus kann ergänzend genutzt werden, wenn kühl wirksame Strukturen stärker untersucht werden sollen.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/figures/fig12_hot_cold_modus.svg" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Hot, cold und both haben unterschiedliche didaktische Funktionen.</figcaption>
+</figure>
+</div>
+<p>Im QGIS-Projekt werden die hot-Layer als Pseudocolor mit Turbo-Farbverlauf und fünf Quantilklassen dargestellt. Cold-Layer werden mit einer Spectral-Farbtafel klassifiziert. Die Luftbildebene ist standardmäßig auf 35 Prozent Deckkraft gesetzt, damit LST und Stadtstruktur gemeinsam lesbar bleiben.</p>
+</section>
+<section id="konfiguration" class="level1">
+<h1>Konfiguration</h1>
+<p>Der Konfigurator erzeugt einen JSON- oder R-Konfigurationsblock. Er startet keine Berechnung im Browser. Die Konfiguration wird anschließend mit dem lokalen R-Skript verwendet.</p>
+<p>Die wichtigsten Entscheidungen sind AOI, Zeitraum, Extremmodus und Luftbildquelle. Für den Start empfiehlt sich:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>aoi_name <span class="ot">&lt;-</span> <span class="st">"koeln"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>aoi_mode <span class="ot">&lt;-</span> <span class="st">"koeln_stadtbezirke"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>date_start <span class="ot">&lt;-</span> <span class="st">"2020-01-01"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>seasonal_months <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>extreme_mode <span class="ot">&lt;-</span> <span class="st">"hot"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>aerial_source_mode <span class="ot">&lt;-</span> <span class="st">"both"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>load_osm_layers <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>aerial_source_mode &lt;- "both"</code> erzeugt ein lokales RGB-Luftbild und bindet zusätzlich den Online-WMS ein. Für rein onlinebasierte Arbeit kann <code>"wms"</code> genutzt werden. Für Offline-Pakete ist <code>"local_rgb"</code> sinnvoll.</p>
+</section>
+<section id="technischer-datenfluss" class="level1">
+<h1>Technischer Datenfluss</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/figures/fig08_technischer_datenfluss.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Technischer Datenfluss vom AOI zur QGIS-Projektdatei.</figcaption>
+</figure>
+</div>
+<p>Die Landsat-Daten werden über STAC gesucht. Die signierten URLs des Planetary Computer werden nicht dauerhaft gespeichert, weil sie ablaufen. Stattdessen wird jede Szene unmittelbar vor dem Zugriff signiert. Bereits lokal verarbeitete Szenen werden wiederverwendet. Das ist wichtig, weil größere AOIs und längere Zeiträume sonst unnötig viele Remote-Zugriffe erzeugen.</p>
+<p>Das Ergebnis ist ein reproduzierbares Materialpaket. Die <code>manifest.json</code> dokumentiert, welche Dateien erzeugt wurden. Für normale Lehrkräfte ist diese Datei nicht wichtig; für Fehlersuche und Weiterentwicklung ist sie hilfreich.</p>
+</section>
+<section id="empfohlene-nutzung" class="level1">
+<h1>Empfohlene Nutzung</h1>
+<p>Für ein neues Paket sollte zuerst ein kleiner AOI getestet werden. Wenn das Ergebnis plausibel ist, kann der Ausschnitt vergrößert werden. Für ganze Städte ist das lokale RGB-Luftbild auf eine kontrollierte Maximalgröße begrenzt, damit das Paket nicht zu groß wird.</p>
+<p>Die Ausdrucke für den Unterricht sollten aus demselben QGIS-Projekt und demselben Layout exportiert werden. Nur dann passen Luftbild, LST-Karte und Folienmarkierung exakt übereinander.</p>
 
 
 </section>
@@ -944,13 +994,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unit01/lehrerhandreichung_inhaltlich.html" class="pagination-link" aria-label="Lehrerhandreichung: Summer in the city">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lehrerhandreichung: Summer in the city</span>
+      <a href="../pages/schuelerseite_lst_stadtklima.html" class="pagination-link" aria-label="Arbeitsseite für Lernende">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Arbeitsseite für Lernende</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unit01/lehrerhandreichung_technisch.html" class="pagination-link" aria-label="Lehrerhandreichung: Erstellung der Unterlagen">
-        <span class="nav-page-text">Lehrerhandreichung: Erstellung der Unterlagen</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/konfigurator_lst_paket.html" class="pagination-link" aria-label="Konfigurator">
+        <span class="nav-page-text">Konfigurator</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -959,4 +1009,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/unit01/schuelerseite_lst_stadtklima.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/pages/lehrerhandreichung_technisch.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,30 @@
+{
+  "description": "Refactored QMD pages and figure/download structure for Summer in the City LST teaching package",
+  "pages": [
+    "pages/konfigurator_lst_paket.qmd",
+    "pages/lehrerhandreichung_inhaltlich.qmd",
+    "pages/lehrerhandreichung_technisch.qmd",
+    "pages/schuelerseite_lst_stadtklima.qmd"
+  ],
+  "figures": [
+    "images/figures/fig00_materialpaket_struktur.svg",
+    "images/figures/fig01_projektidee.png",
+    "images/figures/fig02_lst_meteorologisch.png",
+    "images/figures/fig03_lernziele.png",
+    "images/figures/fig04_material_temperatur_matrix.png",
+    "images/figures/fig05_datenpaket.png",
+    "images/figures/fig06_layer_stack.png",
+    "images/figures/fig07_unterrichtsablauf.png",
+    "images/figures/fig08_technischer_datenfluss.png",
+    "images/figures/fig09_downloadpaket_koeln.svg",
+    "images/figures/fig10_standardweg_lehrkraft.svg",
+    "images/figures/fig11_argumentationshilfe.svg",
+    "images/figures/fig12_hot_cold_modus.svg"
+  ],
+  "downloads": [
+    "downloads/lst_materialpaket_koeln_demo.zip"
+  ],
+  "scripts": [
+    "scripts/landsat_lst_aoi_teaching_workflow.R"
+  ]
+}

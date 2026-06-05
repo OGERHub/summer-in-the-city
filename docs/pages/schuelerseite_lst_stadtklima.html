@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Rieke Ammoneit">
 
-<title>LST-Datenpaket konfigurieren – Geländeklimatologie</title>
+<title>Warum sind manche Stadtflächen heißer? – Summer in the City</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +31,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unit01/lehrerhandreichung_technisch.html" rel="prev">
-<link href="..//images/logo.png" rel="icon" type="image/png">
+<link href="../pages/lehrerhandreichung_technisch.html" rel="next">
+<link href="../pages/lehrerhandreichung_inhaltlich.html" rel="prev">
+<link href="../images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -44,9 +46,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ff1c0b2f8310f0453cff04f36a6b9d09.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c491359cee83905d50b347cb1f39f111.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-ff1c0b2f8310f0453cff04f36a6b9d09.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c6646289762f395b9cc6bc388016c044.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d45f06deb8b85394c8ea82790f6ad26e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c6646289762f395b9cc6bc388016c044.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,18 +106,22 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../css/styles.css">
-<meta property="og:title" content="LST-Datenpaket konfigurieren – Geländeklimatologie">
-<meta property="og:description" content="Statische Quarto-Seite für AOI, Zeitraum und Extremmodus">
-<meta property="og:image" content="https://ogerhub.github.io/summer-in-the-city/unit01/figures/fig02_konfigurator_logik.svg">
-<meta property="og:site_name" content="Geländeklimatologie">
-<meta name="twitter:title" content="LST-Datenpaket konfigurieren – Geländeklimatologie">
-<meta name="twitter:description" content="Statische Quarto-Seite für AOI, Zeitraum und Extremmodus">
-<meta name="twitter:image" content="https://ogerhub.github.io/summer-in-the-city/unit01/figures/fig02_konfigurator_logik.svg">
+<meta property="og:title" content="Warum sind manche Stadtflächen heißer? – Summer in the City">
+<meta property="og:description" content="Arbeitsseite für Lernende">
+<meta property="og:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig07_unterrichtsablauf.png">
+<meta property="og:site_name" content="Summer in the City">
+<meta property="og:image:height" content="1001">
+<meta property="og:image:width" content="1572">
+<meta name="twitter:title" content="Warum sind manche Stadtflächen heißer? – Summer in the City">
+<meta name="twitter:description" content="Arbeitsseite für Lernende">
+<meta name="twitter:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig07_unterrichtsablauf.png">
 <meta name="twitter:creator" content="@gisma">
+<meta name="twitter:image-height" content="1001">
+<meta name="twitter:image-width" content="1572">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -281,13 +287,29 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Summer in the City</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">LST-Datenpaket konfigurieren</h1>
+          <h1 class="quarto-secondary-nav-title">Warum sind manche Stadtflächen heißer?</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -296,17 +318,9 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Geländeklimatologie</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Suchen"></div>
@@ -323,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Handreichungen</span></a>
+ <span class="menu-text">Summer in the City</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -331,26 +345,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/lehrerhandreichung_inhaltlich.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lehrerhandreichung: Summer in the city</span></a>
+  <a href="../pages/lehrerhandreichung_inhaltlich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unterrichtsidee und Materialpaket</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/schuelerseite_lst_stadtklima.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Schülerhandreichung: Summer in the city</span></a>
+  <a href="../pages/schuelerseite_lst_stadtklima.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Arbeitsseite für Lernende</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Material selbst erstellen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/lehrerhandreichung_technisch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technische Anleitung</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/lehrerhandreichung_technisch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lehrerhandreichung: Erstellung der Unterlagen</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unit01/konfigurator_lst_paket.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Lehrerhandreichung: Konfigurator</span></a>
+  <a href="../pages/konfigurator_lst_paket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Konfigurator</span></a>
   </div>
 </li>
       </ul>
@@ -365,10 +390,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhalt</h2>
    
   <ul>
-  <li><a href="#zweck-der-seite" id="toc-zweck-der-seite" class="nav-link active" data-scroll-target="#zweck-der-seite">Zweck der Seite</a></li>
-  <li><a href="#nutzung" id="toc-nutzung" class="nav-link" data-scroll-target="#nutzung">Nutzung</a></li>
+  <li><a href="#eure-leitfrage" id="toc-eure-leitfrage" class="nav-link active" data-scroll-target="#eure-leitfrage">Eure Leitfrage</a></li>
+  <li><a href="#eure-aufgabe" id="toc-eure-aufgabe" class="nav-link" data-scroll-target="#eure-aufgabe">Eure Aufgabe</a></li>
+  <li><a href="#schritt-1-orientieren" id="toc-schritt-1-orientieren" class="nav-link" data-scroll-target="#schritt-1-orientieren">Schritt 1: Orientieren</a></li>
+  <li><a href="#schritt-2-oberflächen-markieren" id="toc-schritt-2-oberflächen-markieren" class="nav-link" data-scroll-target="#schritt-2-oberflächen-markieren">Schritt 2: Oberflächen markieren</a></li>
+  <li><a href="#schritt-3-mit-der-lst-karte-vergleichen" id="toc-schritt-3-mit-der-lst-karte-vergleichen" class="nav-link" data-scroll-target="#schritt-3-mit-der-lst-karte-vergleichen">Schritt 3: Mit der LST-Karte vergleichen</a></li>
+  <li><a href="#schritt-4-muster-erklären" id="toc-schritt-4-muster-erklären" class="nav-link" data-scroll-target="#schritt-4-muster-erklären">Schritt 4: Muster erklären</a></li>
+  <li><a href="#schritt-5-sichern" id="toc-schritt-5-sichern" class="nav-link" data-scroll-target="#schritt-5-sichern">Schritt 5: Sichern</a></li>
+  <li><a href="#satzstarter-für-eure-begründung" id="toc-satzstarter-für-eure-begründung" class="nav-link" data-scroll-target="#satzstarter-für-eure-begründung">Satzstarter für eure Begründung</a></li>
+  <li><a href="#begriffshilfe" id="toc-begriffshilfe" class="nav-link" data-scroll-target="#begriffshilfe">Begriffshilfe</a></li>
+  <li><a href="#abschlussfrage" id="toc-abschlussfrage" class="nav-link" data-scroll-target="#abschlussfrage">Abschlussfrage</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/unit01/konfigurator_lst_paket.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/pages/schuelerseite_lst_stadtklima.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -376,15 +409,27 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">LST-Datenpaket konfigurieren</h1>
-<p class="subtitle lead">Statische Quarto-Seite für AOI, Zeitraum und Extremmodus</p>
+<h1 class="title d-none d-lg-block">Warum sind manche Stadtflächen heißer?</h1>
+<p class="subtitle lead">Arbeitsseite für Lernende</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor:in</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rieke Ammoneit </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">5. Juni 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -394,181 +439,137 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="zweck-der-seite" class="level1">
-<h1>Zweck der Seite</h1>
-<p>Diese Seite erzeugt eine einfache Konfiguration für das lokale LST-Workflow-Skript. Sie startet keinen Server und führt keine Berechnung aus. Sie hilft nur dabei, die Eingaben sauber zu setzen und als <code>run_config.json</code> oder R-Block zu speichern.</p>
+<section id="eure-leitfrage" class="level1">
+<h1>Eure Leitfrage</h1>
+<p>Stellt euch einen heißen Sommertag in der Stadt vor. Wo würdet ihr lieber stehen: auf einem großen Parkplatz, an einer breiten Straße, in einem Park, am Wasser oder unter Bäumen? Vermutlich habt ihr sofort eine Vermutung. In dieser Aufgabe prüft ihr diese Vermutung mit Karten.</p>
+<p>Ihr bekommt zwei Karten desselben Stadtgebiets. Die erste Karte ist ein RGB-Luftbild. Darauf seht ihr Gebäude, Straßen, Grünflächen, Wasser und andere Oberflächen. Die zweite Karte ist eine LST-Karte. LST bedeutet Land Surface Temperature, also Oberflächentemperatur. Diese Karte zeigt nicht die Lufttemperatur, sondern die Temperatur der Oberfläche in einer Satellitenszene.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/fig02_konfigurator_logik.svg" class="img-fluid figure-img" style="width:95.0%"></p>
-<figcaption>Die Konfigurationsseite erzeugt eine JSON-Datei oder einen R-Block.</figcaption>
+<p><img src="../images/figures/fig07_unterrichtsablauf.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Ihr arbeitet zuerst mit dem Luftbild, dann mit der LST-Karte.</figcaption>
 </figure>
 </div>
-<style>
-.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
-.config-card { border: 1px solid #c8d2dc; border-radius: 14px; padding: 1rem; background: #f8fafc; }
-.config-card label { display: block; font-weight: 700; margin-top: .7rem; }
-.config-card input, .config-card select { width: 100%; padding: .45rem; border: 1px solid #b7c4cf; border-radius: 8px; }
-.config-actions { margin: 1rem 0; display: flex; gap: .75rem; flex-wrap: wrap; }
-.config-actions button { padding: .65rem 1rem; border-radius: 10px; border: 1px solid #2f4558; background: #2f78b7; color: white; font-weight: 700; cursor: pointer; }
-.config-actions button.secondary { background: #506577; }
-textarea.config-output { width: 100%; min-height: 260px; font-family: monospace; font-size: .9rem; }
-</style>
-
-<div class="config-grid">
-  <div class="config-card">
-    <h3 class="anchored" data-anchor-id="zweck-der-seite">Raum und Zeitraum</h3>
-    <label>AOI-Name</label>
-    <input id="aoi_name" value="koeln">
-
-    <label>AOI-Modus</label>
-    <select id="aoi_mode">
-      <option value="koeln_stadtbezirke">Köln Stadtbezirke</option>
-      <option value="bbox">Bounding Box</option>
-      <option value="file">eigene Datei</option>
-    </select>
-
-    <label>Startdatum</label>
-    <input id="date_start" type="date" value="2020-01-01">
-
-    <label>Enddatum</label>
-    <input id="date_end" type="date">
-  </div>
-
-  <div class="config-card">
-    <h3 class="anchored">Analyse</h3>
-    <label>Monate</label>
-    <select id="season">
-      <option value="summer">Sommerhalbjahr April–September</option>
-      <option value="year">Ganzes Jahr</option>
-    </select>
-
-    <label>Extremmodus</label>
-    <select id="extreme_mode">
-      <option value="both">heiß und kalt</option>
-      <option value="hot">nur heiß</option>
-      <option value="cold">nur kalt</option>
-    </select>
-
-    <label>Anzahl heißer Szenen</label>
-    <input id="n_hot" type="number" min="1" max="30" value="10">
-
-    <label>Anzahl kalter Szenen</label>
-    <input id="n_cold" type="number" min="1" max="30" value="10">
-  </div>
-
-  <div class="config-card">
-    <h3 class="anchored">Optionale Ebenen</h3>
-    <label>OSM-Layer laden</label>
-    <select id="load_osm_layers">
-      <option value="true">ja</option>
-      <option value="false">nein</option>
-    </select>
-
-    <label>Luftbild-WMS hinzufügen</label>
-    <select id="add_aerial_wms">
-      <option value="true">ja</option>
-      <option value="false">nein</option>
-    </select>
-
-    <label>max. Szenen-Wolkenanteil [%]</label>
-    <input id="max_scene_cloud" type="number" min="0" max="100" value="30">
-  </div>
-
-  <div class="config-card">
-    <h3 class="anchored">Bounding Box nur bei AOI-Modus bbox</h3>
-    <label>xmin</label><input id="xmin" value="6.75">
-    <label>ymin</label><input id="ymin" value="50.82">
-    <label>xmax</label><input id="xmax" value="7.20">
-    <label>ymax</label><input id="ymax" value="51.10">
-  </div>
-</div>
-
-<div class="config-actions">
-  <button onclick="makeJSON()">JSON erzeugen</button>
-  <button onclick="makeR()" class="secondary">R-Block erzeugen</button>
-  <button onclick="downloadJSON()" class="secondary">run_config.json herunterladen</button>
-</div>
-
-<textarea id="output" class="config-output"></textarea>
-
-<script>
-function boolVal(id) { return document.getElementById(id).value === 'true'; }
-function numVal(id) { return Number(document.getElementById(id).value); }
-function strVal(id) { return document.getElementById(id).value; }
-function months() { return strVal('season') === 'summer' ? [4,5,6,7,8,9] : [1,2,3,4,5,6,7,8,9,10,11,12]; }
-function configObj() {
-  let end = strVal('date_end');
-  if (!end) end = new Date().toISOString().slice(0,10);
-  return {
-    aoi_name: strVal('aoi_name'),
-    aoi_mode: strVal('aoi_mode'),
-    project_root: 'data/landsat_lst',
-    date_start: strVal('date_start'),
-    date_end: end,
-    seasonal_months: months(),
-    extreme_mode: strVal('extreme_mode'),
-    n_hot: numVal('n_hot'),
-    n_cold: numVal('n_cold'),
-    hot_metric: 'q90_C',
-    cold_metric: 'q10_C',
-    max_scene_cloud: numVal('max_scene_cloud'),
-    load_osm_layers: boolVal('load_osm_layers'),
-    add_aerial_wms: boolVal('add_aerial_wms'),
-    aoi_bbox: {
-      xmin: Number(strVal('xmin')), ymin: Number(strVal('ymin')),
-      xmax: Number(strVal('xmax')), ymax: Number(strVal('ymax'))
-    }
-  };
-}
-function makeJSON() {
-  document.getElementById('output').value = JSON.stringify(configObj(), null, 2);
-}
-function makeR() {
-  const c = configObj();
-  const m = 'c(' + c.seasonal_months.join(', ') + ')';
-  const r = `aoi_name <- "${c.aoi_name}"
-aoi_mode <- "${c.aoi_mode}"
-project_root <- "${c.project_root}"
-
-date_start <- "${c.date_start}"
-date_end   <- "${c.date_end}"
-seasonal_months <- ${m}
-
-extreme_mode <- "${c.extreme_mode}"
-n_hot  <- ${c.n_hot}
-n_cold <- ${c.n_cold}
-
-hot_metric  <- "${c.hot_metric}"
-cold_metric <- "${c.cold_metric}"
-max_scene_cloud <- ${c.max_scene_cloud}
-
-load_osm_layers <- ${c.load_osm_layers ? 'TRUE' : 'FALSE'}
-add_aerial_wms  <- ${c.add_aerial_wms ? 'TRUE' : 'FALSE'}
-
-aoi_bbox <- c(
-  xmin = ${c.aoi_bbox.xmin},
-  ymin = ${c.aoi_bbox.ymin},
-  xmax = ${c.aoi_bbox.xmax},
-  ymax = ${c.aoi_bbox.ymax}
-)`;
-  document.getElementById('output').value = r;
-}
-function downloadJSON() {
-  const data = JSON.stringify(configObj(), null, 2);
-  const blob = new Blob([data], {type: 'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'run_config.json'; a.click(); URL.revokeObjectURL(url);
-}
-window.addEventListener('load', () => {
-  document.getElementById('date_end').value = new Date().toISOString().slice(0,10);
-  makeJSON();
-});
-</script>
 </section>
-<section id="nutzung" class="level1">
-<h1>Nutzung</h1>
-<p>Speichern Sie die erzeugte <code>run_config.json</code> zusammen mit dem Skript oder übertragen Sie den R-Block in den Konfigurationsteil des Skripts. Danach wird das lokale R-Skript ausgeführt. Die Berechnung selbst passiert nicht auf dieser Webseite.</p>
+<section id="eure-aufgabe" class="level1">
+<h1>Eure Aufgabe</h1>
+<p>Ihr markiert zuerst sichtbare Oberflächen auf einer transparenten Folie. Danach legt ihr dieselbe Folie auf die LST-Karte. So könnt ihr prüfen, ob die von euch markierten Flächen eher heiß, mittel oder kühl erscheinen.</p>
+<p>Wichtig ist: Ihr sollt nicht nur Farben ablesen. Ihr sollt erklären, warum ein Bereich wahrscheinlich wärmer oder kühler erscheint. Dafür verbindet ihr drei Dinge: Was erkennt ihr im Luftbild? Welche Temperaturtendenz zeigt die LST-Karte? Welcher Prozess könnte das Muster erklären?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/figures/fig11_argumentationshilfe.svg" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Eine gute Erklärung verbindet Beobachtung, Zuordnung, Vergleich und Prozess.</figcaption>
+</figure>
+</div>
+</section>
+<section id="schritt-1-orientieren" class="level1">
+<h1>Schritt 1: Orientieren</h1>
+<p>Schaut euch zuerst nur das Luftbild an. Sucht Orientierungspunkte wie einen Fluss, große Straßen, Parks, Bahnanlagen, größere Gebäude, Gewässer oder auffällige Stadtstrukturen. Ziel ist, dass ihr den Kartenausschnitt sicher lesen könnt, bevor ihr auf Temperaturen schaut.</p>
+<p>Notiert zwei bis drei Orientierungspunkte. Diese helfen euch später, eure Beobachtungen räumlich genau zu beschreiben.</p>
+</section>
+<section id="schritt-2-oberflächen-markieren" class="level1">
+<h1>Schritt 2: Oberflächen markieren</h1>
+<p>Legt die transparente Folie auf das Luftbild. Markiert mindestens fünf unterschiedliche Oberflächen. Sinnvoll sind zum Beispiel große Dächer, breite Straßen, Parkflächen, Baumflächen, Wiesen, Wasserflächen, Bahnanlagen, Gewerbeflächen oder offene Böden.</p>
+<p>Nutzt unterschiedliche Farben oder Symbole. Schreibt eine kleine Legende auf die Folie. Achtet darauf, dass ihr größere Flächen markiert und nicht nur einzelne kleine Objekte.</p>
+</section>
+<section id="schritt-3-mit-der-lst-karte-vergleichen" class="level1">
+<h1>Schritt 3: Mit der LST-Karte vergleichen</h1>
+<p>Legt dieselbe Folie auf die LST-Karte. Vergleicht eure markierten Flächen mit der Temperaturdarstellung. Achtet auf größere Muster. Einzelne Pixel sind weniger wichtig als zusammenhängende warme oder kühle Bereiche.</p>
+<p>Beschreibt jede markierte Fläche mit einer vorsichtigen Temperaturtendenz: eher heiß, eher mittel oder eher kühl.</p>
+</section>
+<section id="schritt-4-muster-erklären" class="level1">
+<h1>Schritt 4: Muster erklären</h1>
+<p>Wählt zwei warme und zwei kühle Bereiche aus. Beschreibt zuerst, was dort im Luftbild zu sehen ist. Danach erklärt ihr, warum die Fläche auf der LST-Karte so erscheint.</p>
+<p>Nützliche Begriffe sind Versiegelung, Wärmespeicherung, Verdunstung, Schatten, Wasser, Vegetation, Material, Feuchte und Bebauungsdichte.</p>
+</section>
+<section id="schritt-5-sichern" class="level1">
+<h1>Schritt 5: Sichern</h1>
+<p>Füllt die Tabelle aus. Die letzte Spalte ist die wichtigste, weil dort aus der Beobachtung eine geographische Erklärung wird.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nr.</th>
+<th>Ort / markierte Fläche</th>
+<th>Oberfläche oder Nutzung</th>
+<th>LST-Tendenz</th>
+<th>plausible Erklärung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td></td>
+<td></td>
+<td>heiß / mittel / kühl</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td></td>
+<td></td>
+<td>heiß / mittel / kühl</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td></td>
+<td></td>
+<td>heiß / mittel / kühl</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td></td>
+<td></td>
+<td>heiß / mittel / kühl</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td></td>
+<td></td>
+<td>heiß / mittel / kühl</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="satzstarter-für-eure-begründung" class="level1">
+<h1>Satzstarter für eure Begründung</h1>
+<p>Eine gute Begründung kann so beginnen:</p>
+<p>„Im Luftbild erkennen wir …“<br>
+„Auf der LST-Karte erscheint diese Fläche …“<br>
+„Eine plausible Erklärung ist …“<br>
+„Das passt zu der Annahme, dass …“<br>
+„Eine Ausnahme ist …, möglicherweise weil …“</p>
+<p>Vermeidet zu starke Aussagen. Schreibt nicht: „Das ist dort heiß, weil es Asphalt ist.“ Besser ist: „Diese Fläche erscheint in der LST-Karte warm. Im Luftbild ist eine große versiegelte Fläche zu erkennen. Eine plausible Erklärung ist geringe Verdunstung und stärkere Wärmespeicherung.“</p>
+</section>
+<section id="begriffshilfe" class="level1">
+<h1>Begriffshilfe</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/figures/fig02_lst_meteorologisch.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>LST beschreibt die Oberfläche, nicht die Lufttemperatur.</figcaption>
+</figure>
+</div>
+<p>Die Materialübersicht hilft euch beim ersten Vermuten. Sie ist keine Regel, die immer gilt. Prüft die Vermutungen an eurer Karte.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/figures/fig04_material_temperatur_matrix.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Die Übersicht zeigt typische Tendenzen verschiedener Oberflächen.</figcaption>
+</figure>
+</div>
+</section>
+<section id="abschlussfrage" class="level1">
+<h1>Abschlussfrage</h1>
+<p>Formuliert am Ende eine vorsichtige Regel und eine Ausnahme. Eine gute Antwort könnte so beginnen:</p>
+<p>„In unserem Ausschnitt erscheinen … häufig wärmer als … . Das könnte daran liegen, dass … . Eine Ausnahme ist … .“</p>
 
 
 </section>
@@ -1002,11 +1003,14 @@ window.addEventListener('load', () => {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unit01/lehrerhandreichung_technisch.html" class="pagination-link" aria-label="Lehrerhandreichung: Erstellung der Unterlagen">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lehrerhandreichung: Erstellung der Unterlagen</span>
+      <a href="../pages/lehrerhandreichung_inhaltlich.html" class="pagination-link" aria-label="Unterrichtsidee und Materialpaket">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Unterrichtsidee und Materialpaket</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../pages/lehrerhandreichung_technisch.html" class="pagination-link" aria-label="Technische Anleitung">
+        <span class="nav-page-text">Technische Anleitung</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1014,4 +1018,4 @@ window.addEventListener('load', () => {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/unit01/konfigurator_lst_paket.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/pages/schuelerseite_lst_stadtklima.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>

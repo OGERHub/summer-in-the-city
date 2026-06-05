@@ -105,7 +105,7 @@ library(jsonlite)
 aoi_name <- "koeln"
 aoi_mode <- "koeln_stadtbezirke"
 
-project_root <- "data/landsat_lst"
+project_root <- file.path("data", "landsat_lst")
 
 date_start <- "2020-01-01"
 date_end   <- as.character(Sys.Date())
@@ -169,7 +169,7 @@ admin_file  <- NA_character_
 admin_layer <- NA_character_
 
 # OSM teaching layers
-load_osm_layers <- FALSE
+load_osm_layers <- TRUE
 
 # Overpass robustness
 # -------------------
@@ -183,22 +183,61 @@ load_osm_layers <- FALSE
 #   "warn_empty"  continue with an empty layer if all retries fail
 #   "stop"        stop the script after all retries fail
 #
-# For a first LST-only run, set load_osm_layers <- FALSE.
+# For a first LST-only run, set load_osm_layers <- TRUE.
 osm_fail_policy <- "warn_empty"
-osm_retry_max <- 5
-osm_retry_wait <- c(30, 60, 120, 240, 480)
+# Non-blocking default: try each endpoint once and then continue with empty OSM layers.
+# Whole-city Overpass queries can otherwise spend many minutes in backoff loops.
+osm_retry_max <- 1
+osm_retry_wait <- 0
+osm_timeout <- 25
+
+# Buildings are by far the heaviest OSM layer for a whole city.
+# Keep FALSE for city-wide teaching packages. Students can identify
+# buildings from the aerial image; vector buildings can be enabled
+# for smaller AOIs.
+osm_load_buildings <- FALSE
+osm_disable_after_server_error <- TRUE
 osm_endpoints <- c(
   "https://overpass-api.de/api/interpreter",
   "https://overpass.kumi.systems/api/interpreter",
   "https://overpass.openstreetmap.fr/api/interpreter"
 )
 
-# Aerial photo WMS for the QGIS project.
-# For Cologne/NRW this is the NRW DOP WMS.
-add_aerial_wms <- TRUE
-aerial_wms_name  <- "Luftbild NRW DOP WMS"
-aerial_wms_url   <- "https://www.wms.nrw.de/geobasis/wms_nw_dop?"
-aerial_wms_layer <- "WMS_NW_DOP"
+# Aerial image source for the QGIS project.
+# ----------------------------------------
+# "wms"       online aerial image as QGIS WMS layer only
+# "local_rgb" download one georeferenced RGB overview raster only
+# "both"      use local RGB overview plus online WMS
+# "none"      no aerial image layer
+#
+# Recommended for teaching packages:
+#   "both" for preparation on your own machine.
+#   "wms" if no local raster should be created.
+aerial_source_mode <- "both"
+
+# Backward-compatible flags derived from aerial_source_mode.
+add_aerial_wms <- aerial_source_mode %in% c("wms", "both")
+aerial_wms_name  <- "Luftbild NRW DOP RGB WMS"
+
+# This is the RGB layer as QGIS reports it for the NRW DOP WMS:
+#   crs=EPSG:25832&dpiMode=7&format=image/png&layers=nw_dop_rgb&styles&tilePixelRatio=0&url=https://www.wms.nrw.de/geobasis/wms_nw_dop?language%3Dger
+aerial_wms_url   <- "https://www.wms.nrw.de/geobasis/wms_nw_dop?language=ger"
+aerial_wms_layer <- "nw_dop_rgb"
+
+# Default transparency for aerial imagery in the QGIS project.
+# 0.35 means 35% opacity, i.e. 65% transparent.
+aerial_opacity <- 0.35
+
+# Local RGB aerial image
+# ----------------------
+# This creates a georeferenced RGB overview from the aerial-photo WMS.
+# It is a cache/print fallback, not a replacement for the web service.
+# The image is written at a controlled size so a city-wide AOI does not
+# create a massive 10 cm DOP file.
+add_local_rgb_aerial <- aerial_source_mode %in% c("local_rgb", "both")
+aerial_rgb_format <- "image/png"
+aerial_rgb_max_dim <- 6000
+aerial_rgb_target_res_m <- 2
 
 # Automatically start QGIS after writing the PyQGIS project script.
 # Keep FALSE for reproducible batch runs.
@@ -269,10 +308,22 @@ run_config <- list(
   crs_qgis = crs_qgis,
   crs_lucc = crs_lucc,
   load_osm_layers = load_osm_layers,
+  osm_fail_policy = osm_fail_policy,
+  osm_retry_max = osm_retry_max,
+  osm_retry_wait = osm_retry_wait,
+  osm_timeout = osm_timeout,
+  osm_load_buildings = osm_load_buildings,
+  osm_disable_after_server_error = osm_disable_after_server_error,
+  aerial_source_mode = aerial_source_mode,
   add_aerial_wms = add_aerial_wms,
   aerial_wms_name = aerial_wms_name,
   aerial_wms_url = aerial_wms_url,
-  aerial_wms_layer = aerial_wms_layer
+  aerial_wms_layer = aerial_wms_layer,
+  aerial_opacity = aerial_opacity,
+  add_local_rgb_aerial = add_local_rgb_aerial,
+  aerial_rgb_format = aerial_rgb_format,
+  aerial_rgb_max_dim = aerial_rgb_max_dim,
+  aerial_rgb_target_res_m = aerial_rgb_target_res_m
 )
 
 jsonlite::write_json(
@@ -1058,10 +1109,15 @@ empty_sf <- function(crs) {
   st_sf(geometry = st_sfc(crs = crs))
 }
 
-is_osm_rate_limit_error <- function(e) {
+is_osm_transient_error <- function(e) {
   inherits(e, "httr2_http_429") ||
-    grepl("429|Too Many Requests", conditionMessage(e), ignore.case = TRUE)
+    inherits(e, "httr2_http_502") ||
+    inherits(e, "httr2_http_503") ||
+    inherits(e, "httr2_http_504") ||
+    grepl("429|502|503|504|Too Many Requests|Gateway Timeout|Service Unavailable|Bad Gateway", conditionMessage(e), ignore.case = TRUE)
 }
+
+.osm_disabled <- FALSE
 
 set_overpass_endpoint_safe <- function(endpoint) {
   try(
@@ -1072,6 +1128,11 @@ set_overpass_endpoint_safe <- function(endpoint) {
 }
 
 osmdata_sf_retry <- function(q, label = "OSM query") {
+
+  if (isTRUE(.osm_disabled)) {
+    message("  ", label, ": OSM disabled after previous Overpass failure. Empty layer.")
+    return(empty_sf(4326))
+  }
 
   last_error <- NULL
 
@@ -1092,22 +1153,19 @@ osmdata_sf_retry <- function(q, label = "OSM query") {
 
       last_error <- res
 
-      if (is_osm_rate_limit_error(res)) {
+      message(
+        "  ", label,
+        ": endpoint failed at ", endpoint,
+        " (attempt ", attempt, "/", osm_retry_max, "): ",
+        conditionMessage(res)
+      )
+
+      if (attempt < osm_retry_max) {
         wait <- osm_retry_wait[min(attempt, length(osm_retry_wait))]
-        message(
-          "  ", label,
-          ": HTTP 429 at ", endpoint,
-          " (attempt ", attempt, "/", osm_retry_max, "). Waiting ",
-          wait, " s before retry ..."
-        )
-        Sys.sleep(wait)
-      } else {
-        message(
-          "  ", label,
-          ": endpoint failed at ", endpoint,
-          ": ", conditionMessage(res)
-        )
-        break
+        if (wait > 0) {
+          message("  ", label, ": waiting ", wait, " s before retry ...")
+          Sys.sleep(wait)
+        }
       }
     }
   }
@@ -1116,10 +1174,12 @@ osmdata_sf_retry <- function(q, label = "OSM query") {
     stop(last_error)
   }
 
-  message(
-    "  ", label,
-    ": all Overpass retries failed. Continuing with an empty layer."
-  )
+  if (isTRUE(osm_disable_after_server_error) && !is.null(last_error) && is_osm_transient_error(last_error)) {
+    .osm_disabled <<- TRUE
+    message("  ", label, ": transient Overpass failure. OSM disabled for the remaining layers in this run.")
+  }
+
+  message("  ", label, ": continuing with an empty layer.")
 
   empty_sf(4326)
 }
@@ -1184,7 +1244,7 @@ combine_sf <- function(x, crs = 4326) {
     st_make_valid()
 }
 
-get_osm_polygons_multi <- function(bbox, specs, timeout = 180) {
+get_osm_polygons_multi <- function(bbox, specs, timeout = osm_timeout) {
   parts <- lapply(specs, function(spec) {
     tryCatch(
       {
@@ -1212,11 +1272,16 @@ if (isTRUE(load_osm_layers)) {
   aoi_osm_4326 <- st_transform(aoi_4326, 4326)
   osm_bbox <- st_bbox(aoi_osm_4326)
 
-  if (!osm_layer_exists(gpkg_25832, "osm_buildings")) {
+  if (!isTRUE(osm_load_buildings)) {
+
+    message("OSM-Gebäude werden übersprungen (osm_load_buildings = FALSE).")
+    osm_buildings_25832 <- empty_sf(crs_qgis)
+
+  } else if (!osm_layer_exists(gpkg_25832, "osm_buildings")) {
 
     message("Lade OSM-Gebäude ...")
 
-    q_buildings <- opq(bbox = osm_bbox, timeout = 180) |>
+    q_buildings <- opq(bbox = osm_bbox, timeout = osm_timeout) |>
       add_osm_feature(key = "building")
 
     osm_buildings_4326 <- get_osm_polygons_safe(q_buildings, label = "OSM buildings")
@@ -1288,7 +1353,7 @@ if (isTRUE(load_osm_layers)) {
 
     message("Lade OSM-Straßen ...")
 
-    q_roads <- opq(bbox = osm_bbox, timeout = 180) |>
+    q_roads <- opq(bbox = osm_bbox, timeout = osm_timeout) |>
       add_osm_feature(
         key = "highway",
         value = c(
@@ -1426,256 +1491,703 @@ lst_project_table_file <- file.path(projected_lst_dir, "projected_lst_products.c
 readr::write_csv(lst_project_table, lst_project_table_file)
 
 
+
 # ------------------------------------------------------------
-# 11. Write PyQGIS script for a complete QGIS project
+# 10b. Optional local RGB aerial image from WMS
 # ------------------------------------------------------------
 #
-# Execution options:
+# The WMS is the primary high-resolution aerial image source in QGIS.
+# The optional local RGB raster is only a controlled overview/cache layer
+# for offline teaching packages and stable printing. It prevents the
+# common problem that externally requested imagery is treated as grey or
+# is unavailable during a class.
 #
-#   qgis --code <path>/create_qgis_project_<aoi>.py
-#
-# or in the QGIS Python console:
-#
-#   exec(open("<path>/create_qgis_project_<aoi>.py").read())
-#
-# The project will include all local vector layers and the projected LST
-# rasters in EPSG:25832. If enabled, it also adds an aerial WMS.
+# The image is requested as a WMS GetMap in EPSG:25832 and then written as
+# a georeferenced 3-band RGB GeoTIFF.
 #
 # ------------------------------------------------------------
 
-normalize_path <- function(x) {
-  normalizePath(x, winslash = "/", mustWork = FALSE)
+aerial_dir <- file.path(teaching_dir, "aerial")
+dir.create(aerial_dir, recursive = TRUE, showWarnings = FALSE)
+
+local_aerial_rgb <- file.path(aerial_dir, paste0(aoi_slug, "_aerial_rgb_EPSG25832.tif"))
+
+build_wms_getmap_url <- function(base_url, layer, bbox, width, height, crs, format = "image/jpeg") {
+
+  base_url <- sub("\\?$", "", base_url)
+
+  params <- c(
+    SERVICE = "WMS",
+    VERSION = "1.1.1",
+    REQUEST = "GetMap",
+    LAYERS = layer,
+    STYLES = "",
+    SRS = paste0("EPSG:", crs),
+    BBOX = paste(
+      formatC(c(bbox["xmin"], bbox["ymin"], bbox["xmax"], bbox["ymax"]), format = "f", digits = 3),
+      collapse = ","
+    ),
+    WIDTH = as.character(width),
+    HEIGHT = as.character(height),
+    FORMAT = format,
+    TRANSPARENT = "FALSE"
+  )
+
+  query <- paste(
+    paste0(names(params), "=", utils::URLencode(params, reserved = TRUE)),
+    collapse = "&"
+  )
+
+  paste0(base_url, ifelse(grepl("\\?", base_url), "&", "?"), query)
 }
 
-qgis_project_py  <- file.path(qgis_dir, paste0("create_qgis_project_", aoi_slug, ".py"))
-qgis_project_out <- file.path(qgis_dir, paste0(aoi_slug, "_lst_teaching_project.qgz"))
+download_local_aerial_rgb <- function(outfile) {
 
-# Python list of projected LST rasters for EPSG:25832
-lst_py_entries <- paste(
-  sprintf(
-    "    (r'%s', '%s %s [°C]')",
-    normalize_path(lst_project_table$epsg25832),
-    lst_project_table$mode,
-    lst_project_table$product
-  ),
-  collapse = ",\n"
-)
+  if (!isTRUE(add_local_rgb_aerial)) {
+    message("Lokales RGB-Luftbild deaktiviert.")
+    return(NA_character_)
+  }
 
-if (!nzchar(lst_py_entries)) {
-  lst_py_entries <- ""
-}
+  if (file.exists(outfile)) {
+    message("Lokales RGB-Luftbild existiert bereits: ", outfile)
+    return(outfile)
+  }
 
-has_admin_layer <- !is.null(admin_25832)
+  bbox_25832 <- st_bbox(aoi_25832)
 
-py <- sprintf(
-'from qgis.core import (
-    QgsProject,
-    QgsCoordinateReferenceSystem,
-    QgsRasterLayer,
-    QgsVectorLayer,
-    QgsSingleSymbolRenderer,
-    QgsFillSymbol,
-    QgsLineSymbol
-)
+  dx <- as.numeric(bbox_25832["xmax"] - bbox_25832["xmin"])
+  dy <- as.numeric(bbox_25832["ymax"] - bbox_25832["ymin"])
 
-project = QgsProject.instance()
-project.clear()
-project.setCrs(QgsCoordinateReferenceSystem("EPSG:%s"))
+  width <- ceiling(dx / aerial_rgb_target_res_m)
+  height <- ceiling(dy / aerial_rgb_target_res_m)
 
-# ------------------------------------------------------------
-# Paths
-# ------------------------------------------------------------
+  scale_factor <- max(width, height) / aerial_rgb_max_dim
 
-gpkg = r"%s"
-project_out = r"%s"
+  if (scale_factor > 1) {
+    width <- max(1, floor(width / scale_factor))
+    height <- max(1, floor(height / scale_factor))
+  }
 
-lst_layers = [
-%s
-]
+  message(
+    "Lade lokales RGB-Luftbild über WMS: ",
+    width, " x ", height, " px"
+  )
 
-# ------------------------------------------------------------
-# Layer tree groups
-# ------------------------------------------------------------
+  ext <- tools::file_ext(outfile)
+  tmp <- tempfile(fileext = ifelse(grepl("jpeg|jpg", aerial_rgb_format), ".jpg", ".png"))
 
-root = project.layerTreeRoot()
+  url <- build_wms_getmap_url(
+    base_url = aerial_wms_url,
+    layer = aerial_wms_layer,
+    bbox = bbox_25832,
+    width = width,
+    height = height,
+    crs = crs_qgis,
+    format = aerial_rgb_format
+  )
 
-grp_base = root.addGroup("01 Luftbild / Orientierung")
-grp_lst = root.addGroup("02 LST-Karten")
-grp_admin = root.addGroup("03 AOI / Verwaltungsgrenzen")
-grp_osm = root.addGroup("04 OSM-Strukturlayer")
+  ok <- tryCatch(
+    {
+      utils::download.file(url, tmp, mode = "wb", quiet = TRUE)
+      TRUE
+    },
+    error = function(e) {
+      message("  RGB-Luftbild konnte nicht geladen werden: ", conditionMessage(e))
+      FALSE
+    }
+  )
 
-# ------------------------------------------------------------
-# Optional aerial WMS
-# ------------------------------------------------------------
+  if (!isTRUE(ok) || !file.exists(tmp) || file.info(tmp)$size < 1000) {
+    message("  Kein gültiges RGB-Luftbild empfangen. WMS bleibt als Online-Layer erhalten.")
+    return(NA_character_)
+  }
 
-add_aerial_wms = %s
+  r <- tryCatch(
+    terra::rast(tmp),
+    error = function(e) {
+      message("  RGB-Luftbild konnte nicht als Raster gelesen werden: ", conditionMessage(e))
+      NULL
+    }
+  )
 
-if add_aerial_wms:
-    dop_uri = (
-        "contextualWMSLegend=0"
-        "&crs=EPSG:%s"
-        "&dpiMode=7"
-        "&featureCount=10"
-        "&format=image/png"
-        "&layers=%s"
-        "&styles="
-        "&url=%s"
-    )
+  if (is.null(r)) {
+    return(NA_character_)
+  }
 
-    dop = QgsRasterLayer(dop_uri, "%s", "wms")
-
-    if dop.isValid():
-        project.addMapLayer(dop, False)
-        grp_base.addLayer(dop)
-    else:
-        print("WARNUNG: Luftbild-WMS konnte nicht geladen werden.")
-
-# ------------------------------------------------------------
-# LST rasters
-# ------------------------------------------------------------
-
-for path, title in lst_layers:
-    lyr = QgsRasterLayer(path, "LST " + title, "gdal")
-    if lyr.isValid():
-        lyr.setOpacity(0.65)
-        project.addMapLayer(lyr, False)
-        grp_lst.addLayer(lyr)
-    else:
-        print("WARNUNG: LST-Raster konnte nicht geladen werden:", path)
-
-# ------------------------------------------------------------
-# Vector layers
-# ------------------------------------------------------------
-
-def add_gpkg_layer(layer_name, title, group):
-    uri = gpkg + "|layername=" + layer_name
-    lyr = QgsVectorLayer(uri, title, "ogr")
-    if lyr.isValid():
-        project.addMapLayer(lyr, False)
-        group.addLayer(lyr)
-        return lyr
-    else:
-        print("WARNUNG: Layer konnte nicht geladen werden:", layer_name)
-        return None
-
-aoi_boundary = add_gpkg_layer("aoi_boundary", "AOI-Grenze", grp_admin)
-
-if %s:
-    admin_orientation = add_gpkg_layer("admin_orientation", "Verwaltungs-/Orientierungsgrenzen", grp_admin)
-else:
-    admin_orientation = None
-
-osm_buildings = add_gpkg_layer("osm_buildings", "Gebäude OSM", grp_osm)
-osm_green = add_gpkg_layer("osm_green", "Parks / Grünflächen OSM", grp_osm)
-osm_water = add_gpkg_layer("osm_water", "Wasserflächen OSM", grp_osm)
-osm_roads = add_gpkg_layer("osm_roads", "Straßen OSM", grp_osm)
-
-# ------------------------------------------------------------
-# Simple print-friendly styles
-# ------------------------------------------------------------
-
-if aoi_boundary:
-    symbol = QgsFillSymbol.createSimple({
-        "color": "0,0,0,0",
-        "outline_color": "0,0,0,255",
-        "outline_width": "1.2"
-    })
-    aoi_boundary.setRenderer(QgsSingleSymbolRenderer(symbol))
-
-if admin_orientation:
-    symbol = QgsFillSymbol.createSimple({
-        "color": "0,0,0,0",
-        "outline_color": "0,0,0,180",
-        "outline_width": "0.6"
-    })
-    admin_orientation.setRenderer(QgsSingleSymbolRenderer(symbol))
-
-if osm_buildings:
-    symbol = QgsFillSymbol.createSimple({
-        "color": "120,120,120,80",
-        "outline_color": "80,80,80,180",
-        "outline_width": "0.1"
-    })
-    osm_buildings.setRenderer(QgsSingleSymbolRenderer(symbol))
-
-if osm_green:
-    symbol = QgsFillSymbol.createSimple({
-        "color": "80,160,80,100",
-        "outline_color": "40,120,40,160",
-        "outline_width": "0.2"
-    })
-    osm_green.setRenderer(QgsSingleSymbolRenderer(symbol))
-
-if osm_water:
-    symbol = QgsFillSymbol.createSimple({
-        "color": "80,140,220,120",
-        "outline_color": "40,90,180,180",
-        "outline_width": "0.2"
-    })
-    osm_water.setRenderer(QgsSingleSymbolRenderer(symbol))
-
-if osm_roads:
-    symbol = QgsLineSymbol.createSimple({
-        "color": "230,230,230,180",
-        "width": "0.4"
-    })
-    osm_roads.setRenderer(QgsSingleSymbolRenderer(symbol))
-
-# ------------------------------------------------------------
-# Save project
-# ------------------------------------------------------------
-
-project.write(project_out)
-print("QGIS-Projekt geschrieben:", project_out)
-',
-  crs_qgis,
-  normalize_path(gpkg_25832),
-  normalize_path(qgis_project_out),
-  lst_py_entries,
-  ifelse(isTRUE(add_aerial_wms), "True", "False"),
-  crs_qgis,
-  aerial_wms_layer,
-  aerial_wms_url,
-  aerial_wms_name,
-  ifelse(has_admin_layer, "True", "False")
-)
-
-writeLines(py, qgis_project_py)
-
-message("PyQGIS script written: ", qgis_project_py)
-message("QGIS project target: ", qgis_project_out)
-
-if (isTRUE(run_qgis_project_creation)) {
-  qgis_bin <- Sys.which("qgis")
-
-  if (nzchar(qgis_bin)) {
-    system2(qgis_bin, args = c("--code", normalize_path(qgis_project_py)), wait = FALSE)
+  # Keep only RGB if an alpha channel is present.
+  if (terra::nlyr(r) >= 3) {
+    r <- r[[1:3]]
+    names(r) <- c("red", "green", "blue")
   } else {
-    message("QGIS binary not found in PATH. Run the PyQGIS script manually:")
-    message(qgis_project_py)
+    message("  WMS-Antwort ist kein RGB-Raster. Erhaltene Bandzahl: ", terra::nlyr(r))
+    return(NA_character_)
+  }
+
+  terra::ext(r) <- terra::ext(
+    as.numeric(bbox_25832["xmin"]),
+    as.numeric(bbox_25832["xmax"]),
+    as.numeric(bbox_25832["ymin"]),
+    as.numeric(bbox_25832["ymax"])
+  )
+
+  terra::crs(r) <- paste0("EPSG:", crs_qgis)
+
+  terra::writeRaster(
+    r,
+    outfile,
+    overwrite = TRUE,
+    wopt = list(
+      gdal = c(
+        "COMPRESS=JPEG",
+        "JPEG_QUALITY=85",
+        "PHOTOMETRIC=RGB",
+        "INTERLEAVE=PIXEL",
+        "TILED=YES",
+        "BIGTIFF=IF_SAFER"
+      )
+    )
+  )
+
+  outfile
+}
+
+local_aerial_rgb <- download_local_aerial_rgb(local_aerial_rgb)
+
+
+# ------------------------------------------------------------
+# 11. Write a portable QGIS project file directly (.qgs XML)
+# ------------------------------------------------------------
+#
+# This section intentionally does NOT call QGIS and does NOT use PyQGIS.
+# A QGIS project file is plain XML. For teaching packages this is more
+# robust than generating a project through the QGIS Python environment.
+#
+# Output:
+#   06_qgis_project/<AOI>_lst_teaching_project.qgs
+#
+# Path principle:
+#   All layer sources are written as relative paths from the .qgs file to
+#   the local AOI package. The complete <AOI>/ directory can therefore be
+#   moved as one unit.
+#
+# Notes:
+#   - The project is deliberately simple and portable.
+#   - QGIS will apply its default renderers if a renderer block is omitted.
+#   - The WMS layer is included as a normal QGIS WMS datasource. If a local
+#     installation blocks WMS access, the local vector and raster layers
+#     still load.
+#
+# ------------------------------------------------------------
+
+as_posix <- function(x) {
+  gsub("\\\\", "/", x)
+}
+
+xml_escape <- function(x) {
+  x <- as.character(x)
+  x <- gsub("&", "&amp;", x, fixed = TRUE)
+  x <- gsub("<", "&lt;", x, fixed = TRUE)
+  x <- gsub(">", "&gt;", x, fixed = TRUE)
+  x <- gsub('"', "&quot;", x, fixed = TRUE)
+  x
+}
+
+qgis_project_file <- file.path(qgis_dir, paste0(aoi_slug, "_lst_teaching_project.qgs"))
+
+# Relative paths from 06_qgis_project/ to 05_teaching_layers/.
+rel_teaching <- function(path) {
+  as_posix(file.path("..", "05_teaching_layers", basename(path)))
+}
+
+rel_projected_lst <- function(path) {
+  as_posix(file.path("..", "05_teaching_layers", "projected_lst", basename(path)))
+}
+
+rel_aerial <- function(path) {
+  as_posix(file.path("..", "05_teaching_layers", "aerial", basename(path)))
+}
+
+# A compact CRS block is sufficient for EPSG-based project/layer CRS.
+qgis_srs_xml <- function(epsg) {
+  paste0(
+'      <srs>
+        <spatialrefsys nativeFormat="Wkt">
+          <wkt></wkt>
+          <proj4></proj4>
+          <srsid>0</srsid>
+          <srid>', epsg, '</srid>
+          <authid>EPSG:', epsg, '</authid>
+          <description>EPSG:', epsg, '</description>
+          <projectionacronym></projectionacronym>
+          <ellipsoidacronym></ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>'
+  )
+}
+
+make_layer_id <- function(prefix, i, name) {
+  raw <- paste(prefix, i, name, sep = "_")
+  raw <- safe_filename(raw)
+  paste0(raw, "_", sprintf("%03d", i))
+}
+
+# Layer registry ---------------------------------------------------------
+
+layers <- list()
+
+add_layer <- function(group, name, type, provider, datasource, epsg = crs_qgis, opacity = NA_real_, raster_kind = "generic") {
+  i <- length(layers) + 1
+  id <- make_layer_id(type, i, name)
+
+  layers[[i]] <<- list(
+    id = id,
+    group = group,
+    name = name,
+    type = type,
+    provider = provider,
+    datasource = datasource,
+    epsg = epsg,
+    opacity = opacity,
+    raster_kind = raster_kind
+  )
+
+  invisible(id)
+}
+
+# Local RGB aerial raster has priority for teaching use.
+if (!is.na(local_aerial_rgb) && file.exists(local_aerial_rgb)) {
+  add_layer(
+    group = "01 Luftbild / Orientierung",
+    name = "Luftbild lokal RGB",
+    type = "raster",
+    provider = "gdal",
+    datasource = rel_aerial(local_aerial_rgb),
+    epsg = crs_qgis,
+    opacity = aerial_opacity,
+    raster_kind = "rgb"
+  )
+}
+
+# Optional aerial WMS
+if (isTRUE(add_aerial_wms)) {
+  wms_url <- sub("\\?$", "", aerial_wms_url)
+
+  wms_source <- paste0(
+    "crs=EPSG:", crs_qgis,
+    "&dpiMode=7",
+    "&format=", aerial_rgb_format,
+    "&layers=", aerial_wms_layer,
+    "&styles",
+    "&tilePixelRatio=0",
+    "&url=", utils::URLencode(wms_url, reserved = TRUE)
+  )
+
+  add_layer(
+    group = "01 Luftbild / Orientierung",
+    name = aerial_wms_name,
+    type = "raster",
+    provider = "wms",
+    datasource = wms_source,
+    epsg = crs_qgis,
+    opacity = aerial_opacity,
+    raster_kind = "wms"
+  )
+}
+
+# LST rasters
+if (nrow(lst_project_table) > 0) {
+  for (i in seq_len(nrow(lst_project_table))) {
+    lst_mode <- as.character(lst_project_table$mode[i])
+
+    add_layer(
+      group = "02 LST-Karten",
+      name = paste("LST", lst_mode, lst_project_table$product[i], "[°C]"),
+      type = "raster",
+      provider = "gdal",
+      datasource = rel_projected_lst(lst_project_table$epsg25832[i]),
+      epsg = crs_qgis,
+      opacity = 0.75,
+      raster_kind = ifelse(
+        identical(lst_mode, "hot"),
+        "lst_hot",
+        ifelse(identical(lst_mode, "cold"), "lst_cold", "lst_generic")
+      )
+    )
   }
 }
 
+# Vector layers from the teaching GeoPackage
+gpkg_source <- rel_teaching(gpkg_25832)
+
+add_layer(
+  group = "03 AOI / Verwaltungsgrenzen",
+  name = "AOI-Grenze",
+  type = "vector",
+  provider = "ogr",
+  datasource = paste0(gpkg_source, "|layername=aoi_boundary"),
+  epsg = crs_qgis
+)
+
+if (!is.null(admin_25832)) {
+  add_layer(
+    group = "03 AOI / Verwaltungsgrenzen",
+    name = "Verwaltungs-/Orientierungsgrenzen",
+    type = "vector",
+    provider = "ogr",
+    datasource = paste0(gpkg_source, "|layername=admin_orientation"),
+    epsg = crs_qgis
+  )
+}
+
+add_layer(
+  group = "04 OSM-Strukturlayer",
+  name = "Gebäude OSM",
+  type = "vector",
+  provider = "ogr",
+  datasource = paste0(gpkg_source, "|layername=osm_buildings"),
+  epsg = crs_qgis
+)
+
+add_layer(
+  group = "04 OSM-Strukturlayer",
+  name = "Parks / Grünflächen OSM",
+  type = "vector",
+  provider = "ogr",
+  datasource = paste0(gpkg_source, "|layername=osm_green"),
+  epsg = crs_qgis
+)
+
+add_layer(
+  group = "04 OSM-Strukturlayer",
+  name = "Wasserflächen OSM",
+  type = "vector",
+  provider = "ogr",
+  datasource = paste0(gpkg_source, "|layername=osm_water"),
+  epsg = crs_qgis
+)
+
+add_layer(
+  group = "04 OSM-Strukturlayer",
+  name = "Straßen OSM",
+  type = "vector",
+  provider = "ogr",
+  datasource = paste0(gpkg_source, "|layername=osm_roads"),
+  epsg = crs_qgis
+)
+
+# XML writers ------------------------------------------------------------
+
+layer_tree_layer_xml <- function(layer) {
+  paste0(
+'      <layer-tree-layer expanded="1" checked="Qt::Checked" providerKey="', xml_escape(layer$provider), '" source="', xml_escape(layer$datasource), '" name="', xml_escape(layer$name), '" id="', xml_escape(layer$id), '">
+        <customproperties/>
+      </layer-tree-layer>'
+  )
+}
+
+layer_tree_group_xml <- function(group_name, layer_list) {
+  group_layers <- Filter(function(x) identical(x$group, group_name), layer_list)
+
+  if (length(group_layers) == 0) {
+    return("")
+  }
+
+  paste0(
+'    <layer-tree-group expanded="1" checked="Qt::Checked" name="', xml_escape(group_name), '">
+      <customproperties/>
+',
+    paste(vapply(group_layers, layer_tree_layer_xml, character(1)), collapse = "\n"),
+'
+    </layer-tree-group>'
+  )
+}
+
+qgis_quantile_breaks <- function(datasource, n = 5) {
+  # datasource is relative to the .qgs file. Build an existing path for terra.
+  raster_path <- datasource
+  if (!file.exists(raster_path)) {
+    raster_path <- file.path(qgis_dir, datasource)
+  }
+
+  if (!file.exists(raster_path)) {
+    return(NULL)
+  }
+
+  r <- tryCatch(
+    terra::rast(raster_path),
+    error = function(e) NULL
+  )
+
+  if (is.null(r)) {
+    return(NULL)
+  }
+
+  vals <- tryCatch(
+    terra::values(r[[1]], mat = FALSE, na.rm = TRUE),
+    error = function(e) numeric()
+  )
+
+  vals <- vals[is.finite(vals)]
+
+  if (length(vals) == 0) {
+    return(NULL)
+  }
+
+  brks <- as.numeric(stats::quantile(
+    vals,
+    probs = seq(0, 1, length.out = n + 1),
+    na.rm = TRUE,
+    names = FALSE
+  ))
+
+  # Avoid duplicate breaks if a raster has too little value spread.
+  brks <- unique(brks)
+
+  if (length(brks) < 2) {
+    return(NULL)
+  }
+
+  brks
+}
+
+format_break_label <- function(a, b) {
+  paste0(format(round(a, 1), nsmall = 1), " – ", format(round(b, 1), nsmall = 1), " °C")
+}
+
+pseudocolor_items_xml <- function(breaks, colors) {
+  n <- length(breaks) - 1
+  colors <- colors[seq_len(n)]
+
+  items <- character(n)
+
+  for (i in seq_len(n)) {
+    items[i] <- paste0(
+      '            <item alpha="255" value="', breaks[i + 1], '" label="',
+      xml_escape(format_break_label(breaks[i], breaks[i + 1])),
+      '" color="', colors[i], '"/>'
+    )
+  }
+
+  paste(items, collapse = "\n")
+}
+
+raster_pipe_xml <- function(layer) {
+  if (!identical(layer$type, "raster")) {
+    return("")
+  }
+
+  opacity <- ifelse(is.na(layer$opacity), "1", as.character(layer$opacity))
+
+  if (identical(layer$raster_kind, "wms")) {
+    # WMS is server-rendered. Do not force a single-band renderer here.
+    return("")
+  }
+
+  if (identical(layer$raster_kind, "rgb")) {
+    return(
+      paste0(
+'      <pipe>
+        <rasterrenderer type="multibandcolor" opacity="', opacity, '" redBand="1" greenBand="2" blueBand="3" alphaBand="-1">
+          <rasterTransparency/>
+          <redContrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>255</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </redContrastEnhancement>
+          <greenContrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>255</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </greenContrastEnhancement>
+          <blueContrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>255</maxValue>
+            <algorithm>StretchToMinimumMaximum</algorithm>
+          </blueContrastEnhancement>
+        </rasterrenderer>
+      </pipe>
+')
+    )
+  }
+
+  if (identical(layer$raster_kind, "lst_hot") || identical(layer$raster_kind, "lst_cold")) {
+
+    breaks <- qgis_quantile_breaks(layer$datasource, n = 5)
+
+    if (is.null(breaks)) {
+      # Safe fallback if the raster cannot be read during project creation.
+      return(
+        paste0(
+'      <pipe>
+        <rasterrenderer type="singlebandgray" opacity="', opacity, '" grayBand="1" alphaBand="-1"/>
+      </pipe>
+')
+      )
+    }
+
+    n <- length(breaks) - 1
+
+    turbo_5 <- c(
+      "#30123b",
+      "#28bceb",
+      "#a2fc3c",
+      "#fb8022",
+      "#7a0403"
+    )
+
+    spectral_5 <- c(
+      "#2c7bb6",
+      "#abd9e9",
+      "#ffffbf",
+      "#fdae61",
+      "#d7191c"
+    )
+
+    colors <- if (identical(layer$raster_kind, "lst_hot")) turbo_5 else spectral_5
+    colors <- colors[seq_len(n)]
+
+    return(
+      paste0(
+'      <pipe>
+        <rasterrenderer type="singlebandpseudocolor" opacity="', opacity, '" band="1" alphaBand="-1" classificationMin="', breaks[1], '" classificationMax="', breaks[length(breaks)], '">
+          <rasterTransparency/>
+          <rastershader>
+            <colorrampshader colorRampType="DISCRETE" classificationMode="2" clip="0" minimumValue="', breaks[1], '" maximumValue="', breaks[length(breaks)], '">
+',
+        pseudocolor_items_xml(breaks, colors),
+'
+            </colorrampshader>
+          </rastershader>
+        </rasterrenderer>
+      </pipe>
+')
+    )
+  }
+
+  return(
+    paste0(
+'      <pipe>
+        <rasterrenderer type="singlebandgray" opacity="', opacity, '" grayBand="1" alphaBand="-1"/>
+      </pipe>
+')
+  )
+}
+
+
+maplayer_xml <- function(layer) {
+
+  opacity_xml <- ""
+  if (!is.na(layer$opacity)) {
+    opacity_xml <- paste0("      <opacity>", layer$opacity, "</opacity>\n")
+  }
+
+  layer_type <- if (identical(layer$type, "vector")) "vector" else "raster"
+
+  geometry_xml <- ""
+  if (identical(layer$type, "vector")) {
+    geometry_xml <- "      <geometry>Unknown</geometry>\n"
+  }
+
+  paste0(
+'    <maplayer styleCategories="AllStyleCategories" simplifyMaxScale="1" refreshOnNotifyMessage="" autoRefreshMode="Disabled" refreshOnNotifyEnabled="0" autoRefreshTime="0" type="', layer_type, '" hasScaleBasedVisibilityFlag="0">
+      <id>', xml_escape(layer$id), '</id>
+      <datasource>', xml_escape(layer$datasource), '</datasource>
+      <layername>', xml_escape(layer$name), '</layername>
+',
+      qgis_srs_xml(layer$epsg), "\n",
+      geometry_xml,
+      opacity_xml,
+      raster_pipe_xml(layer),
+'      <provider encoding="UTF-8">', xml_escape(layer$provider), '</provider>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <legend type="default-vector"/>
+      <referencedLayers/>
+    </maplayer>'
+  )
+}
+
+project_groups <- c(
+  "01 Luftbild / Orientierung",
+  "02 LST-Karten",
+  "03 AOI / Verwaltungsgrenzen",
+  "04 OSM-Strukturlayer"
+)
+
+qgs_xml <- paste0(
+'<!DOCTYPE qgis PUBLIC "http://mrcc.com/qgis.dtd" "SYSTEM">
+<QGIS version="3.34.0" projectname="', xml_escape(paste0(aoi_name, " LST Teaching Project")), '">
+  <homePath path="."/>
+  <title>', xml_escape(paste0(aoi_name, " LST Teaching Project")), '</title>
+
+  <projectCrs>
+    <spatialrefsys nativeFormat="Wkt">
+      <wkt></wkt>
+      <proj4></proj4>
+      <srsid>0</srsid>
+      <srid>', crs_qgis, '</srid>
+      <authid>EPSG:', crs_qgis, '</authid>
+      <description>EPSG:', crs_qgis, '</description>
+      <projectionacronym></projectionacronym>
+      <ellipsoidacronym></ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </projectCrs>
+
+  <layer-tree-group expanded="1" checked="Qt::Checked" name="">
+    <customproperties/>
+',
+  paste(vapply(project_groups, layer_tree_group_xml, character(1), layer_list = layers), collapse = "\n"),
+'
+  </layer-tree-group>
+
+  <projectlayers>
+',
+  paste(vapply(layers, maplayer_xml, character(1)), collapse = "\n"),
+'
+  </projectlayers>
+
+  <properties>
+    <Gui>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+    </Gui>
+    <SpatialRefSys>
+      <ProjectCRSProj4String type="QString"></ProjectCRSProj4String>
+      <ProjectCrs type="QString">EPSG:', crs_qgis, '</ProjectCrs>
+      <ProjectCRSID type="int">0</ProjectCRSID>
+    </SpatialRefSys>
+  </properties>
+</QGIS>
+'
+)
+
+writeLines(qgs_xml, qgis_project_file)
+
+message("QGIS project written directly: ", qgis_project_file)
+message("Open this .qgs file directly in QGIS. No PyQGIS, no reticulate and no qgis --code call are required.")
 
 # ------------------------------------------------------------
 # 12. Final manifest
 # ------------------------------------------------------------
 
 manifest <- list(
-  out_dir = normalize_path(out_dir),
-  config = normalize_path(file.path(cfg_dir, "run_config.json")),
-  aoi_gpkg = normalize_path(aoi_gpkg),
-  stac_items = normalize_path(file.path(stac_dir, "stac_items_unsigned.rds")),
-  stac_metadata_all = normalize_path(file.path(stac_dir, "stac_metadata_all.csv")),
-  stac_metadata_candidates = normalize_path(file.path(stac_dir, "stac_metadata_candidates.csv")),
-  processed_scene_dir = normalize_path(scene_dir),
-  all_ranked_scenes = normalize_path(all_ranked_file),
-  extreme_products_rds = normalize_path(file.path(extreme_dir, "extreme_products.rds")),
-  teaching_gpkg_25832 = normalize_path(gpkg_25832),
-  teaching_gpkg_3035 = normalize_path(gpkg_3035),
-  projected_lst_products = normalize_path(lst_project_table_file),
-  qgis_project_script = normalize_path(qgis_project_py),
-  qgis_project_target = normalize_path(qgis_project_out)
+  out_dir = as_posix(out_dir),
+  config = as_posix(file.path(cfg_dir, "run_config.json")),
+  aoi_gpkg = as_posix(aoi_gpkg),
+  stac_items = as_posix(file.path(stac_dir, "stac_items_unsigned.rds")),
+  stac_metadata_all = as_posix(file.path(stac_dir, "stac_metadata_all.csv")),
+  stac_metadata_candidates = as_posix(file.path(stac_dir, "stac_metadata_candidates.csv")),
+  processed_scene_dir = as_posix(scene_dir),
+  all_ranked_scenes = as_posix(all_ranked_file),
+  extreme_products_rds = as_posix(file.path(extreme_dir, "extreme_products.rds")),
+  teaching_gpkg_25832 = as_posix(gpkg_25832),
+  teaching_gpkg_3035 = as_posix(gpkg_3035),
+  projected_lst_products = as_posix(lst_project_table_file),
+  local_aerial_rgb = ifelse(is.na(local_aerial_rgb), NA_character_, as_posix(local_aerial_rgb)),
+  qgis_project_file = as_posix(qgis_project_file)
 )
 
 manifest_file <- file.path(out_dir, "manifest.json")
@@ -1694,8 +2206,10 @@ message("  Extremes directory:       ", extreme_dir)
 message("  Teaching GPKG EPSG:25832: ", gpkg_25832)
 message("  Teaching GPKG EPSG:3035:  ", gpkg_3035)
 message("  Projected LST table:      ", lst_project_table_file)
-message("  PyQGIS script:            ", qgis_project_py)
-message("  QGIS project target:      ", qgis_project_out)
+message("  Aerial source mode:       ", aerial_source_mode)
+message("  Aerial opacity:           ", aerial_opacity)
+message("  Local RGB aerial:         ", ifelse(is.na(local_aerial_rgb), "not created", local_aerial_rgb))
+message("  QGIS project file:        ", qgis_project_file)
 message("")
 
 print(

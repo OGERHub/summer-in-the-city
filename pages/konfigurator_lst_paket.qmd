@@ -1,6 +1,6 @@
 ---
 title: "LST-Datenpaket konfigurieren"
-subtitle: "Statische Quarto-Seite für AOI, Zeitraum und Extremmodus"
+subtitle: "AOI, Zeitraum, Extremmodus und Luftbildquelle"
 lang: de
 format:
   html:
@@ -12,57 +12,85 @@ execute:
   message: false
 ---
 
-# Zweck der Seite
+# Zweck dieser Seite
 
-Diese Seite erzeugt eine einfache Konfiguration für das lokale LST-Workflow-Skript. Sie startet keinen Server und führt keine Berechnung aus. Sie hilft nur dabei, die Eingaben sauber zu setzen und als `run_config.json` oder R-Block zu speichern.
+Der Konfigurator ist ein Werkzeug für Lehrkräfte, die eigene Datenpakete erzeugen möchten. Er berechnet keine Karten im Browser. Er erzeugt nur eine saubere Konfiguration für das lokale R-Skript.
 
-![Die Konfigurationsseite erzeugt eine JSON-Datei oder einen R-Block.](figures/fig02_konfigurator_logik.svg){fig-align="center" width="95%"}
+Für den direkten Unterrichtseinsatz ist der Konfigurator nicht notwendig. Dafür gibt es das vorbereitete Köln-Paket in der inhaltlichen Lehrerhandreichung. Diese Seite ist der Einstieg für eigene AOIs, andere Zeiträume oder angepasste hot/cold-Produkte.
+
+![Der Konfigurator übersetzt didaktische Entscheidungen in Skriptparameter.](../images/figures/fig10_standardweg_lehrkraft.svg){fig-align="center" width="95%"}
 
 ```{=html}
 <style>
 .config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
 .config-card { border: 1px solid #c8d2dc; border-radius: 14px; padding: 1rem; background: #f8fafc; }
+.config-card h3 { margin-top: 0; }
+.config-card p { color: #334; }
 .config-card label { display: block; font-weight: 700; margin-top: .7rem; }
 .config-card input, .config-card select { width: 100%; padding: .45rem; border: 1px solid #b7c4cf; border-radius: 8px; }
 .config-actions { margin: 1rem 0; display: flex; gap: .75rem; flex-wrap: wrap; }
 .config-actions button { padding: .65rem 1rem; border-radius: 10px; border: 1px solid #2f4558; background: #2f78b7; color: white; font-weight: 700; cursor: pointer; }
 .config-actions button.secondary { background: #506577; }
-textarea.config-output { width: 100%; min-height: 260px; font-family: monospace; font-size: .9rem; }
+textarea.config-output { width: 100%; min-height: 320px; font-family: monospace; font-size: .9rem; }
+.hint { background:#fff3df; border:1px solid #d9a85d; border-radius:12px; padding:.8rem; margin:.8rem 0; }
 </style>
+
+<div class="hint">
+  <strong>Empfehlung:</strong> Für den ersten eigenen Lauf: kleine AOI, Sommerhalbjahr, Extremmodus <code>hot</code>, Luftbildmodus <code>both</code>, OSM ausgeschaltet.
+</div>
 
 <div class="config-grid">
   <div class="config-card">
-    <h3>Raum und Zeitraum</h3>
+    <h3>1. Untersuchungsraum</h3>
+    <p>Der AOI bestimmt, für welchen Raum die Landsat-LST berechnet und das QGIS-Paket erzeugt wird.</p>
+
     <label>AOI-Name</label>
     <input id="aoi_name" value="koeln">
 
     <label>AOI-Modus</label>
-    <select id="aoi_mode">
+    <select id="aoi_mode" onchange="updateVisibility()">
       <option value="koeln_stadtbezirke">Köln Stadtbezirke</option>
       <option value="bbox">Bounding Box</option>
-      <option value="file">eigene Datei</option>
+      <option value="file">eigene Datei im Skript setzen</option>
     </select>
+
+    <div id="bbox_box">
+      <label>Bounding Box xmin</label><input id="xmin" value="6.75">
+      <label>Bounding Box ymin</label><input id="ymin" value="50.82">
+      <label>Bounding Box xmax</label><input id="xmax" value="7.20">
+      <label>Bounding Box ymax</label><input id="ymax" value="51.10">
+    </div>
+  </div>
+
+  <div class="config-card">
+    <h3>2. Zeitraum</h3>
+    <p>Für Stadtwärme ist das Sommerhalbjahr meist der sinnvollste Startpunkt.</p>
 
     <label>Startdatum</label>
     <input id="date_start" type="date" value="2020-01-01">
 
     <label>Enddatum</label>
     <input id="date_end" type="date">
-  </div>
 
-  <div class="config-card">
-    <h3>Analyse</h3>
     <label>Monate</label>
     <select id="season">
       <option value="summer">Sommerhalbjahr April–September</option>
       <option value="year">Ganzes Jahr</option>
     </select>
 
+    <label>max. Szenen-Wolkenanteil [%]</label>
+    <input id="max_scene_cloud" type="number" min="0" max="100" value="30">
+  </div>
+
+  <div class="config-card">
+    <h3>3. Extremmodus</h3>
+    <p><code>hot</code> ist für den Einstieg am einfachsten. <code>both</code> eignet sich für Vertiefung.</p>
+
     <label>Extremmodus</label>
     <select id="extreme_mode">
-      <option value="both">heiß und kalt</option>
       <option value="hot">nur heiß</option>
       <option value="cold">nur kalt</option>
+      <option value="both">heiß und kalt</option>
     </select>
 
     <label>Anzahl heißer Szenen</label>
@@ -73,29 +101,25 @@ textarea.config-output { width: 100%; min-height: 260px; font-family: monospace;
   </div>
 
   <div class="config-card">
-    <h3>Optionale Ebenen</h3>
-    <label>OSM-Layer laden</label>
+    <h3>4. Materialoptionen</h3>
+    <p>Das RGB-Luftbild ist die wichtigste Orientierungsebene. OSM ist optional und standardmäßig aus.</p>
+
+    <label>Luftbildquelle</label>
+    <select id="aerial_source_mode">
+      <option value="both">lokales RGB + WMS</option>
+      <option value="wms">nur WMS</option>
+      <option value="local_rgb">nur lokales RGB</option>
+      <option value="none">kein Luftbild</option>
+    </select>
+
+    <label>Luftbild-Deckkraft im QGIS-Projekt</label>
+    <input id="aerial_opacity" type="number" min="0" max="1" step="0.05" value="0.35">
+
+    <label>OSM-Strukturlayer</label>
     <select id="load_osm_layers">
-      <option value="true">ja</option>
-      <option value="false">nein</option>
+      <option value="false">nein, RGB-Luftbild reicht</option>
+      <option value="true">ja, optional laden</option>
     </select>
-
-    <label>Luftbild-WMS hinzufügen</label>
-    <select id="add_aerial_wms">
-      <option value="true">ja</option>
-      <option value="false">nein</option>
-    </select>
-
-    <label>max. Szenen-Wolkenanteil [%]</label>
-    <input id="max_scene_cloud" type="number" min="0" max="100" value="30">
-  </div>
-
-  <div class="config-card">
-    <h3>Bounding Box nur bei AOI-Modus bbox</h3>
-    <label>xmin</label><input id="xmin" value="6.75">
-    <label>ymin</label><input id="ymin" value="50.82">
-    <label>xmax</label><input id="xmax" value="7.20">
-    <label>ymax</label><input id="ymax" value="51.10">
   </div>
 </div>
 
@@ -112,6 +136,12 @@ function boolVal(id) { return document.getElementById(id).value === 'true'; }
 function numVal(id) { return Number(document.getElementById(id).value); }
 function strVal(id) { return document.getElementById(id).value; }
 function months() { return strVal('season') === 'summer' ? [4,5,6,7,8,9] : [1,2,3,4,5,6,7,8,9,10,11,12]; }
+
+function updateVisibility() {
+  const mode = strVal('aoi_mode');
+  document.getElementById('bbox_box').style.display = mode === 'bbox' ? 'block' : 'none';
+}
+
 function configObj() {
   let end = strVal('date_end');
   if (!end) end = new Date().toISOString().slice(0,10);
@@ -128,23 +158,27 @@ function configObj() {
     hot_metric: 'q90_C',
     cold_metric: 'q10_C',
     max_scene_cloud: numVal('max_scene_cloud'),
+    aerial_source_mode: strVal('aerial_source_mode'),
+    aerial_opacity: numVal('aerial_opacity'),
     load_osm_layers: boolVal('load_osm_layers'),
-    add_aerial_wms: boolVal('add_aerial_wms'),
+    osm_load_buildings: false,
     aoi_bbox: {
       xmin: Number(strVal('xmin')), ymin: Number(strVal('ymin')),
       xmax: Number(strVal('xmax')), ymax: Number(strVal('ymax'))
     }
   };
 }
+
 function makeJSON() {
   document.getElementById('output').value = JSON.stringify(configObj(), null, 2);
 }
+
 function makeR() {
   const c = configObj();
   const m = 'c(' + c.seasonal_months.join(', ') + ')';
   const r = `aoi_name <- "${c.aoi_name}"
 aoi_mode <- "${c.aoi_mode}"
-project_root <- "${c.project_root}"
+project_root <- file.path("data", "landsat_lst")
 
 date_start <- "${c.date_start}"
 date_end   <- "${c.date_end}"
@@ -158,8 +192,11 @@ hot_metric  <- "${c.hot_metric}"
 cold_metric <- "${c.cold_metric}"
 max_scene_cloud <- ${c.max_scene_cloud}
 
+aerial_source_mode <- "${c.aerial_source_mode}"
+aerial_opacity <- ${c.aerial_opacity}
+
 load_osm_layers <- ${c.load_osm_layers ? 'TRUE' : 'FALSE'}
-add_aerial_wms  <- ${c.add_aerial_wms ? 'TRUE' : 'FALSE'}
+osm_load_buildings <- FALSE
 
 aoi_bbox <- c(
   xmin = ${c.aoi_bbox.xmin},
@@ -169,6 +206,7 @@ aoi_bbox <- c(
 )`;
   document.getElementById('output').value = r;
 }
+
 function downloadJSON() {
   const data = JSON.stringify(configObj(), null, 2);
   const blob = new Blob([data], {type: 'application/json'});
@@ -176,8 +214,10 @@ function downloadJSON() {
   const a = document.createElement('a');
   a.href = url; a.download = 'run_config.json'; a.click(); URL.revokeObjectURL(url);
 }
+
 window.addEventListener('load', () => {
   document.getElementById('date_end').value = new Date().toISOString().slice(0,10);
+  updateVisibility();
   makeJSON();
 });
 </script>
@@ -185,4 +225,4 @@ window.addEventListener('load', () => {
 
 # Nutzung
 
-Speichern Sie die erzeugte `run_config.json` zusammen mit dem Skript oder übertragen Sie den R-Block in den Konfigurationsteil des Skripts. Danach wird das lokale R-Skript ausgeführt. Die Berechnung selbst passiert nicht auf dieser Webseite.
+Kopieren Sie den erzeugten R-Block in den Konfigurationsteil des Skripts oder speichern Sie die JSON-Datei für eine spätere automatisierte Variante. Die Karte wird nicht im Browser berechnet. Der Browser hilft nur, die Entscheidungen sauber und reproduzierbar zu notieren.

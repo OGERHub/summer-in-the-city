@@ -3,10 +3,10 @@ project:
   output-dir: docs
   render:
     - "index.qmd"
-    - "unit01/*.qmd"
+    - "pages/*.qmd"
 
 website:
-  favicon: /images/logo.png
+  favicon: images/logo.png
   bread-crumbs: false
   open-graph: true
   page-navigation: true
@@ -21,25 +21,32 @@ website:
   twitter-card:
     creator: "@gisma"
   comments: false
+
   navbar:
-    background: primary   # nutzt Bootstrap "primary" als Navbar-Hintergrund
+    background: primary
     foreground: light
     logo: images/logo.png
+
   sidebar:
     contents:
       - text: "Start"
         href: index.qmd
-      - section: "Handreichungen"
-        contents:
-          - text: "Lehrerhandreichung: Summer in the city"
-            href: unit01/lehrerhandreichung_inhaltlich.qmd
-          - text: "Schülerhandreichung: Summer in the city"
-            href: unit01/schuelerseite_lst_stadtklima.qmd
-          - text: "Lehrerhandreichung: Erstellung der Unterlagen"
-            href: unit01/lehrerhandreichung_technisch.qmd
-          - text: "Lehrerhandreichung: Konfigurator"
-            href: unit01/konfigurator_lst_paket.qmd            
 
+      - section: "Summer in the City"
+        contents:
+          - text: "Unterrichtsidee und Materialpaket"
+            href: pages/lehrerhandreichung_inhaltlich.qmd
+
+          - text: "Arbeitsseite für Lernende"
+            href: pages/schuelerseite_lst_stadtklima.qmd
+
+      - section: "Material selbst erstellen"
+        contents:
+          - text: "Technische Anleitung"
+            href: pages/lehrerhandreichung_technisch.qmd
+
+          - text: "Konfigurator"
+            href: pages/konfigurator_lst_paket.qmd
 
 execute:
   freeze: auto

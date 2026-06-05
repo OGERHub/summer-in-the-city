@@ -1,38 +1,81 @@
 ---
-title: "Geländeklimatologie"
+title: "Summer in the City"
 open-graph:
-  description: "Geländeklima, Mikroklima und fieldClim"
-  image: images/01-splash.jpg
+  description: "Unterrichtsmaterial zu städtischen Oberflächentemperaturen mit Luftbild, Folie und LST-Karte"
+  image: images/figures/fig01_projektidee.png
 twitter-card:
-  description: "Geländeklima, Mikroklima und fieldClim"
-  image: images/01-splash.jpg
-title-block-banner: images/01-splash.jpg
+  description: "Unterrichtsmaterial zu städtischen Oberflächentemperaturen mit Luftbild, Folie und LST-Karte"
+  image: images/figures/fig01_projektidee.png
+title-block-banner: images/figures/fig01_projektidee.png
 title-block-banner-color: black
-bibliography: assets/geoinfo.bib
 lang: de
 comments: false
 ---
 
 :::{.reader-lead}
-Dieser Kurs übersetzt die bereits behandelten Grundlagen von Gelände- und Mikroklima in eine reproduzierbare Arbeit mit Messdaten. Im Mittelpunkt steht nicht noch einmal die Theorie des Energiehaushalts, sondern die Frage, wie eine reale Station in R gelesen, geprüft, strukturiert und mit `fieldClim` ausgewertet wird.
+Dieses Materialpaket unterstützt eine Unterrichtseinheit zu städtischen Oberflächentemperaturen. Im Zentrum steht ein einfacher, aber fachlich starker Vergleich: Lernende markieren sichtbare Stadtoberflächen im RGB-Luftbild und prüfen ihre Vermutungen anschließend mit einer LST-Karte.
 :::
 
-Geländeklima entsteht dort, wo großräumige Wetterbedingungen auf konkrete Oberflächen treffen. Relief, Bewuchs, Bodenfeuchte, Rauigkeit, Strahlung und Wind bestimmen, wie viel Energie an einer Stelle verfügbar ist und wie sie zwischen Boden, Luft und Verdunstung aufgeteilt wird. Diese Zusammenhänge sind aus der Theorie bekannt. In der Anwendung werden sie aber nicht automatisch sichtbar. Sie müssen aus Messspalten, Zeitstempeln, Sensorhöhen und methodischen Annahmen rekonstruiert werden.
+Städte erwärmen sich nicht überall gleich. Große versiegelte Flächen, Dächer, Straßen, Parks, Wasserflächen, Baumgruppen und offene Böden unterscheiden sich darin, wie stark sie sich aufheizen, wie viel Wasser verdunsten kann und wie viel Energie gespeichert oder an die Umgebung abgegeben wird. Diese Unterschiede lassen sich mit Satellitendaten sichtbar machen, wenn man sie nicht nur als bunte Karte betrachtet, sondern mit der realen Oberfläche verknüpft.
 
-`fieldClim` ist in diesem Kurs deshalb kein Zusatzwerkzeug, sondern der zentrale Übersetzungsschritt. Das Paket bündelt wiederkehrende Arbeiten, die bei geländeklimatischen Stationsdaten immer wieder auftreten: Zeitreihen prüfen, Strahlung und Bodenwärmestrom kontrollieren, Messhöhen und Standortinformationen ordnen, ein `weather_station`-Objekt aufbauen und Wärmeflussmethoden methodisch begründet anwenden.
+Die Einheit arbeitet deshalb nicht zuerst digital, sondern analog: Die Lernenden erhalten ein Luftbild, eine transparente Folie und eine Oberflächentemperaturkarte. Zuerst markieren sie im Luftbild erkennbare Oberflächen. Erst danach legen sie dieselbe Folie auf die LST-Karte. Dadurch wird sichtbar, welche markierten Flächen eher heiß, mittel oder kühl erscheinen.
 
-![Kurslogik: Theorie wird nicht wiederholt, sondern in Datenprüfung, Paketlogik und Interpretation übersetzt.](images/figures/fig00_kurslogik.svg){fig-align="center" width="95%"}
+![Grundidee der Einheit: Luftbild lesen, Folie markieren, mit LST vergleichen und Muster erklären.](images/figures/fig01_projektidee.png){fig-align="center" width="95%"}
 
-Die Abbildung fasst die Grundbewegung des Kurses zusammen. Theorie bleibt der fachliche Hintergrund, aber der eigentliche Arbeitsgang beginnt mit Messdaten. Aus ihnen entsteht eine strukturierte Station. Erst danach werden Funktionen und Methoden eingesetzt. Die Auswertung endet nicht bei einer Zahl oder einem Plot, sondern bei einer begründeten Aussage darüber, was aus dem vorhandenen Messaufbau wirklich geschlossen werden darf.
+Die zentrale fachliche Aufgabe besteht darin, sichtbare Stadtstruktur, Temperaturtendenz und geographische Erklärung zusammenzuführen. Die Lernenden sollen nicht nur Farben ablesen, sondern begründen, warum bestimmte Bereiche wärmer oder kühler erscheinen. Dafür nutzen sie Begriffe wie Versiegelung, Wärmespeicherung, Verdunstung, Schatten, Vegetation, Wasser, Material und Bebauungsdichte.
 
-## Arbeitsverständnis
+## Direkt einsetzbares Materialpaket
 
-Die Kursseiten sind als Reader angelegt. Sie sollen nicht möglichst viele Funktionen dokumentieren, sondern den Weg von der Messdatei zur fachlichen Entscheidung transparent machen. Der Code bleibt deshalb absichtlich schlicht. Wir verwenden relative Projektpfade, `here::here()`, einfache Tabellenoperationen, direkte Spaltenzugriffe und base-R-Grafiken. Ziel ist nicht ein besonders eleganter R-Stil, sondern ein Arbeitsablauf, den man fachlich versteht, wiederholen und auf eigene Stationsdaten übertragen kann.
+Für den Einstieg ist kein eigener GIS- oder Skriptworkflow nötig. Das vorbereitete Beispielpaket für Köln enthält die Grundmaterialien für die Unterrichtsdurchführung: ein RGB-Luftbild, eine LST-hot-Karte, eine transparente Markiervorlage, einen Beobachtungsbogen und ein vorbereitetes QGIS-Projekt für Anpassungen.
 
-Die wichtigste Kompetenz besteht darin, Daten nicht zu früh als „fertig“ zu behandeln. Eine Stationsdatei ist zunächst nur eine technische Aufzeichnung. Erst wenn Zeitachse, Einheiten, Lücken, Sensorrollen und Standortannahmen geprüft sind, kann sie als Grundlage für Energiehaushalts- und Wärmeflussdiagnosen dienen.
+[Materialpaket Köln herunterladen](downloads/lst_materialpaket_koeln_demo.zip){.btn .btn-primary}
 
-## Aufbau der ersten Einheit
+Das Downloadpaket ist als Startpunkt gedacht. Für die Grundstunde reichen die Ausdrucke von Luftbild, LST-Karte und Folienvorlage. Das QGIS-Projekt ist nur erforderlich, wenn Kartenausschnitt, Legende oder Drucklayout angepasst werden sollen.
 
-Die erste Kurseinheit beginnt bei der Datenbasis. Sie zeigt, wie aus einer Stationsdatei ein kontrollierter Arbeitsdatensatz entsteht und wie daraus ein `weather_station`-Objekt aufgebaut wird. Dieses Objekt ist die Brücke zwischen Messung und Paketlogik: Es ordnet Spalten in fachliche Rollen ein und sorgt dafür, dass spätere Funktionen dieselbe Station mit denselben Annahmen verwenden.
+![Das vorbereitete Paket bündelt die zentralen Materialien für den direkten Einsatz.](images/figures/fig09_downloadpaket_koeln.svg){fig-align="center" width="95%"}
 
-Der Kurs folgt damit einer einfachen, aber strengen Reihenfolge: erst Daten lesen, dann Daten prüfen, dann in eine fachliche Struktur überführen, dann Methoden anwenden und erst am Ende interpretieren.
+## Aufbau der Webseite
+
+Die Webseite trennt bewusst zwischen Unterrichtseinsatz und technischer Vertiefung. Lehrkräfte, die direkt starten möchten, beginnen mit der inhaltlichen Lehrerhandreichung und der Schülerseite. Wer eigene Datenpakete erzeugen möchte, nutzt zusätzlich die technische Anleitung und den Konfigurator.
+
+::: {.callout-note title="Empfohlener Einstieg"}
+Beginnen Sie mit der Seite **Unterrichtsidee und Materialpaket**. Dort wird erklärt, wie das vorbereitete Köln-Paket im Unterricht eingesetzt wird. Die technische Anleitung ist erst relevant, wenn eigene Ausschnitte, andere Städte oder neue Zeiträume vorbereitet werden sollen.
+:::
+
+## Seiten im Überblick
+
+:::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### Unterrichtsidee und Materialpaket
+
+Fachlich-didaktische Hauptseite für Lehrkräfte. Sie erklärt die Grundidee, das vorbereitete Köln-Paket, LST, Lernziele, Ablauf und typische Fehlinterpretationen.
+
+[Zur Lehrerhandreichung](pages/lehrerhandreichung_inhaltlich.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### Arbeitsseite für Lernende
+
+Direkte Schülerseite mit Leitfrage, Arbeitsschritten, Beobachtungsbogen, Satzstartern und Begriffshilfen.
+
+[Zur Arbeitsseite](pages/schuelerseite_lst_stadtklima.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### Technische Anleitung
+
+Für Lehrkräfte, die eigene Datenpakete erzeugen möchten. Die Seite erklärt Skript, AOI, RGB-Luftbild, LST-Produkte und QGIS-Projekt.
+
+[Zur technischen Anleitung](pages/lehrerhandreichung_technisch.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### Konfigurator
+
+Statische Hilfsseite zur Erzeugung eines JSON- oder R-Konfigurationsblocks für eigene AOIs, Zeiträume und Materialoptionen.
+
+[Zum Konfigurator](pages/konfigurator_lst_paket.qmd)
+:::
+
+::::

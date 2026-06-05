@@ -1,0 +1,115 @@
+---
+title: "Oberflächentemperaturen in der Stadt"
+subtitle: "Technische Lehrerhandreichung"
+author: "Rieke Ammoneit"
+date: "2026-06-05"
+lang: de
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    code-fold: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Wofür diese Seite gedacht ist
+
+Diese Seite ist nicht notwendig, um die Unterrichtseinheit durchzuführen. Für den direkten Einsatz gibt es das vorbereitete Köln-Paket auf der inhaltlichen Lehrerhandreichung. Diese technische Seite richtet sich an Lehrkräfte, Projektbetreuung oder fortgeschrittene Gruppen, die eigene Datenpakete erzeugen möchten: für eine andere Stadt, einen anderen Zeitraum, einen kleineren Ausschnitt oder andere hot/cold-Einstellungen.
+
+Der technische Workflow hat eine klare Aufgabe. Er soll nicht Unterrichtsinhalt werden, sondern Material erzeugen: LST-Karten, ein RGB-Luftbild, Verwaltungsgrenzen und ein vorbereitetes QGIS-Projekt. Die Lernenden arbeiten anschließend mit dem Material, nicht mit dem Skript.
+
+![Das Datenpaket entsteht aus AOI, Zeitraum und Extremmodus.](../images/figures/fig05_datenpaket.png){fig-align="center" width="95%"}
+
+# Standardweg und Vertiefungsweg
+
+Der Standardweg für Lehrkräfte ist kurz: fertiges Paket herunterladen, Druckvorlagen nutzen, Stunde durchführen. Der technische Vertiefungsweg beginnt erst, wenn ein eigenes Paket erzeugt werden soll.
+
+![Der technische Weg ist eine Erweiterung, nicht der Einstieg.](../images/figures/fig10_standardweg_lehrkraft.svg){fig-align="center" width="95%"}
+
+Wer eigene Daten erzeugt, arbeitet mit drei Komponenten: einer Konfiguration, dem R-Skript und dem erzeugten QGIS-Projekt. Die Konfiguration legt AOI, Zeitraum, Extremmodus und Luftbildoption fest. Das Skript lädt Landsat-LST, berechnet heiße oder kalte Komposite und schreibt eine portable QGIS-Projektdatei. QGIS wird danach nur noch zum Anzeigen, Prüfen und Drucken verwendet.
+
+# Was das Skript erzeugt
+
+Das Skript legt für jedes Untersuchungsgebiet einen eigenen Ordner an. Der Ordnername wird aus `aoi_name` gebildet. Dadurch bleiben Daten für verschiedene Städte oder Stadtteile getrennt.
+
+```text
+data/landsat_lst/<aoi_name>/
+├── 00_config/
+├── 01_aoi/
+├── 02_stac/
+├── 03_landsat_scenes/
+├── 04_extremes/
+├── 05_teaching_layers/
+├── 06_qgis_project/
+├── 99_logs/
+└── manifest.json
+```
+
+Die wichtigste Datei für Lehrkräfte ist die QGIS-Projektdatei:
+
+```text
+06_qgis_project/<aoi_name>_lst_teaching_project.qgs
+```
+
+Sie kann direkt in QGIS geöffnet werden. Es ist kein PyQGIS-Aufruf, kein `qgis --code` und kein Terminal notwendig.
+
+# Luftbild statt OSM als zentrale Orientierung
+
+Für diese Unterrichtseinheit ist das RGB-Luftbild wichtiger als OSM. Die Lernenden sollen Gebäude, Parks, Wasser, Straßen und offene Flächen im Luftbild erkennen. Ein farbiges Luftbild ist dafür didaktisch stärker und technisch stabiler als ein großer OSM-Download.
+
+Das Skript bindet deshalb standardmäßig den NRW-DOP-RGB-WMS ein und kann zusätzlich ein lokales georeferenziertes RGB-Übersichtsraster erzeugen. Die zentrale WMS-Einstellung lautet:
+
+```text
+url=https://www.wms.nrw.de/geobasis/wms_nw_dop?language=ger
+layers=nw_dop_rgb
+format=image/png
+crs=EPSG:25832
+```
+
+OSM ist im Startworkflow nicht erforderlich. Wenn OSM später ergänzt wird, sollte es als optionale Zusatzebene verstanden werden, nicht als Grundlage der Stunde.
+
+# LST-Produkte und Kartendarstellung
+
+Aus den Landsat-Szenen werden lokale LST-Raster in Grad Celsius erzeugt. Wolken, Wolkenschatten, Cirrus, Schnee und ungültige Pixel werden über das QA-Band maskiert. Danach werden heiße oder kalte Extremprodukte ausgewählt und als Komposite exportiert.
+
+Für den Unterricht ist meist der hot-Modus am verständlichsten. Er zeigt besonders gut, welche Oberflächen in heißen Situationen stark hervortreten. Der cold-Modus kann ergänzend genutzt werden, wenn kühl wirksame Strukturen stärker untersucht werden sollen.
+
+![Hot, cold und both haben unterschiedliche didaktische Funktionen.](../images/figures/fig12_hot_cold_modus.svg){fig-align="center" width="95%"}
+
+Im QGIS-Projekt werden die hot-Layer als Pseudocolor mit Turbo-Farbverlauf und fünf Quantilklassen dargestellt. Cold-Layer werden mit einer Spectral-Farbtafel klassifiziert. Die Luftbildebene ist standardmäßig auf 35 Prozent Deckkraft gesetzt, damit LST und Stadtstruktur gemeinsam lesbar bleiben.
+
+# Konfiguration
+
+Der Konfigurator erzeugt einen JSON- oder R-Konfigurationsblock. Er startet keine Berechnung im Browser. Die Konfiguration wird anschließend mit dem lokalen R-Skript verwendet.
+
+Die wichtigsten Entscheidungen sind AOI, Zeitraum, Extremmodus und Luftbildquelle. Für den Start empfiehlt sich:
+
+```r
+aoi_name <- "koeln"
+aoi_mode <- "koeln_stadtbezirke"
+date_start <- "2020-01-01"
+seasonal_months <- c(4, 5, 6, 7, 8, 9)
+extreme_mode <- "hot"
+aerial_source_mode <- "both"
+load_osm_layers <- FALSE
+```
+
+`aerial_source_mode <- "both"` erzeugt ein lokales RGB-Luftbild und bindet zusätzlich den Online-WMS ein. Für rein onlinebasierte Arbeit kann `"wms"` genutzt werden. Für Offline-Pakete ist `"local_rgb"` sinnvoll.
+
+# Technischer Datenfluss
+
+![Technischer Datenfluss vom AOI zur QGIS-Projektdatei.](../images/figures/fig08_technischer_datenfluss.png){fig-align="center" width="95%"}
+
+Die Landsat-Daten werden über STAC gesucht. Die signierten URLs des Planetary Computer werden nicht dauerhaft gespeichert, weil sie ablaufen. Stattdessen wird jede Szene unmittelbar vor dem Zugriff signiert. Bereits lokal verarbeitete Szenen werden wiederverwendet. Das ist wichtig, weil größere AOIs und längere Zeiträume sonst unnötig viele Remote-Zugriffe erzeugen.
+
+Das Ergebnis ist ein reproduzierbares Materialpaket. Die `manifest.json` dokumentiert, welche Dateien erzeugt wurden. Für normale Lehrkräfte ist diese Datei nicht wichtig; für Fehlersuche und Weiterentwicklung ist sie hilfreich.
+
+# Empfohlene Nutzung
+
+Für ein neues Paket sollte zuerst ein kleiner AOI getestet werden. Wenn das Ergebnis plausibel ist, kann der Ausschnitt vergrößert werden. Für ganze Städte ist das lokale RGB-Luftbild auf eine kontrollierte Maximalgröße begrenzt, damit das Paket nicht zu groß wird.
+
+Die Ausdrucke für den Unterricht sollten aus demselben QGIS-Projekt und demselben Layout exportiert werden. Nur dann passen Luftbild, LST-Karte und Folienmarkierung exakt übereinander.

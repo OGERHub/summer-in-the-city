@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Rieke Ammoneit">
 
-<title>Oberflächentemperaturen in der Stadt – Geländeklimatologie</title>
+<title>LST-Datenpaket konfigurieren – Summer in the City</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -66,9 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unit01/konfigurator_lst_paket.html" rel="next">
-<link href="../unit01/schuelerseite_lst_stadtklima.html" rel="prev">
-<link href="..//images/logo.png" rel="icon" type="image/png">
+<link href="../pages/lehrerhandreichung_technisch.html" rel="prev">
+<link href="../images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -81,9 +44,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ff1c0b2f8310f0453cff04f36a6b9d09.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-c491359cee83905d50b347cb1f39f111.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-ff1c0b2f8310f0453cff04f36a6b9d09.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c6646289762f395b9cc6bc388016c044.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d45f06deb8b85394c8ea82790f6ad26e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c6646289762f395b9cc6bc388016c044.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -141,18 +104,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../css/styles.css">
-<meta property="og:title" content="Oberflächentemperaturen in der Stadt – Geländeklimatologie">
-<meta property="og:description" content="Technische Lehrerhandreichung und Datenpaket">
-<meta property="og:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig00_materialpaket_struktur.svg">
-<meta property="og:site_name" content="Geländeklimatologie">
-<meta name="twitter:title" content="Oberflächentemperaturen in der Stadt – Geländeklimatologie">
-<meta name="twitter:description" content="Technische Lehrerhandreichung und Datenpaket">
-<meta name="twitter:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig00_materialpaket_struktur.svg">
+<meta property="og:title" content="LST-Datenpaket konfigurieren – Summer in the City">
+<meta property="og:description" content="AOI, Zeitraum, Extremmodus und Luftbildquelle">
+<meta property="og:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig10_standardweg_lehrkraft.svg">
+<meta property="og:site_name" content="Summer in the City">
+<meta name="twitter:title" content="LST-Datenpaket konfigurieren – Summer in the City">
+<meta name="twitter:description" content="AOI, Zeitraum, Extremmodus und Luftbildquelle">
+<meta name="twitter:image" content="https://ogerhub.github.io/summer-in-the-city/images/figures/fig10_standardweg_lehrkraft.svg">
 <meta name="twitter:creator" content="@gisma">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -318,13 +281,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Summer in the City</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Oberflächentemperaturen in der Stadt</h1>
+          <h1 class="quarto-secondary-nav-title">LST-Datenpaket konfigurieren</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -333,17 +312,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Geländeklimatologie</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Suchen"></div>
@@ -360,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Handreichungen</span></a>
+ <span class="menu-text">Summer in the City</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -368,26 +339,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/lehrerhandreichung_inhaltlich.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lehrerhandreichung: Summer in the city</span></a>
+  <a href="../pages/lehrerhandreichung_inhaltlich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unterrichtsidee und Materialpaket</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/schuelerseite_lst_stadtklima.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Schülerhandreichung: Summer in the city</span></a>
+  <a href="../pages/schuelerseite_lst_stadtklima.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arbeitsseite für Lernende</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Material selbst erstellen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/lehrerhandreichung_technisch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technische Anleitung</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unit01/lehrerhandreichung_technisch.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Lehrerhandreichung: Erstellung der Unterlagen</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../unit01/konfigurator_lst_paket.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lehrerhandreichung: Konfigurator</span></a>
+  <a href="../pages/konfigurator_lst_paket.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Konfigurator</span></a>
   </div>
 </li>
       </ul>
@@ -402,16 +384,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhalt</h2>
    
   <ul>
-  <li><a href="#zweck-dieser-technischen-handreichung" id="toc-zweck-dieser-technischen-handreichung" class="nav-link active" data-scroll-target="#zweck-dieser-technischen-handreichung">Zweck dieser technischen Handreichung</a></li>
-  <li><a href="#grundprinzip-des-datenpakets" id="toc-grundprinzip-des-datenpakets" class="nav-link" data-scroll-target="#grundprinzip-des-datenpakets">Grundprinzip des Datenpakets</a></li>
-  <li><a href="#konfiguration-statt-codeänderung" id="toc-konfiguration-statt-codeänderung" class="nav-link" data-scroll-target="#konfiguration-statt-codeänderung">Konfiguration statt Codeänderung</a></li>
-  <li><a href="#lokale-ordnerstruktur" id="toc-lokale-ordnerstruktur" class="nav-link" data-scroll-target="#lokale-ordnerstruktur">Lokale Ordnerstruktur</a></li>
-  <li><a href="#technische-stabilitätsentscheidungen" id="toc-technische-stabilitätsentscheidungen" class="nav-link" data-scroll-target="#technische-stabilitätsentscheidungen">Technische Stabilitätsentscheidungen</a></li>
-  <li><a href="#lst-verarbeitung" id="toc-lst-verarbeitung" class="nav-link" data-scroll-target="#lst-verarbeitung">LST-Verarbeitung</a></li>
-  <li><a href="#qgis-projekt-und-ausdrucke" id="toc-qgis-projekt-und-ausdrucke" class="nav-link" data-scroll-target="#qgis-projekt-und-ausdrucke">QGIS-Projekt und Ausdrucke</a></li>
-  <li><a href="#empfohlener-technischer-ablauf" id="toc-empfohlener-technischer-ablauf" class="nav-link" data-scroll-target="#empfohlener-technischer-ablauf">Empfohlener technischer Ablauf</a></li>
+  <li><a href="#zweck-dieser-seite" id="toc-zweck-dieser-seite" class="nav-link active" data-scroll-target="#zweck-dieser-seite">Zweck dieser Seite</a></li>
+  <li><a href="#nutzung" id="toc-nutzung" class="nav-link" data-scroll-target="#nutzung">Nutzung</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/unit01/lehrerhandreichung_technisch.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/pages/konfigurator_lst_paket.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -419,27 +395,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Oberflächentemperaturen in der Stadt</h1>
-<p class="subtitle lead">Technische Lehrerhandreichung und Datenpaket</p>
+<h1 class="title d-none d-lg-block">LST-Datenpaket konfigurieren</h1>
+<p class="subtitle lead">AOI, Zeitraum, Extremmodus und Luftbildquelle</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor:in</div>
-    <div class="quarto-title-meta-contents">
-             <p>Rieke Ammoneit </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">5. Juni 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -449,95 +413,220 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="zweck-dieser-technischen-handreichung" class="level1">
-<h1>Zweck dieser technischen Handreichung</h1>
-<p>Diese Seite beschreibt, wie das lokale Datenpaket erzeugt wird. Sie richtet sich an Lehrkräfte, Projektbetreuung oder fortgeschrittene Gruppen, die die Daten selbst vorbereiten oder den QGIS-Ausdruck anpassen wollen.</p>
-<p>Die technische Arbeit soll nicht den Unterricht dominieren. Sie stellt die Materialien bereit: LST-Karten, Luftbild-/Orientierungsebenen, Verwaltungsgrenzen, OSM-Strukturlayer und ein vorbereitetes QGIS-Projekt.</p>
+<section id="zweck-dieser-seite" class="level1">
+<h1>Zweck dieser Seite</h1>
+<p>Der Konfigurator ist ein Werkzeug für Lehrkräfte, die eigene Datenpakete erzeugen möchten. Er berechnet keine Karten im Browser. Er erzeugt nur eine saubere Konfiguration für das lokale R-Skript.</p>
+<p>Für den direkten Unterrichtseinsatz ist der Konfigurator nicht notwendig. Dafür gibt es das vorbereitete Köln-Paket in der inhaltlichen Lehrerhandreichung. Diese Seite ist der Einstieg für eigene AOIs, andere Zeiträume oder angepasste hot/cold-Produkte.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/figures/fig00_materialpaket_struktur.svg" class="img-fluid figure-img" style="width:95.0%"></p>
-<figcaption>Vier Bausteine des Materialpakets: Konfiguration, Technik, Unterricht, Schülerseite.</figcaption>
+<p><img src="../images/figures/fig10_standardweg_lehrkraft.svg" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Der Konfigurator übersetzt didaktische Entscheidungen in Skriptparameter.</figcaption>
 </figure>
 </div>
-</section>
-<section id="grundprinzip-des-datenpakets" class="level1">
-<h1>Grundprinzip des Datenpakets</h1>
-<p>Das Skript arbeitet AOI-basiert. Für jedes Untersuchungsgebiet wird ein eigener lokaler Ordner angelegt. Der Ordnername wird aus <code>aoi_name</code> gebildet. Dadurch bleiben Daten für verschiedene Städte oder Stadtteile getrennt.</p>
-<p>Das Skript sucht Landsat 8/9 Collection 2 Level-2 Szenen, berechnet aus dem thermischen Band die Oberflächentemperatur in Grad Celsius, maskiert Wolken und Wolkenschatten, schneidet die Karten auf das AOI zu und speichert alle Zwischenergebnisse lokal. Danach werden heiße und/oder kalte Extremsituationen ausgewählt und als Unterrichtsmaterial weiterverarbeitet.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/figures/fig05_datenpaket.png" class="img-fluid figure-img" style="width:95.0%"></p>
-<figcaption>Technischer Workflow vom AOI bis zum Unterrichtspaket.</figcaption>
-</figure>
+<style>
+.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+.config-card { border: 1px solid #c8d2dc; border-radius: 14px; padding: 1rem; background: #f8fafc; }
+.config-card h3 { margin-top: 0; }
+.config-card p { color: #334; }
+.config-card label { display: block; font-weight: 700; margin-top: .7rem; }
+.config-card input, .config-card select { width: 100%; padding: .45rem; border: 1px solid #b7c4cf; border-radius: 8px; }
+.config-actions { margin: 1rem 0; display: flex; gap: .75rem; flex-wrap: wrap; }
+.config-actions button { padding: .65rem 1rem; border-radius: 10px; border: 1px solid #2f4558; background: #2f78b7; color: white; font-weight: 700; cursor: pointer; }
+.config-actions button.secondary { background: #506577; }
+textarea.config-output { width: 100%; min-height: 320px; font-family: monospace; font-size: .9rem; }
+.hint { background:#fff3df; border:1px solid #d9a85d; border-radius:12px; padding:.8rem; margin:.8rem 0; }
+</style>
+
+<div class="hint">
+  <strong>Empfehlung:</strong> Für den ersten eigenen Lauf: kleine AOI, Sommerhalbjahr, Extremmodus <code>hot</code>, Luftbildmodus <code>both</code>, OSM ausgeschaltet.
 </div>
-</section>
-<section id="konfiguration-statt-codeänderung" class="level1">
-<h1>Konfiguration statt Codeänderung</h1>
-<p>Für Lehrkräfte ist es sinnvoller, eine Konfigurationsdatei zu erzeugen, statt im Skript einzelne Zeilen zu verändern. Die statische Quarto-Seite <code>konfigurator_lst_paket.qmd</code> erzeugt eine <code>run_config.json</code> und einen passenden R-Konfigurationsblock.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/figures/fig02_konfigurator_logik.svg" class="img-fluid figure-img" style="width:95.0%"></p>
-<figcaption>Die Konfigurationsseite erzeugt eine JSON-Datei oder einen R-Block für das Skript.</figcaption>
-</figure>
+
+<div class="config-grid">
+  <div class="config-card">
+    <h3 class="anchored" data-anchor-id="zweck-dieser-seite">1. Untersuchungsraum</h3>
+    <p>Der AOI bestimmt, für welchen Raum die Landsat-LST berechnet und das QGIS-Paket erzeugt wird.</p>
+
+    <label>AOI-Name</label>
+    <input id="aoi_name" value="koeln">
+
+    <label>AOI-Modus</label>
+    <select id="aoi_mode" onchange="updateVisibility()">
+      <option value="koeln_stadtbezirke">Köln Stadtbezirke</option>
+      <option value="bbox">Bounding Box</option>
+      <option value="file">eigene Datei im Skript setzen</option>
+    </select>
+
+    <div id="bbox_box">
+      <label>Bounding Box xmin</label><input id="xmin" value="6.75">
+      <label>Bounding Box ymin</label><input id="ymin" value="50.82">
+      <label>Bounding Box xmax</label><input id="xmax" value="7.20">
+      <label>Bounding Box ymax</label><input id="ymax" value="51.10">
+    </div>
+  </div>
+
+  <div class="config-card">
+    <h3 class="anchored">2. Zeitraum</h3>
+    <p>Für Stadtwärme ist das Sommerhalbjahr meist der sinnvollste Startpunkt.</p>
+
+    <label>Startdatum</label>
+    <input id="date_start" type="date" value="2020-01-01">
+
+    <label>Enddatum</label>
+    <input id="date_end" type="date">
+
+    <label>Monate</label>
+    <select id="season">
+      <option value="summer">Sommerhalbjahr April–September</option>
+      <option value="year">Ganzes Jahr</option>
+    </select>
+
+    <label>max. Szenen-Wolkenanteil [%]</label>
+    <input id="max_scene_cloud" type="number" min="0" max="100" value="30">
+  </div>
+
+  <div class="config-card">
+    <h3 class="anchored">3. Extremmodus</h3>
+    <p><code>hot</code> ist für den Einstieg am einfachsten. <code>both</code> eignet sich für Vertiefung.</p>
+
+    <label>Extremmodus</label>
+    <select id="extreme_mode">
+      <option value="hot">nur heiß</option>
+      <option value="cold">nur kalt</option>
+      <option value="both">heiß und kalt</option>
+    </select>
+
+    <label>Anzahl heißer Szenen</label>
+    <input id="n_hot" type="number" min="1" max="30" value="10">
+
+    <label>Anzahl kalter Szenen</label>
+    <input id="n_cold" type="number" min="1" max="30" value="10">
+  </div>
+
+  <div class="config-card">
+    <h3 class="anchored">4. Materialoptionen</h3>
+    <p>Das RGB-Luftbild ist die wichtigste Orientierungsebene. OSM ist optional und standardmäßig aus.</p>
+
+    <label>Luftbildquelle</label>
+    <select id="aerial_source_mode">
+      <option value="both">lokales RGB + WMS</option>
+      <option value="wms">nur WMS</option>
+      <option value="local_rgb">nur lokales RGB</option>
+      <option value="none">kein Luftbild</option>
+    </select>
+
+    <label>Luftbild-Deckkraft im QGIS-Projekt</label>
+    <input id="aerial_opacity" type="number" min="0" max="1" step="0.05" value="0.35">
+
+    <label>OSM-Strukturlayer</label>
+    <select id="load_osm_layers">
+      <option value="false">nein, RGB-Luftbild reicht</option>
+      <option value="true">ja, optional laden</option>
+    </select>
+  </div>
 </div>
-<p>Eine typische Konfiguration sieht so aus:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"aoi_name"</span><span class="fu">:</span> <span class="st">"koeln"</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"aoi_mode"</span><span class="fu">:</span> <span class="st">"koeln_stadtbezirke"</span><span class="fu">,</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"project_root"</span><span class="fu">:</span> <span class="st">"data/landsat_lst"</span><span class="fu">,</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"date_start"</span><span class="fu">:</span> <span class="st">"2020-01-01"</span><span class="fu">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"date_end"</span><span class="fu">:</span> <span class="st">"2026-06-05"</span><span class="fu">,</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"seasonal_months"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">4</span><span class="ot">,</span> <span class="dv">5</span><span class="ot">,</span> <span class="dv">6</span><span class="ot">,</span> <span class="dv">7</span><span class="ot">,</span> <span class="dv">8</span><span class="ot">,</span> <span class="dv">9</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"extreme_mode"</span><span class="fu">:</span> <span class="st">"both"</span><span class="fu">,</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"n_hot"</span><span class="fu">:</span> <span class="dv">10</span><span class="fu">,</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"n_cold"</span><span class="fu">:</span> <span class="dv">10</span><span class="fu">,</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"load_osm_layers"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"add_aerial_wms"</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Das vorhandene Skript kann weiter mit einem festen Konfigurationsblock verwendet werden. Für eine spätere Kapselung ist die JSON-Variante sinnvoller: Das Skript liest dann zu Beginn <code>run_config.json</code> und überschreibt daraus die Standardwerte.</p>
-</section>
-<section id="lokale-ordnerstruktur" class="level1">
-<h1>Lokale Ordnerstruktur</h1>
-<p>Die lokale Struktur folgt diesem Prinzip:</p>
-<pre class="text"><code>data/landsat_lst/&lt;aoi_name&gt;/
-├── 00_config/
-├── 01_aoi/
-├── 02_stac/
-├── 03_landsat_scenes/
-├── 04_extremes/
-│   ├── hot/
-│   └── cold/
-├── 05_teaching_layers/
-├── 06_qgis_project/
-├── 99_logs/
-└── manifest.json</code></pre>
-<p><code>manifest.json</code> dient als technischer Wegweiser. Dort werden die wichtigsten erzeugten Dateien dokumentiert: AOI-Paket, STAC-Metadaten, verarbeitete Szenen, Extremprodukte, Teaching-Layer und QGIS-Projekt.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/figures/fig08_technischer_datenfluss.png" class="img-fluid figure-img" style="width:95.0%"></p>
-<figcaption>Hauptausgaben des Datenpakets.</figcaption>
-</figure>
+
+<div class="config-actions">
+  <button onclick="makeJSON()">JSON erzeugen</button>
+  <button onclick="makeR()" class="secondary">R-Block erzeugen</button>
+  <button onclick="downloadJSON()" class="secondary">run_config.json herunterladen</button>
 </div>
+
+<textarea id="output" class="config-output"></textarea>
+
+<script>
+function boolVal(id) { return document.getElementById(id).value === 'true'; }
+function numVal(id) { return Number(document.getElementById(id).value); }
+function strVal(id) { return document.getElementById(id).value; }
+function months() { return strVal('season') === 'summer' ? [4,5,6,7,8,9] : [1,2,3,4,5,6,7,8,9,10,11,12]; }
+
+function updateVisibility() {
+  const mode = strVal('aoi_mode');
+  document.getElementById('bbox_box').style.display = mode === 'bbox' ? 'block' : 'none';
+}
+
+function configObj() {
+  let end = strVal('date_end');
+  if (!end) end = new Date().toISOString().slice(0,10);
+  return {
+    aoi_name: strVal('aoi_name'),
+    aoi_mode: strVal('aoi_mode'),
+    project_root: 'data/landsat_lst',
+    date_start: strVal('date_start'),
+    date_end: end,
+    seasonal_months: months(),
+    extreme_mode: strVal('extreme_mode'),
+    n_hot: numVal('n_hot'),
+    n_cold: numVal('n_cold'),
+    hot_metric: 'q90_C',
+    cold_metric: 'q10_C',
+    max_scene_cloud: numVal('max_scene_cloud'),
+    aerial_source_mode: strVal('aerial_source_mode'),
+    aerial_opacity: numVal('aerial_opacity'),
+    load_osm_layers: boolVal('load_osm_layers'),
+    osm_load_buildings: false,
+    aoi_bbox: {
+      xmin: Number(strVal('xmin')), ymin: Number(strVal('ymin')),
+      xmax: Number(strVal('xmax')), ymax: Number(strVal('ymax'))
+    }
+  };
+}
+
+function makeJSON() {
+  document.getElementById('output').value = JSON.stringify(configObj(), null, 2);
+}
+
+function makeR() {
+  const c = configObj();
+  const m = 'c(' + c.seasonal_months.join(', ') + ')';
+  const r = `aoi_name <- "${c.aoi_name}"
+aoi_mode <- "${c.aoi_mode}"
+project_root <- file.path("data", "landsat_lst")
+
+date_start <- "${c.date_start}"
+date_end   <- "${c.date_end}"
+seasonal_months <- ${m}
+
+extreme_mode <- "${c.extreme_mode}"
+n_hot  <- ${c.n_hot}
+n_cold <- ${c.n_cold}
+
+hot_metric  <- "${c.hot_metric}"
+cold_metric <- "${c.cold_metric}"
+max_scene_cloud <- ${c.max_scene_cloud}
+
+aerial_source_mode <- "${c.aerial_source_mode}"
+aerial_opacity <- ${c.aerial_opacity}
+
+load_osm_layers <- ${c.load_osm_layers ? 'TRUE' : 'FALSE'}
+osm_load_buildings <- FALSE
+
+aoi_bbox <- c(
+  xmin = ${c.aoi_bbox.xmin},
+  ymin = ${c.aoi_bbox.ymin},
+  xmax = ${c.aoi_bbox.xmax},
+  ymax = ${c.aoi_bbox.ymax}
+)`;
+  document.getElementById('output').value = r;
+}
+
+function downloadJSON() {
+  const data = JSON.stringify(configObj(), null, 2);
+  const blob = new Blob([data], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'run_config.json'; a.click(); URL.revokeObjectURL(url);
+}
+
+window.addEventListener('load', () => {
+  document.getElementById('date_end').value = new Date().toISOString().slice(0,10);
+  updateVisibility();
+  makeJSON();
+});
+</script>
 </section>
-<section id="technische-stabilitätsentscheidungen" class="level1">
-<h1>Technische Stabilitätsentscheidungen</h1>
-<p>Die Planetary-Computer-URLs werden nicht dauerhaft signiert gespeichert. Signierte Azure-URLs laufen ab. Deshalb wird jede Landsat-Szene erst unmittelbar vor dem Lesen signiert. Bereits verarbeitete lokale LST-Dateien werden wiederverwendet, damit das Skript nicht unnötig erneut auf entfernte Daten zugreift.</p>
-<p>Der OSM-Teil kann wegen Overpass-Limits scheitern. Bei <code>HTTP 429 Too Many Requests</code> sollte entweder später erneut gestartet werden, ein alternativer Overpass-Endpoint genutzt werden oder <code>load_osm_layers &lt;- FALSE</code> gesetzt werden. Die LST-Verarbeitung ist von OSM fachlich unabhängig.</p>
-</section>
-<section id="lst-verarbeitung" class="level1">
-<h1>LST-Verarbeitung</h1>
-<p>Die LST wird aus dem Landsat-Produkt in Grad Celsius umgerechnet. Danach wird die Karte auf das AOI zugeschnitten. Über das QA-Band werden Wolken, Wolkenschatten, Cirrus, Schnee und ungültige Pixel entfernt.</p>
-<p>Für jede Szene werden Kennwerte berechnet: Mittelwert, Median, 10%-Perzentil, 90%-Perzentil, Minimum, Maximum und gültiger Pixelanteil. Für heiße Szenen ist das 90%-Perzentil eine robuste Standardmetrik, weil es hohe Temperaturen erfasst, ohne von einzelnen Ausreißerpixeln abhängig zu sein. Für kalte Szenen ist ein niedriges Perzentil geeigneter als ein einzelnes Minimum.</p>
-</section>
-<section id="qgis-projekt-und-ausdrucke" class="level1">
-<h1>QGIS-Projekt und Ausdrucke</h1>
-<p>Das Skript schreibt ein PyQGIS-Skript. Dieses erzeugt ein QGIS-Projekt mit Luftbild-WMS, LST-Rastern, AOI-/Verwaltungsgrenzen und OSM-Strukturlayern. Das Projekt dient vor allem zum Drucken identischer Kartenausschnitte.</p>
-<p>Für den Unterricht werden mindestens zwei Layoutvarianten gebraucht: eine Luftbildkarte zur Folienmarkierung und eine LST-Karte zur Überlagerung. Beide Layouts müssen exakt denselben Ausschnitt und Maßstab nutzen.</p>
-</section>
-<section id="empfohlener-technischer-ablauf" class="level1">
-<h1>Empfohlener technischer Ablauf</h1>
-<p>Zuerst wird im Konfigurator die AOI-Konfiguration erzeugt. Danach wird das R-Skript lokal ausgeführt. Die erzeugten Karten werden in QGIS geöffnet und mit einem festen Layout exportiert. Für den Unterricht werden die Ausdrucke vorbereitet, nicht das ganze Skript erklärt.</p>
-<p>Wenn nur die LST-Produkte benötigt werden, kann <code>load_osm_layers</code> ausgeschaltet werden. OSM ist eine hilfreiche Orientierungsebene, aber keine Voraussetzung für die eigentliche Oberflächentemperaturkarte.</p>
+<section id="nutzung" class="level1">
+<h1>Nutzung</h1>
+<p>Kopieren Sie den erzeugten R-Block in den Konfigurationsteil des Skripts oder speichern Sie die JSON-Datei für eine spätere automatisierte Variante. Die Karte wird nicht im Browser berechnet. Der Browser hilft nur, die Entscheidungen sauber und reproduzierbar zu notieren.</p>
 
 
 </section>
@@ -971,14 +1060,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unit01/schuelerseite_lst_stadtklima.html" class="pagination-link" aria-label="Schülerhandreichung: Summer in the city">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Schülerhandreichung: Summer in the city</span>
+      <a href="../pages/lehrerhandreichung_technisch.html" class="pagination-link" aria-label="Technische Anleitung">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Technische Anleitung</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unit01/konfigurator_lst_paket.html" class="pagination-link" aria-label="Lehrerhandreichung: Konfigurator">
-        <span class="nav-page-text">Lehrerhandreichung: Konfigurator</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -986,4 +1072,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/unit01/lehrerhandreichung_technisch.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ogerhub/summer-in-the-city/edit/main/pages/konfigurator_lst_paket.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ogerhub/summer-in-the-city/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></div></div></footer></body></html>

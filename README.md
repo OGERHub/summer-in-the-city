@@ -1,15 +1,17 @@
-# Minimalpaket: Geländeklimatologie / fieldClim
+# Summer in the City — Seiten-Refactor
 
-Dieses Paket enthält keine gerenderte Website, sondern die Quellstruktur für eine kleine Quarto-Website. Es dient als saubere Basis für die weitere Überarbeitung des Geländeklimatologie-/fieldClim-Kurses.
+Dieses Paket enthält eine überarbeitete Struktur für die vier Quarto-Seiten:
 
-Enthalten sind eine verbindliche Stilvorgabe, eine präzise Dateilogik, eine überarbeitete Startseite, eine Beispiel-Kurseinheit und drei zugehörige SVG-Figuren im ruhigen Card-/Infografikstil.
+- `pages/lehrerhandreichung_inhaltlich.qmd`
+- `pages/schuelerseite_lst_stadtklima.qmd`
+- `pages/lehrerhandreichung_technisch.qmd`
+- `pages/konfigurator_lst_paket.qmd`
 
-Der Schwerpunkt liegt auf Anwendungstransfer: Die theoretischen Grundlagen werden vorausgesetzt und in Messdatenprüfung, `fieldClim`-Objektlogik und methodische Interpretation übersetzt.
+Zusätzlich enthalten:
 
-Zum Rendern lokal:
+- bestehende und neue Infografiken unter `images/figures/`
+- Dummy-Downloadpaket unter `downloads/lst_materialpaket_koeln_demo.zip`
+- aktuelles R-Skript unter `scripts/`, falls im Ausgangsmaterial vorhanden
+- `ARCHITECTURE_PLAN.md` als verbindliche Seitenlogik
 
-```bash
-quarto render
-```
-
-Die erzeugte Ausgabe geht nach `docs/`. Dieser Ordner ist Render-Output und nicht Bestandteil dieses Quellpakets.
+Die Pfade in den QMD-Dateien gehen davon aus, dass die Seiten in einem Unterordner `pages/` liegen und Bilder über `../images/figures/` erreicht werden.

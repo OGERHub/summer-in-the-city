@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0a2840" flood-opacity="0.16"/>
+    </filter>
+    <linearGradient id="bluebar" x1="0" x2="1">
+      <stop offset="0" stop-color="#083b63"/>
+      <stop offset="1" stop-color="#0e5f90"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 44px Arial, sans-serif; fill: #102434; }
+      .h { font: 700 34px Arial, sans-serif; fill: #15334a; }
+      .m { font: 400 26px Arial, sans-serif; fill: #243746; }
+      .s { font: 400 22px Arial, sans-serif; fill: #3d4d5b; }
+      .tiny { font: 400 18px Arial, sans-serif; fill: #50606c; }
+      .card { fill: #ffffff; stroke: #9bb4c7; stroke-width: 2.2; filter: url(#shadow); }
+      .card2 { fill: #f7fbff; stroke: #9bb4c7; stroke-width: 2.2; filter: url(#shadow); }
+      .blue { fill: #0a4d78; }
+      .line { stroke: #0a4d78; stroke-width: 8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { stroke: #69889f; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .dash { stroke: #69889f; stroke-width: 3; fill: none; stroke-dasharray: 9 10; }
+      .green { fill: #7db56d; }
+      .red { fill: #c0392b; }
+      .orange { fill: #e6a03a; }
+      .cyan { fill: #5fb4d9; }
+      .lightblue { fill: #eaf5fd; }
+      .lightgreen { fill: #edf7e8; }
+      .warm { fill: #fff3df; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  
+<text x="90" y="90" class="title">Warum hot, cold oder both?</text>
+<rect x="120" y="190" width="410" height="500" rx="28" class="card"/>
+<rect x="160" y="235" width="330" height="155" rx="16" fill="#fdae61"/>
+<rect x="160" y="235" width="120" height="155" fill="#d73027" opacity=".7"/>
+<rect x="355" y="235" width="135" height="155" fill="#91cf60" opacity=".7"/>
+<text x="165" y="465" class="h">hot</text>
+<text x="165" y="520" class="s">zeigt Überhitzungsmuster</text>
+<text x="165" y="560" class="s">Gewerbe, Asphalt, Dächer</text>
+<text x="165" y="600" class="s">gut für Hitze-Fragen</text>
+
+<rect x="595" y="190" width="410" height="500" rx="28" class="card"/>
+<rect x="635" y="235" width="330" height="155" rx="16" fill="#abd9e9"/>
+<rect x="635" y="235" width="120" height="155" fill="#2c7bb6" opacity=".8"/>
+<rect x="830" y="235" width="135" height="155" fill="#fdae61" opacity=".6"/>
+<text x="640" y="465" class="h">cold</text>
+<text x="640" y="520" class="s">zeigt kühl wirksame Strukturen</text>
+<text x="640" y="560" class="s">Wasser, Wald, Feuchte</text>
+<text x="640" y="600" class="s">gut für Ausgleichs-Fragen</text>
+
+<rect x="1070" y="190" width="410" height="500" rx="28" class="card"/>
+<rect x="1110" y="235" width="330" height="155" rx="16" fill="#eaf5fd" stroke="#9bb4c7" stroke-width="2"/>
+<circle cx="1200" cy="313" r="54" fill="#d73027" opacity=".85"/>
+<circle cx="1310" cy="313" r="54" fill="#2c7bb6" opacity=".85"/>
+<text x="1115" y="465" class="h">both</text>
+<text x="1115" y="520" class="s">vergleicht Extremtypen</text>
+<text x="1115" y="560" class="s">zeigt robuste Muster</text>
+<text x="1115" y="600" class="s">gut für Vertiefung</text>
+</rect>
+
+</svg>

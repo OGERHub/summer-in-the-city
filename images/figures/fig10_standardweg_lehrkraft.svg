@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0a2840" flood-opacity="0.16"/>
+    </filter>
+    <linearGradient id="bluebar" x1="0" x2="1">
+      <stop offset="0" stop-color="#083b63"/>
+      <stop offset="1" stop-color="#0e5f90"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 44px Arial, sans-serif; fill: #102434; }
+      .h { font: 700 34px Arial, sans-serif; fill: #15334a; }
+      .m { font: 400 26px Arial, sans-serif; fill: #243746; }
+      .s { font: 400 22px Arial, sans-serif; fill: #3d4d5b; }
+      .tiny { font: 400 18px Arial, sans-serif; fill: #50606c; }
+      .card { fill: #ffffff; stroke: #9bb4c7; stroke-width: 2.2; filter: url(#shadow); }
+      .card2 { fill: #f7fbff; stroke: #9bb4c7; stroke-width: 2.2; filter: url(#shadow); }
+      .blue { fill: #0a4d78; }
+      .line { stroke: #0a4d78; stroke-width: 8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { stroke: #69889f; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .dash { stroke: #69889f; stroke-width: 3; fill: none; stroke-dasharray: 9 10; }
+      .green { fill: #7db56d; }
+      .red { fill: #c0392b; }
+      .orange { fill: #e6a03a; }
+      .cyan { fill: #5fb4d9; }
+      .lightblue { fill: #eaf5fd; }
+      .lightgreen { fill: #edf7e8; }
+      .warm { fill: #fff3df; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  
+<text x="90" y="90" class="title">Standardweg für Lehrkräfte</text>
+<text x="90" y="135" class="m">Der Unterricht startet mit dem fertigen Paket. Technik ist nur für Anpassungen nötig.</text>
+<g transform="translate(90,210)">
+  <circle cx="40" cy="40" r="40" class="blue"/><text x="28" y="57" font-family="Arial" font-size="42" font-weight="700" fill="#fff">1</text>
+  <rect x="0" y="115" width="250" height="230" rx="24" class="card"/>
+  <text x="55" y="175" class="h">Download</text><text x="40" y="230" class="s">Köln-Paket laden</text><text x="40" y="270" class="s">Ordner entpacken</text>
+</g>
+<g transform="translate(390,210)">
+  <circle cx="40" cy="40" r="40" class="blue"/><text x="28" y="57" font-family="Arial" font-size="42" font-weight="700" fill="#fff">2</text>
+  <rect x="0" y="115" width="250" height="230" rx="24" class="card"/>
+  <text x="55" y="175" class="h">Drucken</text><text x="40" y="230" class="s">Luftbild</text><text x="40" y="270" class="s">LST-hot</text><text x="40" y="310" class="s">Folie</text>
+</g>
+<g transform="translate(690,210)">
+  <circle cx="40" cy="40" r="40" class="blue"/><text x="28" y="57" font-family="Arial" font-size="42" font-weight="700" fill="#fff">3</text>
+  <rect x="0" y="115" width="250" height="230" rx="24" class="card"/>
+  <text x="55" y="175" class="h">Arbeiten</text><text x="40" y="230" class="s">Markieren</text><text x="40" y="270" class="s">Überlagern</text><text x="40" y="310" class="s">Begründen</text>
+</g>
+<g transform="translate(990,210)">
+  <circle cx="40" cy="40" r="40" class="blue"/><text x="28" y="57" font-family="Arial" font-size="42" font-weight="700" fill="#fff">4</text>
+  <rect x="0" y="115" width="250" height="230" rx="24" class="card"/>
+  <text x="55" y="175" class="h">Sichern</text><text x="40" y="230" class="s">Regeln prüfen</text><text x="40" y="270" class="s">Ausnahmen</text><text x="40" y="310" class="s">Fazit</text>
+</g>
+<g transform="translate(1290,210)">
+  <circle cx="40" cy="40" r="40" class="blue"/><text x="28" y="57" font-family="Arial" font-size="42" font-weight="700" fill="#fff">5</text>
+  <rect x="0" y="115" width="250" height="230" rx="24" class="card"/>
+  <text x="35" y="175" class="h">Optional</text><text x="40" y="230" class="s">QGIS öffnen</text><text x="40" y="270" class="s">Ausschnitt ändern</text>
+</g>
+<path d="M340 365 L390 365 M640 365 L690 365 M940 365 L990 365 M1240 365 L1290 365" class="line"/>
+<rect x="325" y="660" width="950" height="110" rx="24" fill="#fff3df" stroke="#d9a85d" stroke-width="2"/>
+<text x="390" y="728" class="m">Der technische Workflow ist kein Pflichtteil der Unterrichtsstunde.</text>
+
+</svg>
