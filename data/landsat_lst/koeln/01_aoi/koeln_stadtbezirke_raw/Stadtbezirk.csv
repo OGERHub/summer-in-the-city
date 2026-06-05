@@ -1,0 +1,5 @@
+﻿Feldname;Alias;Beschreibung
+FID;OBJECTID;Vom Programm verwaltet eindeutige Kennung jedes Objekts
+name;Nummer;Eindeutiger 1-stelliger Schlüssel
+nummer;Name;Name des Stadtbezirks
+flaeche;Fläche (qm);Fläche, berechnet im Geographischen Koordinatensystem WGS 1984

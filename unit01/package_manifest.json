@@ -1,0 +1,17 @@
+{
+  "created_files": [
+    "lehrerhandreichung_inhaltlich.qmd",
+    "lehrerhandreichung_technisch.qmd",
+    "schuelerseite_lst_stadtklima.qmd",
+    "konfigurator_lst_paket.qmd"
+  ],
+  "figures": [
+    "fig00_materialpaket_struktur.svg",
+    "fig01_inhaltliche_grundidee.svg",
+    "fig02_konfigurator_logik.svg",
+    "fig03_technischer_workflow.svg",
+    "fig04_schueler_arbeitsauftrag.svg",
+    "fig05_outputs.svg"
+  ],
+  "purpose": "Split original teacher handout into content handout, technical handout, student page and static Quarto configurator."
+}

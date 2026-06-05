@@ -1,0 +1,188 @@
+---
+title: "LST-Datenpaket konfigurieren"
+subtitle: "Statische Quarto-Seite für AOI, Zeitraum und Extremmodus"
+lang: de
+format:
+  html:
+    toc: true
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Zweck der Seite
+
+Diese Seite erzeugt eine einfache Konfiguration für das lokale LST-Workflow-Skript. Sie startet keinen Server und führt keine Berechnung aus. Sie hilft nur dabei, die Eingaben sauber zu setzen und als `run_config.json` oder R-Block zu speichern.
+
+![Die Konfigurationsseite erzeugt eine JSON-Datei oder einen R-Block.](figures/fig02_konfigurator_logik.svg){fig-align="center" width="95%"}
+
+```{=html}
+<style>
+.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+.config-card { border: 1px solid #c8d2dc; border-radius: 14px; padding: 1rem; background: #f8fafc; }
+.config-card label { display: block; font-weight: 700; margin-top: .7rem; }
+.config-card input, .config-card select { width: 100%; padding: .45rem; border: 1px solid #b7c4cf; border-radius: 8px; }
+.config-actions { margin: 1rem 0; display: flex; gap: .75rem; flex-wrap: wrap; }
+.config-actions button { padding: .65rem 1rem; border-radius: 10px; border: 1px solid #2f4558; background: #2f78b7; color: white; font-weight: 700; cursor: pointer; }
+.config-actions button.secondary { background: #506577; }
+textarea.config-output { width: 100%; min-height: 260px; font-family: monospace; font-size: .9rem; }
+</style>
+
+<div class="config-grid">
+  <div class="config-card">
+    <h3>Raum und Zeitraum</h3>
+    <label>AOI-Name</label>
+    <input id="aoi_name" value="koeln">
+
+    <label>AOI-Modus</label>
+    <select id="aoi_mode">
+      <option value="koeln_stadtbezirke">Köln Stadtbezirke</option>
+      <option value="bbox">Bounding Box</option>
+      <option value="file">eigene Datei</option>
+    </select>
+
+    <label>Startdatum</label>
+    <input id="date_start" type="date" value="2020-01-01">
+
+    <label>Enddatum</label>
+    <input id="date_end" type="date">
+  </div>
+
+  <div class="config-card">
+    <h3>Analyse</h3>
+    <label>Monate</label>
+    <select id="season">
+      <option value="summer">Sommerhalbjahr April–September</option>
+      <option value="year">Ganzes Jahr</option>
+    </select>
+
+    <label>Extremmodus</label>
+    <select id="extreme_mode">
+      <option value="both">heiß und kalt</option>
+      <option value="hot">nur heiß</option>
+      <option value="cold">nur kalt</option>
+    </select>
+
+    <label>Anzahl heißer Szenen</label>
+    <input id="n_hot" type="number" min="1" max="30" value="10">
+
+    <label>Anzahl kalter Szenen</label>
+    <input id="n_cold" type="number" min="1" max="30" value="10">
+  </div>
+
+  <div class="config-card">
+    <h3>Optionale Ebenen</h3>
+    <label>OSM-Layer laden</label>
+    <select id="load_osm_layers">
+      <option value="true">ja</option>
+      <option value="false">nein</option>
+    </select>
+
+    <label>Luftbild-WMS hinzufügen</label>
+    <select id="add_aerial_wms">
+      <option value="true">ja</option>
+      <option value="false">nein</option>
+    </select>
+
+    <label>max. Szenen-Wolkenanteil [%]</label>
+    <input id="max_scene_cloud" type="number" min="0" max="100" value="30">
+  </div>
+
+  <div class="config-card">
+    <h3>Bounding Box nur bei AOI-Modus bbox</h3>
+    <label>xmin</label><input id="xmin" value="6.75">
+    <label>ymin</label><input id="ymin" value="50.82">
+    <label>xmax</label><input id="xmax" value="7.20">
+    <label>ymax</label><input id="ymax" value="51.10">
+  </div>
+</div>
+
+<div class="config-actions">
+  <button onclick="makeJSON()">JSON erzeugen</button>
+  <button onclick="makeR()" class="secondary">R-Block erzeugen</button>
+  <button onclick="downloadJSON()" class="secondary">run_config.json herunterladen</button>
+</div>
+
+<textarea id="output" class="config-output"></textarea>
+
+<script>
+function boolVal(id) { return document.getElementById(id).value === 'true'; }
+function numVal(id) { return Number(document.getElementById(id).value); }
+function strVal(id) { return document.getElementById(id).value; }
+function months() { return strVal('season') === 'summer' ? [4,5,6,7,8,9] : [1,2,3,4,5,6,7,8,9,10,11,12]; }
+function configObj() {
+  let end = strVal('date_end');
+  if (!end) end = new Date().toISOString().slice(0,10);
+  return {
+    aoi_name: strVal('aoi_name'),
+    aoi_mode: strVal('aoi_mode'),
+    project_root: 'data/landsat_lst',
+    date_start: strVal('date_start'),
+    date_end: end,
+    seasonal_months: months(),
+    extreme_mode: strVal('extreme_mode'),
+    n_hot: numVal('n_hot'),
+    n_cold: numVal('n_cold'),
+    hot_metric: 'q90_C',
+    cold_metric: 'q10_C',
+    max_scene_cloud: numVal('max_scene_cloud'),
+    load_osm_layers: boolVal('load_osm_layers'),
+    add_aerial_wms: boolVal('add_aerial_wms'),
+    aoi_bbox: {
+      xmin: Number(strVal('xmin')), ymin: Number(strVal('ymin')),
+      xmax: Number(strVal('xmax')), ymax: Number(strVal('ymax'))
+    }
+  };
+}
+function makeJSON() {
+  document.getElementById('output').value = JSON.stringify(configObj(), null, 2);
+}
+function makeR() {
+  const c = configObj();
+  const m = 'c(' + c.seasonal_months.join(', ') + ')';
+  const r = `aoi_name <- "${c.aoi_name}"
+aoi_mode <- "${c.aoi_mode}"
+project_root <- "${c.project_root}"
+
+date_start <- "${c.date_start}"
+date_end   <- "${c.date_end}"
+seasonal_months <- ${m}
+
+extreme_mode <- "${c.extreme_mode}"
+n_hot  <- ${c.n_hot}
+n_cold <- ${c.n_cold}
+
+hot_metric  <- "${c.hot_metric}"
+cold_metric <- "${c.cold_metric}"
+max_scene_cloud <- ${c.max_scene_cloud}
+
+load_osm_layers <- ${c.load_osm_layers ? 'TRUE' : 'FALSE'}
+add_aerial_wms  <- ${c.add_aerial_wms ? 'TRUE' : 'FALSE'}
+
+aoi_bbox <- c(
+  xmin = ${c.aoi_bbox.xmin},
+  ymin = ${c.aoi_bbox.ymin},
+  xmax = ${c.aoi_bbox.xmax},
+  ymax = ${c.aoi_bbox.ymax}
+)`;
+  document.getElementById('output').value = r;
+}
+function downloadJSON() {
+  const data = JSON.stringify(configObj(), null, 2);
+  const blob = new Blob([data], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'run_config.json'; a.click(); URL.revokeObjectURL(url);
+}
+window.addEventListener('load', () => {
+  document.getElementById('date_end').value = new Date().toISOString().slice(0,10);
+  makeJSON();
+});
+</script>
+```
+
+# Nutzung
+
+Speichern Sie die erzeugte `run_config.json` zusammen mit dem Skript oder übertragen Sie den R-Block in den Konfigurationsteil des Skripts. Danach wird das lokale R-Skript ausgeführt. Die Berechnung selbst passiert nicht auf dieser Webseite.

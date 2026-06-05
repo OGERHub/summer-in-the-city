@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+lehrerhandreichung_lst_stadtklima_neu_files
+lehrerhandreichung_lst_stadtklima_neu.qmd
+lst_lehrerhandreichung_paket_v2.zip
+lehrerhandreichung_lst_stadtklima.zip
+/.quarto/
+**/*.quarto_ipynb
+archive

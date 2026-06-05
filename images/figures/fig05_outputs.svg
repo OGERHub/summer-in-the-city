@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1572" height="1001" viewBox="0 0 1572 1001">
+<style>
+.bg{fill:#eef3f6;}
+.card{fill:#ffffff;stroke:#2f4558;stroke-width:3;}
+.soft{filter:url(#shadow);}
+.label{font-family:Arial, Helvetica, sans-serif;fill:#243647;font-size:36px;font-weight:700;}
+.text{font-family:Arial, Helvetica, sans-serif;fill:#243647;font-size:28px;}
+.small{font-family:Arial, Helvetica, sans-serif;fill:#5b6f83;font-size:22px;}
+.tiny{font-family:Arial, Helvetica, sans-serif;fill:#5b6f83;font-size:18px;}
+</style>
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#385060" flood-opacity="0.18"/></filter>
+<marker id="arrow" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L16,8 L0,16 z" fill="#2f4558"/></marker>
+</defs>
+<rect class="bg" width="1572" height="1001"/>
+<circle cx="786" cy="500" r="140" fill="#ffffff" stroke="#2f4558" stroke-width="4" class="soft"/><text class="label" x="786" y="490" text-anchor="middle"><tspan x="786" dy="0">Datenpaket</tspan></text><text class="small" x="786" y="540" text-anchor="middle"><tspan x="786" dy="0">pro AOI</tspan></text><rect class="card soft" x="210" y="170" width="300" height="170" rx="28" fill="#e9d7c5"/><text class="label" x="360" y="265" text-anchor="middle"><tspan x="360" dy="0">LST-Raster</tspan></text><line x1="786" y1="500" x2="360" y2="255" stroke="#2f4558" stroke-width="6" marker-end="url(#arrow)" opacity="0.85"/><rect class="card soft" x="1010" y="170" width="300" height="170" rx="28" fill="#dcead5"/><text class="label" x="1160" y="265" text-anchor="middle"><tspan x="1160" dy="0">GeoPackage</tspan></text><line x1="786" y1="500" x2="1160" y2="255" stroke="#2f4558" stroke-width="6" marker-end="url(#arrow)" opacity="0.85"/><rect class="card soft" x="210" y="650" width="300" height="170" rx="28" fill="#dbeef7"/><text class="label" x="360" y="745" text-anchor="middle"><tspan x="360" dy="0">QGIS-Projekt</tspan></text><line x1="786" y1="500" x2="360" y2="735" stroke="#2f4558" stroke-width="6" marker-end="url(#arrow)" opacity="0.85"/><rect class="card soft" x="1010" y="650" width="300" height="170" rx="28" fill="#e6edf2"/><text class="label" x="1160" y="745" text-anchor="middle"><tspan x="1160" dy="0">Ausdrucke</tspan></text><line x1="786" y1="500" x2="1160" y2="735" stroke="#2f4558" stroke-width="6" marker-end="url(#arrow)" opacity="0.85"/></svg>
