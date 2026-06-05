@@ -1,0 +1,9 @@
+{
+  "package": "lst_lehrerhandreichung_paket_v2",
+  "main_qmd": "lehrerhandreichung_lst_stadtklima_neu.qmd",
+  "figure_count": 8,
+  "notes": [
+    "Text aus Abbildungen reduziert",
+    "Überschriften und Erläuterungen in QMD verlagert"
+  ]
+}

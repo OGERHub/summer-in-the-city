@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rieke Ammoneit">
+
+<title>Lehrerhandreichung: Oberflächentemperaturen in der Stadt</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="lehrerhandreichung_lst_stadtklima_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lehrerhandreichung_lst_stadtklima_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="lehrerhandreichung_lst_stadtklima_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="lehrerhandreichung_lst_stadtklima_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="lehrerhandreichung_lst_stadtklima_files/libs/quarto-html/popper.min.js"></script>
+<script src="lehrerhandreichung_lst_stadtklima_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lehrerhandreichung_lst_stadtklima_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lehrerhandreichung_lst_stadtklima_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lehrerhandreichung_lst_stadtklima_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lehrerhandreichung_lst_stadtklima_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lehrerhandreichung_lst_stadtklima_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lehrerhandreichung_lst_stadtklima_files/libs/bootstrap/bootstrap-8ef63dadfb5345bc94d8ae0a75e1bc5e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#inhaltliche-projektbeschreibung" id="toc-inhaltliche-projektbeschreibung" class="nav-link active" data-scroll-target="#inhaltliche-projektbeschreibung">Inhaltliche Projektbeschreibung</a></li>
+  <li><a href="#was-ist-lst-meteorologisch" id="toc-was-ist-lst-meteorologisch" class="nav-link" data-scroll-target="#was-ist-lst-meteorologisch">Was ist LST meteorologisch?</a></li>
+  <li><a href="#glossar-für-die-unterrichtseinheit" id="toc-glossar-für-die-unterrichtseinheit" class="nav-link" data-scroll-target="#glossar-für-die-unterrichtseinheit">Glossar für die Unterrichtseinheit</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele">Lernziele</a>
+  <ul class="collapse">
+  <li><a href="#qualitative-zuordnung" id="toc-qualitative-zuordnung" class="nav-link" data-scroll-target="#qualitative-zuordnung">Qualitative Zuordnung</a></li>
+  <li><a href="#quantitative-zuordnung" id="toc-quantitative-zuordnung" class="nav-link" data-scroll-target="#quantitative-zuordnung">Quantitative Zuordnung</a></li>
+  <li><a href="#räumlich-geographische-muster-und-prozesse" id="toc-räumlich-geographische-muster-und-prozesse" class="nav-link" data-scroll-target="#räumlich-geographische-muster-und-prozesse">Räumlich-geographische Muster und Prozesse</a></li>
+  <li><a href="#erwartetes-lernprodukt" id="toc-erwartetes-lernprodukt" class="nav-link" data-scroll-target="#erwartetes-lernprodukt">Erwartetes Lernprodukt</a></li>
+  </ul></li>
+  <li><a href="#typische-material-temperatur-zuordnungen" id="toc-typische-material-temperatur-zuordnungen" class="nav-link" data-scroll-target="#typische-material-temperatur-zuordnungen">Typische Material-Temperatur-Zuordnungen</a></li>
+  <li><a href="#was-mit-dem-vorbereiteten-paket-geht" id="toc-was-mit-dem-vorbereiteten-paket-geht" class="nav-link" data-scroll-target="#was-mit-dem-vorbereiteten-paket-geht">Was mit dem vorbereiteten Paket geht</a></li>
+  <li><a href="#analoge-nutzung-im-unterricht" id="toc-analoge-nutzung-im-unterricht" class="nav-link" data-scroll-target="#analoge-nutzung-im-unterricht">Analoge Nutzung im Unterricht</a>
+  <ul class="collapse">
+  <li><a href="#material" id="toc-material" class="nav-link" data-scroll-target="#material">Material</a></li>
+  <li><a href="#stundenablauf" id="toc-stundenablauf" class="nav-link" data-scroll-target="#stundenablauf">Stundenablauf</a></li>
+  <li><a href="#arbeitsauftrag-für-lernende" id="toc-arbeitsauftrag-für-lernende" class="nav-link" data-scroll-target="#arbeitsauftrag-für-lernende">Arbeitsauftrag für Lernende</a></li>
+  </ul></li>
+  <li><a href="#digitale-erweiterung-für-fortgeschrittene" id="toc-digitale-erweiterung-für-fortgeschrittene" class="nav-link" data-scroll-target="#digitale-erweiterung-für-fortgeschrittene">Digitale Erweiterung für Fortgeschrittene</a></li>
+  <li><a href="#welche-ausdrucke-sinnvoll-sind" id="toc-welche-ausdrucke-sinnvoll-sind" class="nav-link" data-scroll-target="#welche-ausdrucke-sinnvoll-sind">Welche Ausdrucke sinnvoll sind</a></li>
+  <li><a href="#typische-fehlinterpretationen" id="toc-typische-fehlinterpretationen" class="nav-link" data-scroll-target="#typische-fehlinterpretationen">Typische Fehlinterpretationen</a></li>
+  <li><a href="#appendix-technische-beschreibung" id="toc-appendix-technische-beschreibung" class="nav-link" data-scroll-target="#appendix-technische-beschreibung">Appendix: Technische Beschreibung</a>
+  <ul class="collapse">
+  <li><a href="#scriptflow" id="toc-scriptflow" class="nav-link" data-scroll-target="#scriptflow">Scriptflow</a></li>
+  <li><a href="#aoi-zeitraum-und-extremmodus" id="toc-aoi-zeitraum-und-extremmodus" class="nav-link" data-scroll-target="#aoi-zeitraum-und-extremmodus">AOI, Zeitraum und Extremmodus</a></li>
+  <li><a href="#landsat-verarbeitung" id="toc-landsat-verarbeitung" class="nav-link" data-scroll-target="#landsat-verarbeitung">Landsat-Verarbeitung</a></li>
+  <li><a href="#ranking-heißer-und-kalter-szenen" id="toc-ranking-heißer-und-kalter-szenen" class="nav-link" data-scroll-target="#ranking-heißer-und-kalter-szenen">Ranking heißer und kalter Szenen</a></li>
+  <li><a href="#unterrichtslayer-und-qgis-projekt" id="toc-unterrichtslayer-und-qgis-projekt" class="nav-link" data-scroll-target="#unterrichtslayer-und-qgis-projekt">Unterrichtslayer und QGIS-Projekt</a></li>
+  <li><a href="#lokale-ordnerstruktur" id="toc-lokale-ordnerstruktur" class="nav-link" data-scroll-target="#lokale-ordnerstruktur">Lokale Ordnerstruktur</a></li>
+  </ul></li>
+  <li><a href="#appendix-kopiervorlage-für-lernende" id="toc-appendix-kopiervorlage-für-lernende" class="nav-link" data-scroll-target="#appendix-kopiervorlage-für-lernende">Appendix: Kopiervorlage für Lernende</a>
+  <ul class="collapse">
+  <li><a href="#beobachtungsbogen" id="toc-beobachtungsbogen" class="nav-link" data-scroll-target="#beobachtungsbogen">Beobachtungsbogen</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Andere Formate</h2><ul><li><a href="lehrerhandreichung_lst_stadtklima.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lehrerhandreichung: Oberflächentemperaturen in der Stadt</h1>
+<p class="subtitle lead">Analoge Kartenarbeit mit Luftbild, Folie und LST-Karte – mit digitaler Erweiterung in QGIS</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor:in</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rieke Ammoneit </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">5. Juni 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="inhaltliche-projektbeschreibung" class="level1">
+<h1>Inhaltliche Projektbeschreibung</h1>
+<p>Diese Unterrichtseinheit untersucht, wie sich städtische Oberflächen in ihrer Temperatur unterscheiden. Die Lernenden arbeiten zuerst mit einem Luftbild. Sie markieren auf einer transparenten Folie Gebäude, Parks, Wasserflächen, große Straßen, Gewerbeflächen, offene Böden oder andere auffällige Oberflächen. Danach legen sie dieselbe Folie auf eine Karte der Land Surface Temperature, kurz LST. So wird sichtbar, welche markierten Oberflächen eher heiß oder eher kühl erscheinen.</p>
+<p>Die fachliche Aufgabe ist bewusst einfach formuliert: <strong>Welche Oberflächen sind wo heißer oder kühler, und welche räumlichen Muster entstehen daraus?</strong> Die Lernenden sollen nicht zuerst GIS-Bedienung lernen. Sie sollen sehen, beschreiben, messen, vergleichen und begründen.</p>
+<p>Die folgende Grafik zeigt nur den Kernablauf der Unterrichtsidee. Überschrift und Erläuterung bleiben absichtlich im Text, damit sie in Quarto leicht bearbeitet werden können.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig01_projektidee.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Vier Schritte der Projektidee: Luftbild lesen, Folie markieren, LST überlagern, Muster erklären.</figcaption>
+</figure>
+</div>
+<p>Das Projekt verbindet drei Beobachtungsebenen. Die erste Ebene ist das <strong>Luftbild</strong>. Es zeigt die sichtbare Stadtoberfläche. Die zweite Ebene ist die <strong>eigene Markierung auf Folie</strong>. Sie hält fest, welche Materialien oder Nutzungen die Lernenden erkannt haben. Die dritte Ebene ist die <strong>LST-Karte</strong>. Sie zeigt, welche Oberflächen zum Satellitenaufnahmezeitpunkt wärmer oder kühler waren.</p>
+<p>Das Ergebnis ist keine perfekte Klimakarte. Das Ergebnis ist eine begründete räumliche Interpretation: Die Lernenden können benennen, welche Oberflächen mit hohen oder niedrigen LST-Werten zusammenfallen, welche Stadtbereiche als heiße oder kühle Muster auffallen und welche Prozesse dafür plausibel sind.</p>
+</section>
+<section id="was-ist-lst-meteorologisch" class="level1">
+<h1>Was ist LST meteorologisch?</h1>
+<p><strong>LST bedeutet Land Surface Temperature.</strong> Gemeint ist die Temperatur der Erdoberfläche, wie sie ein Satellit im thermischen Infrarotbereich erfasst. Die Messung bezieht sich auf sichtbare oder thermisch wirksame Oberflächen: Dächer, Asphalt, Baumkronen, Wiesen, offene Böden, Wasserflächen oder versiegelte Plätze.</p>
+<p>LST ist <strong>nicht</strong> dasselbe wie Lufttemperatur. Lufttemperatur wird typischerweise in etwa zwei Metern Höhe, belüftet und möglichst im Schatten gemessen. LST beschreibt dagegen die Temperatur der Oberfläche selbst. Deshalb kann eine Asphaltfläche sehr heiß erscheinen, während die Lufttemperatur daneben deutlich niedriger ist.</p>
+<p>Die nächste Grafik reduziert diese Unterscheidung auf das Wesentliche: Die Sonne erwärmt Oberflächen, der Satellit misst das thermische Signal der Oberfläche, die Lufttemperatur ist eine andere Messgröße.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig02_lst_meteorologisch.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Schema zur Unterscheidung zwischen LST und Lufttemperatur.</figcaption>
+</figure>
+</div>
+<p>Für den Unterricht ist genau diese Unterscheidung zentral. Stadtklima wird nicht nur als abstrakter Temperaturwert behandelt. Es wird an konkrete Oberflächen gebunden: Versiegelung, Vegetation, Wasser, Schatten, Bebauungsdichte und Materialeigenschaften.</p>
+<p>LST eignet sich besonders gut, um räumliche Kontraste sichtbar zu machen. Große versiegelte Flächen, dunkle Dächer oder breite Verkehrsflächen erscheinen häufig warm. Parks, Baumflächen oder Wasserflächen erscheinen häufig kühler. Das sind aber keine mechanischen Regeln. Feuchte, Verschattung, Tageszeit, Jahreszeit, Oberflächenmaterial und die konkrete Satellitenszene beeinflussen das Ergebnis.</p>
+</section>
+<section id="glossar-für-die-unterrichtseinheit" class="level1">
+<h1>Glossar für die Unterrichtseinheit</h1>
+<p><strong>AOI</strong><br>
+Area of Interest. Das ist das Untersuchungsgebiet, zum Beispiel Köln, ein Stadtbezirk oder ein selbst gewählter Kartenausschnitt.</p>
+<p><strong>LST</strong><br>
+Land Surface Temperature. Temperatur der Oberfläche, gemessen beziehungsweise abgeleitet aus thermischer Infrarotstrahlung.</p>
+<p><strong>Lufttemperatur</strong><br>
+Temperatur der Luft, meist als Messwert in etwa zwei Metern Höhe verstanden. Sie ist nicht identisch mit LST.</p>
+<p><strong>Oberfläche</strong><br>
+Das, was der Satellit thermisch sieht: Asphalt, Dach, Baumkrone, Wiese, Wasser, offener Boden und ähnliche Flächen.</p>
+<p><strong>Versiegelung</strong><br>
+Flächen wie Asphalt, Beton, Pflaster oder Dächer. Sie lassen kaum Wasser in den Boden und erwärmen sich oft stark.</p>
+<p><strong>Vegetation</strong><br>
+Pflanzenflächen wie Wiesen, Parks, Bäume oder Wald. Sie können über Schatten und Verdunstung kühlend wirken.</p>
+<p><strong>Verdunstung</strong><br>
+Wasser geht in die Atmosphäre über. Dafür wird Energie benötigt; dadurch kann die Oberfläche kühler bleiben.</p>
+<p><strong>Schatten</strong><br>
+Reduziert direkte Sonneneinstrahlung. Schattenbereiche können deutlich andere LST-Werte zeigen als direkt beschienene Flächen.</p>
+<p><strong>Komposit</strong><br>
+Eine zusammenfassende Karte aus mehreren Satellitenszenen. Sie ist robuster als eine einzelne Szene, weil einzelne Ausreißer weniger stark wirken.</p>
+<p><strong>Perzentil</strong><br>
+Ein statistischer Schwellenwert. Das 90%-Perzentil beschreibt einen hohen, aber nicht extrem ausreißeranfälligen Wert. Es ist für „heißeste“ Situationen oft besser als ein einzelnes Maximum.</p>
+<p><strong>Wolkenmaske</strong><br>
+Ein Filter, der Wolken, Wolkenschatten und ungültige Bildbereiche entfernt. Ohne diese Maske können LST-Karten falsch interpretiert werden.</p>
+<p><strong>OSM</strong><br>
+OpenStreetMap. Daraus können Gebäude, Grünflächen, Wasserflächen oder Straßen als Orientierungsebenen genutzt werden.</p>
+</section>
+<section id="lernziele" class="level1">
+<h1>Lernziele</h1>
+<p>Die Einheit verfolgt drei zusammenhängende Lernziele. Erstens sollen die Lernenden Oberflächen im Luftbild qualitativ erkennen und benennen. Zweitens sollen sie LST-Werte quantitativ aus Karte und Legende ablesen und einfachen Oberflächenklassen zuordnen. Drittens sollen sie räumlich-geographische Muster und Prozesse erklären.</p>
+<p>Die Grafik zeigt diese drei Lernrichtungen in verdichteter Form. Die ausführliche Beschreibung der Ziele bleibt im Fließtext und ist dadurch im <code>.qmd</code> leicht anpassbar.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig03_lernziele.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Drei verbundene Lernziele und ein gemeinsames Zielprodukt.</figcaption>
+</figure>
+</div>
+<section id="qualitative-zuordnung" class="level2">
+<h2 class="anchored" data-anchor-id="qualitative-zuordnung">Qualitative Zuordnung</h2>
+<p>Die Lernenden erkennen auf dem Luftbild unterschiedliche Oberflächen und Nutzungen. Sie markieren zum Beispiel dichte Bebauung, große Dächer, Straßenräume, Parks, Baumgruppen, Wasserflächen oder offene Böden. Diese Zuordnung erfolgt zunächst ohne Temperaturkarte. Dadurch entstehen eigene Hypothesen.</p>
+</section>
+<section id="quantitative-zuordnung" class="level2">
+<h2 class="anchored" data-anchor-id="quantitative-zuordnung">Quantitative Zuordnung</h2>
+<p>Die Lernenden lesen aus der LST-Karte Temperaturbereiche ab und ordnen diese den markierten Oberflächen zu. Dabei geht es nicht um eine Scheingenauigkeit einzelner Pixel. Entscheidend ist die sinnvolle Zuordnung von Bereichen: eher heiß, mittel, eher kühl, auffällig abweichend.</p>
+</section>
+<section id="räumlich-geographische-muster-und-prozesse" class="level2">
+<h2 class="anchored" data-anchor-id="räumlich-geographische-muster-und-prozesse">Räumlich-geographische Muster und Prozesse</h2>
+<p>Die Lernenden beschreiben, ob heiße und kühle Bereiche räumlich zusammenhängen. Sie prüfen zum Beispiel, ob große versiegelte Flächen Wärmeinseln bilden, ob Parks als kühlere Inseln erscheinen, ob der Rhein anders wirkt als angrenzende Uferflächen oder ob Stadtbezirke deutliche Unterschiede zeigen.</p>
+</section>
+<section id="erwartetes-lernprodukt" class="level2">
+<h2 class="anchored" data-anchor-id="erwartetes-lernprodukt">Erwartetes Lernprodukt</h2>
+<p>Am Ende entsteht eine interpretierte Karte oder ein kurzer Ergebnisbogen. Darin benennen die Lernenden mindestens drei Oberflächenklassen, ordnen ihnen Temperaturtendenzen zu und erklären ein räumliches Muster mit mindestens einem Prozess, zum Beispiel Verdunstung, Verschattung, Versiegelung oder Wärmespeicherung.</p>
+</section>
+</section>
+<section id="typische-material-temperatur-zuordnungen" class="level1">
+<h1>Typische Material-Temperatur-Zuordnungen</h1>
+<p>Die folgende Übersicht dient als Einstieg. Sie ist keine feste Regelkarte. Die Lernenden sollen sie als Erwartung nutzen und anschließend mit der echten Karte prüfen.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig04_material_temperatur_matrix.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Typische Temperaturtendenzen verschiedener Oberflächen.</figcaption>
+</figure>
+</div>
+<p>Wichtig ist die Formulierung „typisch“ oder „häufig“. Eine Wasserfläche kann tagsüber kühl erscheinen, nachts aber anders wirken. Eine Wiese kann kühl sein, wenn sie feucht und vital ist, aber wärmer, wenn sie trocken ist. Ein Dach kann je nach Material, Farbe und Exposition sehr unterschiedliche Werte zeigen. Gerade diese Abweichungen sind didaktisch wertvoll, weil sie zur Begründung zwingen.</p>
+</section>
+<section id="was-mit-dem-vorbereiteten-paket-geht" class="level1">
+<h1>Was mit dem vorbereiteten Paket geht</h1>
+<p>Das Skript erzeugt aus wenigen Eingaben ein lokales Datenpaket. Oben werden Untersuchungsgebiet, Zeitraum und Extremmodus gesetzt. Danach werden passende Landsat-Szenen gesucht, lokal verarbeitet, maskiert, zugeschnitten und als Unterrichtsmaterial vorbereitet.</p>
+<p>Die Grafik unten reduziert das Paket auf seine Grundlogik: Eingaben links, Verarbeitung in der Mitte, Produkte rechts.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig05_datenpaket.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>AOI, Zeitraum und Extremmodus führen zu LST-Karten, Orientierungsebenen und einem QGIS-Projekt.</figcaption>
+</figure>
+</div>
+<p>Die drei wichtigsten Entscheidungen sind:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Entscheidung</th>
+<th>Bedeutung für den Unterricht</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AOI</td>
+<td>Welcher Raum wird untersucht? Zum Beispiel Köln, ein Stadtbezirk oder das Schulumfeld.</td>
+</tr>
+<tr class="even">
+<td>Zeitraum</td>
+<td>Aus welchem Zeitraum werden Satellitenszenen gesucht? Zum Beispiel Sommerhalbjahr 2020 bis heute.</td>
+</tr>
+<tr class="odd">
+<td>Extremmodus</td>
+<td>Werden heiße Szenen, kalte Szenen oder beide Varianten vorbereitet?</td>
+</tr>
+</tbody>
+</table>
+<p>Für eine erste Stunde reicht eine heiße LST-Karte. Für eine längere Einheit ist die Kombination aus heiß und kalt sinnvoller. Dann können die Lernenden prüfen, ob dieselben Oberflächen immer auffällig sind oder ob sich Muster zwischen extrem warmen und kühleren Situationen verschieben.</p>
+<p>Das Datenpaket enthält vor allem vier Dinge: LST-Karten, Luftbild-/Orientierungsebenen, Verwaltungsgrenzen und ein vorbereitetes QGIS-Projekt für Druck und digitale Erweiterung.</p>
+</section>
+<section id="analoge-nutzung-im-unterricht" class="level1">
+<h1>Analoge Nutzung im Unterricht</h1>
+<p>Die analoge Variante ist die wichtigste Einstiegsform. Sie vermeidet, dass die Stunde zu einer GIS-Bedienschulung wird. Die Lernenden arbeiten mit Karten, Folie und Stiften.</p>
+<p>Die Grafik macht nur sichtbar, wie dieselbe Ordnung analog und digital gedacht werden kann. Die eigentliche Erläuterung bleibt im Text.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig06_layer_stack.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Vier übereinanderliegende Schichten: Luftbild, Stadtbezirke, Folie und LST-Karte.</figcaption>
+</figure>
+</div>
+<section id="material" class="level2">
+<h2 class="anchored" data-anchor-id="material">Material</h2>
+<p>Benötigt werden ein Ausdruck des Luftbilds mit Stadtbezirksgrenzen, ein Ausdruck der LST-Karte mit demselben Ausschnitt und Maßstab, transparente Folie oder Transparentpapier, Folienstifte und eine einfache Legende zur LST-Karte.</p>
+<p>Die Ausdrucke müssen exakt denselben Ausschnitt und Maßstab besitzen. Sonst passt die Folie nicht sauber auf beide Karten. In QGIS sollte deshalb ein festes Drucklayout genutzt werden. Dasselbe Layout wird einmal mit Luftbild und einmal mit LST-Karte ausgegeben.</p>
+</section>
+<section id="stundenablauf" class="level2">
+<h2 class="anchored" data-anchor-id="stundenablauf">Stundenablauf</h2>
+<p>Die Grafik zeigt den Ablauf in fünf kompakten Schritten. Der Satz unter der Grafik kann in der Quarto-Datei leicht angepasst oder auch ersetzt werden.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig07_unterrichtsablauf.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Fünf Schritte vom Orientieren bis zur Sicherung.</figcaption>
+</figure>
+</div>
+<p>Zuerst orientieren sich die Lernenden auf dem Luftbild. Sie suchen Stadtbezirke, den Rhein, große Straßen, Parks oder bekannte Gebäude. Danach markieren sie Oberflächen auf der Folie. Die Temperaturkarte bleibt zunächst verdeckt.</p>
+<p>Erst danach wird die Folie auf die LST-Karte gelegt. Die Lernenden vergleichen ihre Markierungen mit der Temperaturverteilung. Sie notieren, welche Oberflächen eher heiß oder eher kühl erscheinen, wo die Karte ihre Erwartung bestätigt und wo sie überrascht.</p>
+<p>Die Sicherung sollte nicht nur aus Einzelbeobachtungen bestehen. Sie sollte räumliche Aussagen enthalten: „Im Gewerbegebiet häufen sich hohe Werte“, „Parks bilden kühlere Inseln“, „am Rand großer Grünflächen treten Temperaturübergänge auf“, „breite Verkehrsflächen bilden lineare Wärmemuster“.</p>
+</section>
+<section id="arbeitsauftrag-für-lernende" class="level2">
+<h2 class="anchored" data-anchor-id="arbeitsauftrag-für-lernende">Arbeitsauftrag für Lernende</h2>
+<ol type="1">
+<li>Markiert auf dem Luftbild mindestens fünf unterschiedliche Oberflächen oder Nutzungen.</li>
+<li>Nutzt unterschiedliche Farben oder Symbole für Gebäude, Straßen, Parks, Wasser und offene Flächen.</li>
+<li>Legt eure Folie auf die LST-Karte.</li>
+<li>Ordnet jeder markierten Fläche eine Temperaturtendenz zu: heiß, mittel, kühl oder unklar.</li>
+<li>Wählt zwei auffällige Bereiche aus und erklärt sie mit Material, Vegetation, Wasser, Schatten oder Bebauungsdichte.</li>
+<li>Notiert eine Stelle, an der die Karte nicht zu eurer Erwartung passt.</li>
+</ol>
+</section>
+</section>
+<section id="digitale-erweiterung-für-fortgeschrittene" class="level1">
+<h1>Digitale Erweiterung für Fortgeschrittene</h1>
+<p>Die digitale Variante nutzt dasselbe Prinzip wie die Folienarbeit. In QGIS sind die Ebenen nur digital übereinandergelegt. Das Projekt enthält Luftbild, LST-Karten, Stadtbezirke, AOI-Grenze und OSM-Ebenen.</p>
+<p>Für Fortgeschrittene können zusätzliche Aufgaben gestellt werden: Ablesen von Temperaturwerten an bestimmten Orten, Vergleich zwischen Stadtbezirken, Kontrolle der eigenen Folienklassifikation mit OSM-Gebäuden oder Grünflächen, Export eigener Kartenausschnitte oder Vergleich von hot- und cold-Produkten.</p>
+<p>Wichtig ist die Reihenfolge. Auch in der digitalen Variante sollten die Lernenden nicht sofort alle Layer einschalten. Erst Luftbildanalyse, dann eigene Hypothese, dann LST, danach Kontrolllayer.</p>
+</section>
+<section id="welche-ausdrucke-sinnvoll-sind" class="level1">
+<h1>Welche Ausdrucke sinnvoll sind</h1>
+<p>Für die Grundstunde sind drei Ausdrucke sinnvoll.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ausdruck</th>
+<th>Inhalt</th>
+<th>Zweck</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>Luftbild + Stadtbezirke + Stadtgrenze</td>
+<td>Arbeitskarte für Markierungen auf Folie</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>LST-Karte + Stadtbezirke + Stadtgrenze</td>
+<td>Vergleichskarte zur Überlagerung</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>Legende und kurze Erklärung</td>
+<td>Hilfe zur Interpretation der Temperaturfarben</td>
+</tr>
+</tbody>
+</table>
+<p>Für eine Erweiterung können zwei weitere Ausdrucke ergänzt werden: eine OSM-Kontrollkarte mit Gebäuden, Grünflächen, Wasser und Straßen sowie eine zweite LST-Karte aus dem anderen Extremmodus, also kalt statt heiß oder heiß statt kalt.</p>
+</section>
+<section id="typische-fehlinterpretationen" class="level1">
+<h1>Typische Fehlinterpretationen</h1>
+<p>Die häufigste Fehlinterpretation lautet: „Dort ist die Luft heißer.“ Präziser ist: „Dort ist die Oberfläche in der Satellitenszene wärmer.“ Diese Unterscheidung sollte wiederholt werden.</p>
+<p>Eine zweite Fehlinterpretation betrifft einzelne Pixel. Landsat-LST eignet sich nicht für einzelne kleine Objekte wie einen einzelnen Baum oder einen schmalen Gehweg. Die Karte ist stark genug für größere Muster: Parks, Gewerbeflächen, Flussräume, Stadtbezirke, große Verkehrsachsen oder größere Bebauungsstrukturen.</p>
+<p>Eine dritte Fehlinterpretation betrifft Kausalität. Eine warme Fläche ist nicht automatisch warm, weil sie versiegelt ist. Versiegelung ist ein plausibler Faktor, aber Material, Farbe, Feuchte, Schatten, Exposition und Tageszeit müssen mitgedacht werden.</p>
+</section>
+<section id="appendix-technische-beschreibung" class="level1">
+<h1>Appendix: Technische Beschreibung</h1>
+<p>Dieser Abschnitt ist für Lehrkräfte, Projektbetreuung oder fortgeschrittene Gruppen gedacht. Er muss nicht Bestandteil der normalen Unterrichtsstunde sein.</p>
+<section id="scriptflow" class="level2">
+<h2 class="anchored" data-anchor-id="scriptflow">Scriptflow</h2>
+<p>Das technische Skript arbeitet mit einem lokalen AOI-Ordner. Der Ordnername wird aus <code>aoi_name</code> gebildet. Dadurch liegen alle Daten zu einem Untersuchungsgebiet strukturiert zusammen. Bereits erzeugte Dateien werden wiederverwendet, damit spätere Läufe keine unnötigen Doppelzugriffe auslösen.</p>
+<p>Die Grundlogik des aktuellen Skripts enthält drei wichtige Stabilitätsentscheidungen: signierte Planetary-Computer-URLs werden nicht dauerhaft gespeichert, fertige lokale LST-Dateien werden erkannt und wiederverwendet, und numerische STAC-Properties werden robust ausgelesen. Diese Punkte entsprechen dem stabilen Arbeitsstand des Skripts.</p>
+<p>Die technische Grafik zeigt nur die Hauptschritte. Begriffe und Kommentare stehen bewusst außerhalb der Abbildung.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig08_technischer_datenfluss.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Technischer Datenfluss vom AOI bis zum Unterrichtspaket.</figcaption>
+</figure>
+</div>
+</section>
+<section id="aoi-zeitraum-und-extremmodus" class="level2">
+<h2 class="anchored" data-anchor-id="aoi-zeitraum-und-extremmodus">AOI, Zeitraum und Extremmodus</h2>
+<p>Der technische Einstieg besteht aus wenigen Variablen. <code>aoi_name</code> bestimmt den lokalen Projektordner. <code>date_start</code> und <code>date_end</code> bestimmen den Suchzeitraum. <code>seasonal_months</code> begrenzt die Suche auf bestimmte Monate, zum Beispiel April bis September. <code>extreme_mode</code> legt fest, ob heiße, kalte oder beide Extremsituationen ausgewählt werden.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Beispielhafte Grundkonfiguration</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>aoi_name <span class="ot">&lt;-</span> <span class="st">"koeln"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>aoi_mode <span class="ot">&lt;-</span> <span class="st">"koeln_stadtbezirke"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>date_start <span class="ot">&lt;-</span> <span class="st">"2020-01-01"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>date_end   <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">Sys.Date</span>())</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>seasonal_months <span class="ot">&lt;-</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">9</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>extreme_mode <span class="ot">&lt;-</span> <span class="st">"both"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>n_hot  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>n_cold <span class="ot">&lt;-</span> <span class="dv">10</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="landsat-verarbeitung" class="level2">
+<h2 class="anchored" data-anchor-id="landsat-verarbeitung">Landsat-Verarbeitung</h2>
+<p>Das Skript sucht Landsat 8/9 Collection 2 Level-2 Szenen über STAC. Für jede geeignete Szene werden das thermische LST-Asset und das QA-Asset genutzt. Die URL-Signierung erfolgt erst unmittelbar vor dem Zugriff auf eine Szene. Dadurch werden keine alten, abgelaufenen Zugriffstokens in einer langen Verarbeitung verwendet.</p>
+<p>Die LST wird aus dem Landsat-Produkt in Grad Celsius umgerechnet. Danach wird die Karte auf das AOI zugeschnitten. Über das QA-Band werden Wolken, Wolkenschatten, Cirrus, Schnee und ungültige Pixel entfernt.</p>
+</section>
+<section id="ranking-heißer-und-kalter-szenen" class="level2">
+<h2 class="anchored" data-anchor-id="ranking-heißer-und-kalter-szenen">Ranking heißer und kalter Szenen</h2>
+<p>Für jede verarbeitete Szene werden statistische Kennwerte im AOI berechnet: Mittelwert, Median, 90%-Perzentil, Maximum und gültiger Pixelanteil. Für heiße Szenen ist das 90%-Perzentil eine robuste Standardmetrik, weil es hohe Temperaturen erfasst, ohne von einzelnen Ausreißerpixeln abhängig zu sein. Für kalte Szenen kann entsprechend ein niedriges Perzentil oder der Median genutzt werden.</p>
+</section>
+<section id="unterrichtslayer-und-qgis-projekt" class="level2">
+<h2 class="anchored" data-anchor-id="unterrichtslayer-und-qgis-projekt">Unterrichtslayer und QGIS-Projekt</h2>
+<p>Zusätzlich zur LST erzeugt das Paket Orientierungsebenen. Dazu gehören AOI-Grenze, Stadtbezirke oder andere Verwaltungsgrenzen sowie OSM-Layer für Gebäude, Grünflächen, Wasser und Straßen. Für den Unterricht werden diese Ebenen als GeoPackage gespeichert. Das QGIS-Projekt nutzt diese Daten gemeinsam mit dem Luftbild und den LST-Rastern.</p>
+</section>
+<section id="lokale-ordnerstruktur" class="level2">
+<h2 class="anchored" data-anchor-id="lokale-ordnerstruktur">Lokale Ordnerstruktur</h2>
+<p>Die lokale Struktur folgt diesem Prinzip:</p>
+<pre class="text"><code>data/landsat_lst/&lt;aoi_name&gt;/
+├── 00_config/
+├── 01_aoi/
+├── 02_stac/
+├── 03_landsat_scenes/
+├── 04_extremes/
+│   ├── hot/
+│   └── cold/
+├── 05_teaching_layers/
+├── 06_qgis_project/
+├── 99_logs/
+└── manifest.json</code></pre>
+<p><code>manifest.json</code> dient als technischer Wegweiser. Dort können Pfade zu AOI, LST-Produkten, Unterrichtslayern und QGIS-Projektdateien dokumentiert werden.</p>
+</section>
+</section>
+<section id="appendix-kopiervorlage-für-lernende" class="level1">
+<h1>Appendix: Kopiervorlage für Lernende</h1>
+<section id="beobachtungsbogen" class="level2">
+<h2 class="anchored" data-anchor-id="beobachtungsbogen">Beobachtungsbogen</h2>
+<p><strong>Untersuchungsgebiet:</strong></p>
+<p><strong>Datum / Szene:</strong></p>
+<p><strong>1. Welche Oberflächen habt ihr markiert?</strong></p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<p><strong>2. Welche davon erscheinen eher heiß?</strong></p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<p><strong>3. Welche erscheinen eher kühl?</strong></p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<p><strong>4. Welches räumliche Muster fällt auf?</strong></p>
+<p><strong>5. Wie erklärt ihr dieses Muster?</strong></p>
+<p><strong>6. Wo passt die Karte nicht zu eurer Erwartung?</strong></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
