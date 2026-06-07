@@ -11,3 +11,7 @@ lehrerhandreichung_lst_stadtklima.zip
 archive
 ARCHITECTURE_PLAN.md
 src
+data/
+/data/
+venv-folienvorlage//.venv-folienvorlage/
+/.venv-folienvorlage/

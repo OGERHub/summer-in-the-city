@@ -38,7 +38,7 @@ website:
             href: pages/lehrerhandreichung_inhaltlich.qmd
 
           - text: "Arbeitsseite für Lernende"
-            href: pages/schuelerseite_lst_stadtklima.qmd
+            href: pages/schuelerseite_lst_stadtklima_mittel.qmd
 
       - section: "Material selbst erstellen"
         contents:

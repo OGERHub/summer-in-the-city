@@ -1,0 +1,102 @@
+---
+title: "Warum sind manche Stadtflächen heißer?"
+subtitle: "Arbeitsseite für Lernende"
+author: "Rieke Ammoneit"
+date: "2026-06-05"
+title-block-banner: ../images/01-splash.png
+title-block-banner-color: white
+lang: de
+format:
+  html:
+    toc: false
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Leitfrage
+
+Warum sind manche Stadtflächen an heißen Sommertagen deutlich wärmer als andere?
+
+Stadt besteht aus vielen unterschiedlichen Oberflächen: Asphalt, Dächer, Beton, Wiesen, Bäume, Wasser und offene Flächen. Diese Oberflächen erwärmen sich nicht gleich. Einige speichern viel Wärme und verdunsten kaum Wasser. Andere bleiben kühler, weil dort Schatten entsteht oder Wasser verdunstet.
+
+Genau das kann man auf Karten erkennen: **Unterschiedliche Oberflächen erzeugen unterschiedliche Oberflächentemperaturen. Diese Temperaturunterschiede bilden sich in der räumlichen Stadtstruktur ab.**
+
+  ![Die Oberflächentemperatur zeigt die Temperaturen der Gegenstände, nicht die Lufttemperatur.](../images/figures/fig02_lst_vs_lufttemperatur.png){fig-align="center" width="85%"}
+
+# Was ihr bekommt
+
+Ihr arbeitet mit zwei Karten desselben Ausschnitts:
+
+1. **Luftbild:** Ihr erkennt Gebäude, Straßen, Plätze, Parks, Bäume und Wasser.
+2. **OT-Karte:** Ihr erkennt, welche Oberflächen in der Satellitenszene eher heiß, mittel oder kühl erscheinen.
+
+OT bedeutet **Oberflächen-Temperatur**. Gemeint ist die Temperatur der Oberfläche, nicht die Lufttemperatur. Eine rote Fläche bedeutet also nicht automatisch: „Hier ist die Luft am heißesten.“ Es bedeutet: „Diese Oberfläche war in der Satellitenszene besonders warm.“
+
+![Ihr arbeitet zuerst mit dem Luftbild, dann mit der OT-Karte.](../images/figures/fig07_unterrichtsablauf.png){fig-align="center" width="90%"}
+
+# Arbeitsauftrag
+
+Legt die transparente Folie zuerst auf das Luftbild. Markiert mindestens **fünf größere Flächen**, die unterschiedliche Oberflächen zeigen.
+
+Geeignete Beispiele sind:
+
+| Kürzel | Oberfläche |
+|---|---|
+| S | Straße, Parkplatz, versiegelter Platz |
+| D | großes Dach oder Gebäudefläche |
+| G | Wiese, Park, Baumfläche |
+| W | Wasserfläche |
+| M | Mischfläche, z. B. Blockrand, Innenhof, Bahnanlage |
+
+Legt dieselbe Folie danach auf die OT-Karte. Prüft für jede markierte Fläche: erscheint sie eher heiß, mittel oder kühl?
+
+![Die Übersicht zeigt typische Tendenzen verschiedener Oberflächen.](../images/figures/fig03_vier_oberflaechenklassen.png){fig-align="center" width="90%"}
+
+# Ergebnis sichern
+
+Füllt die Tabelle aus. Die Erklärung ist wichtiger als das genaue einzelne Pixel.
+
+| Nr. | markierte Fläche | Oberfläche | OT-Tendenz | kurze Erklärung |
+|---|---|---|---|---|
+| 1 |  |  | heiß / mittel / kühl |  |
+| 2 |  |  | heiß / mittel / kühl |  |
+| 3 |  |  | heiß / mittel / kühl |  |
+| 4 |  |  | heiß / mittel / kühl |  |
+| 5 |  |  | heiß / mittel / kühl |  |
+
+# Erklärungshilfe
+
+Eine gute Erklärung verbindet drei Dinge:
+
+**Beobachtung im Luftbild:** Was ist dort zu sehen?  
+**Temperaturmuster:** Wie erscheint die Fläche auf der OT-Karte?  
+**Prozess:** Warum könnte diese Oberfläche wärmer oder kühler sein?
+
+![Eine gute Erklärung verbindet Beobachtung, Zuordnung, Vergleich und Prozess.](../images/figures/fig07_unterrichtsablauf.png){fig-align="center" width="90%"}
+
+Nützliche Begriffe:
+
+| Begriff | Bedeutung für die Karte |
+|---|---|
+| Versiegelung | wenig Verdunstung, oft starke Erwärmung |
+| Wärmespeicherung | Material nimmt Wärme auf und gibt sie langsam ab |
+| Verdunstung | entzieht der Oberfläche Wärme |
+| Schatten | verringert direkte Erwärmung |
+| Vegetation | kühlt oft durch Schatten und Verdunstung |
+| Wasser | erwärmt sich anders als feste Stadtoberflächen |
+| Bebauungsdichte | viele warme Oberflächen liegen dicht nebeneinander |
+
+# Abschluss
+
+Formuliert eine vorsichtige Regel und eine Ausnahme:
+
+> In unserem Ausschnitt erscheinen __________________ häufig wärmer als __________________.  
+> Eine plausible Erklärung ist __________________.  
+> Eine Ausnahme ist __________________, möglicherweise weil __________________.
+
+# Merksatz
+
+Die OT-Karte zeigt, **wie unterschiedlich sich Stadtoberflächen erwärmen**. Dadurch wird sichtbar, dass Hitze in der Stadt nicht zufällig verteilt ist, sondern mit Oberflächen, Materialien und Stadtstruktur zusammenhängt.

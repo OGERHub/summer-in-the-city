@@ -1,8 +1,10 @@
 ---
 title: "Oberflächentemperaturen in der Stadt"
-subtitle: "Inhaltliche Lehrerhandreichung"
+subtitle: "Fachliche Lehrerhandreichung zum Materialpaket Köln"
 author: "Rieke Ammoneit"
 date: "2026-06-05"
+title-block-banner: ../images/01-splash.png
+title-block-banner-color: white
 lang: de
 format:
   html:
@@ -16,74 +18,110 @@ execute:
   message: false
 ---
 
-# Zweck dieser Handreichung
+# Worum es in dieser Stunde geht
 
-Diese Seite beschreibt die Unterrichtsidee und den fachlichen Kern der Einheit. Sie richtet sich an Lehrkräfte, die mit dem vorbereiteten Materialpaket direkt arbeiten möchten. Die technische Erzeugung eigener Datenpakete ist nicht Voraussetzung für die Durchführung der Stunde.
+Köln ist im Sommer kein gleichmäßig warmer Raum. Wer sich an einem heißen Tag durch die Stadt bewegt, erlebt deutliche Unterschiede zwischen großen Platzflächen, breiten Straßen, Parkplätzen, dichten Baublöcken, Gewerbeflächen, Parks, Wiesen, Baumgruppen, dem Rhein und offenen Bodenflächen. Diese Unterschiede lassen sich fachlich als Unterschiede der Oberfläche lesen: Asphalt, Beton, Pflaster, Dachmaterial, Vegetation, Wasser, Schotter und Boden nehmen Strahlung unterschiedlich auf, speichern Wärme unterschiedlich lange und geben Energie unterschiedlich stark über Verdunstung ab.
 
-Die Grundidee ist bewusst einfach gehalten: Die Lernenden lesen zuerst ein RGB-Luftbild, markieren sichtbare Oberflächen auf transparenter Folie und legen dieselbe Folie anschließend auf eine LST-Karte. Dadurch entsteht ein direkter Vergleich zwischen sichtbarer Stadtstruktur und gemessener Oberflächentemperatur. Entscheidend ist nicht, einzelne Pixel zu deuten, sondern größere räumliche Muster zu erkennen und plausibel zu erklären.
+Die Stadt Köln beschreibt diesen städtischen Wärmehaushalt ausdrücklich als verändert: Gebäude, Straßen und versiegelte Flächen erhitzen sich intensiver und speichern Wärme länger als unbebaute Landschaftsräume ([Stadt Köln: Stadtklima](https://www.stadt-koeln.de/artikel/60838/index.html)). Köln behandelt Hitze außerdem als kommunales Anpassungs- und Gesundheitsthema; das Hitze-Portal verweist darauf, dass sommerliche Hitzeperioden im Klimawandel zunehmen und gesundheitlich belastend sein können ([Stadt Köln: Hitze-Portal](https://www.stadt-koeln.de/leben-in-koeln/umwelt-tiere/klima/hitzeportal/index.html)). Der Kölner Hitzeknigge ordnet Hitze als praktisches Vorsorgethema für die Bevölkerung ein ([Stadt Köln: Hitzeknigge](https://www.stadt-koeln.de/artikel/69221/index.html)). Die Stunde greift diese lokale Relevanz auf, behandelt Hitze aber nicht zuerst als Verhaltensthema, sondern als räumlich sichtbares Oberflächenproblem.
 
-![Direkter Einstieg und technische Vertiefung sind getrennt.](../images/figures/fig00_materialpaket_struktur.svg){fig-align="center" width="95%"}
+![Bekannte Kölner Orte dienen nicht als fertige Antwort, sondern als Hypothesenräume.](../images/figures/fig01_koeln_hitze_einstieg.png){fig-align="center" width="95%"}
 
-Die Trennung ist wichtig. Für den Unterricht soll zunächst kein GIS- oder Skriptproblem entstehen. Das fertige Paket liefert die nötigen Karten. QGIS, Konfigurator und Skript sind für Lehrkräfte gedacht, die später eigene Ausschnitte, andere Städte oder andere Zeiträume vorbereiten möchten.
+Der Einstieg sollte deshalb nicht lauten: „Hier sieht man die heißesten Orte Kölns.“ Treffender ist: „Welche Oberflächen erkennen wir hier, und welche davon müssten sich an einem sonnigen Sommertag besonders stark erwärmen?“ Die Lernenden sollen zuerst aus dem Luftbild argumentieren. Erst danach wird die LST-Karte als Prüfebene eingesetzt.
 
-# Sofort loslegen: vorbereitetes Materialpaket Köln
+# Vom bekannten Ort zur Oberflächenklasse
 
-Für die erste Durchführung liegt ein vorbereitetes Beispielpaket für Köln vor. Es enthält die Materialien, mit denen eine Lerngruppe ohne technische Vorbereitung arbeiten kann: ein farbiges Luftbild, eine heiße Oberflächentemperaturkarte im gleichen Ausschnitt, eine Markiervorlage für transparente Folie und ein vorbereitetes QGIS-Projekt als editierbarer Hintergrund.
+Für Schülerinnen und Schüler ist Stadthitze zunächst eine Alltagserfahrung. Man sucht Schatten, meidet aufgeheizte Platzflächen, bleibt lieber im Park oder am Wasser und spürt die Hitze an Straßen, Fassaden und Haltestellen. Diese Erfahrung ist ein guter Einstieg, aber sie muss fachlich übersetzt werden. Die zentrale Frage lautet nicht: „Wo fühlt es sich heiß an?“, sondern: „Welche Oberfläche liegt dort, und wie reagiert diese Oberfläche thermisch?“
 
-[Materialpaket Köln herunterladen](../downloads/lst_materialpaket_koeln_demo.zip){.btn .btn-primary}
+Ein großer Platz kann aus hellem Pflaster bestehen, wenig Schatten haben und sich stark aufheizen. Eine breite Straße ist nicht nur Verkehrsraum, sondern eine dunkle, trockene, versiegelte Oberfläche. Ein Parkplatz kombiniert Asphalt, Blech, wenig Verdunstung und oft wenig Schatten. Ein Gewerbe- oder Industriegebiet besteht häufig aus großen Dachflächen, Zufahrten, Ladeflächen und Parkplätzen. Ein Park enthält dagegen Baumkronen, Rasen, Wege, trockene Wiesen, beschattete Bereiche und manchmal Wasser. Genau diese Mischung macht den Vergleich von Luftbild und LST-Karte fachlich interessant.
 
-Das Archiv ist hier als Dummy-Download angelegt. Es zeigt die Zielstruktur des späteren echten Pakets. Inhaltlich soll dieses Paket so aufgebaut sein, dass Lehrkräfte mit den Druckvorlagen unmittelbar starten können. Das QGIS-Projekt ist nur nötig, wenn Ausschnitte, Legenden oder Drucklayouts angepasst werden sollen.
+Aus diesen realen Oberflächen werden für die Stunde vier Arbeitsklassen gebildet. **Versiegelung / Bebauung** umfasst Straßen, Parkplätze, Plätze, Dächer, Gewerbe- und Industrieflächen, Bahnanlagen, befestigte Innenhöfe und stark versiegelte Schulhöfe. **Vegetation** umfasst Parks, Wiesen, Baumgruppen, Alleen, Friedhöfe, Grünzüge und begrünte Innenhöfe. **Wasser** umfasst Rhein, Hafenbecken, Weiher, Teiche und größere offene Wasserflächen. **Unversiegelte offene Fläche** umfasst trockene Böden, Schotter, Baustellen, Kies, Sand, offene Sportflächen und wenig bewachsene Brachen.
 
-![Das Startpaket bündelt Luftbild, LST-Karte, Folienvorlage und QGIS-Projekt.](../images/figures/fig09_downloadpaket_koeln.svg){fig-align="center" width="95%"}
+Diese vier Klassen sind kein Ersatz für eine vollständige Stadtklimaanalyse. Sie sind ein Unterrichtsmodell, mit dem Lernende sichtbare Oberflächen in eine thermische Deutung übersetzen können.
 
-Für die Grundstunde reichen drei Ausdrucke: das RGB-Luftbild, die LST-hot-Karte und die Folien- oder Transparentpapiervorlage. Alle drei müssen denselben Ausschnitt und denselben Maßstab verwenden. Die Lernenden markieren nicht auf der Karte selbst, sondern auf einer transparenten Ebene. Dadurch bleibt sichtbar, dass ihre Deutung eine eigene Interpretationsebene ist.
+# Was Oberflächentemperaturen (LST) messen
 
-# Was LST fachlich bedeutet
+LST bedeutet Land Surface Temperature. Gemeint ist die Temperatur der Landoberfläche, die aus der thermischen Infrarotstrahlung der Oberfläche abgeleitet wird. Die ESA Climate Change Initiative beschreibt LST als wichtige Variable des Klimasystems, weil sie Prozesse des Energie- und Wasseraustauschs zwischen Landoberfläche und Atmosphäre beschreibt ([ESA CCI: Land Surface Temperature](https://climate.esa.int/en/projects/land-surface-temperature/)). LST ist damit eine Oberflächengröße und keine direkte Messung der Lufttemperatur in zwei Metern Höhe.
 
-LST steht für Land Surface Temperature. Gemeint ist die Temperatur der Oberfläche, nicht die Lufttemperatur in zwei Metern Höhe. Ein Satellit misst thermische Strahlung, aus der für geeignete Oberflächen eine Oberflächentemperatur abgeleitet wird. Diese Größe reagiert stark auf Material, Feuchte, Vegetation, Schatten, Exposition und Tageszeit.
+Diese Unterscheidung ist für die Stunde zentral. Eine Asphaltfläche, ein Dach oder ein Parkplatz kann in der LST-Karte sehr warm erscheinen, während die Lufttemperatur in zwei Metern Höhe niedriger und räumlich weniger scharf abgegrenzt ist. Menschen erleben Hitze zusätzlich über Lufttemperatur, Luftfeuchte, Wind, direkte Sonnenstrahlung, Schatten, Kleidung, körperliche Aktivität und Aufenthaltsdauer. Die LST-Karte zeigt deshalb nicht die gesamte gefühlte Hitze, sondern die thermische Antwort der Oberfläche.
 
-![LST beschreibt die Temperatur der Oberfläche, nicht die Lufttemperatur.](../images/figures/fig02_lst_meteorologisch.png){fig-align="center" width="95%"}
+![Der Satellit erfasst die thermische Antwort der Oberfläche. Die 2-m-Lufttemperatur ist eine andere Messgröße.](../images/figures/fig02_lst_vs_lufttemperatur.png){fig-align="center" width="95%"}
 
-Für den Unterricht ist diese Unterscheidung zentral. Eine Asphaltfläche kann auf der Karte sehr warm erscheinen, obwohl die Lufttemperatur daneben deutlich niedriger ist. Die Karte zeigt also nicht, wo Menschen exakt welche Lufttemperatur erleben. Sie zeigt, welche Oberflächen im betrachteten Moment stärker oder schwächer erwärmt sind. Genau daraus lassen sich räumliche Muster der Stadtoberfläche diskutieren.
+Eine präzise Unterrichtssprache vermeidet deshalb den Satz „dort ist die Luft heißer“. Treffender ist: „Diese Oberfläche erscheint in dieser Satellitenszene wärmer.“ Diese Formulierung ist nicht nur sprachlich genauer, sondern führt direkt zur fachlichen Frage: Welche Oberfläche kann diese thermische Antwort erklären?
 
-# Lernziele der Einheit
+# Warum Oberflächen unterschiedlich warm sind
 
-Die Lernenden sollen Oberflächen im Luftbild erkennen, ihnen Oberflächentemperaturen aus der LST-Karte zuordnen und räumliche Muster prozesshaft erklären. Die Aufgabe verbindet damit qualitative Kartenauswertung, quantitative Zuordnung und geographische Erklärung.
+Oberflächen erwärmen sich nicht nur, weil Sonne auf sie fällt. Entscheidend ist, was mit der eingehenden Strahlungsenergie geschieht. Ein Teil wird reflektiert, ein Teil wird als Wärme gespeichert, ein Teil wird an die Luft abgegeben, und bei feuchten oder bewachsenen Oberflächen kann ein Teil der Energie in Verdunstung umgesetzt werden. Die Oberflächentemperatur ist deshalb das Ergebnis von Materialeigenschaften, Feuchte, Vegetation, Schatten, Wasseranteil, Oberflächenstruktur und Aufnahmezeitpunkt.
 
-![Die Lernziele verbinden qualitative, quantitative und räumliche Deutung.](../images/figures/fig03_lernziele.png){fig-align="center" width="95%"}
+Versiegelte Flächen sind häufig warm, weil sie wenig Wasser verdunsten und Wärme speichern können. NASA beschreibt den urbanen Wärmeinseleffekt unter anderem damit, dass Asphalt, Beton, Stein, Stahl und andere undurchlässige Oberflächen Wärme aufnehmen und die natürliche Kühlwirkung von Vegetation unterbrechen ([NASA Earth Observatory: Vegetation Limits City Warming Effects](https://science.nasa.gov/earth/earth-observatory/vegetation-limits-city-warming-effects-86440/)). Die Stadt Köln beschreibt denselben Grundzusammenhang lokal: Gebäude, Straßen und versiegelte Flächen erhitzen sich stärker und speichern Wärme länger ([Stadt Köln: Stadtklima](https://www.stadt-koeln.de/artikel/60838/index.html)).
 
-Der fachliche Zielpunkt ist eine begründete Karte oder ein begründeter Ergebnisbogen. Die Lernenden sollen nicht nur sagen, dass eine Fläche rot oder blau ist. Sie sollen beschreiben, welche Oberfläche dort liegt, welche Temperaturtendenz sichtbar wird und welche Erklärung plausibel ist. Gute Begründungen bleiben vorsichtig: Sie formulieren Tendenzen, prüfen Ausnahmen und vermeiden zu einfache Kausalsätze.
+Vegetation kann die Erwärmung abschwächen, weil sie Schatten erzeugt und Wasser verdunstet. NASA beschreibt die natürliche Kühlwirkung von Vegetation im Zusammenhang mit städtischer Erwärmung ([NASA Earth Observatory: Vegetation Limits City Warming Effects](https://science.nasa.gov/earth/earth-observatory/vegetation-limits-city-warming-effects-86440/)). Für den Unterricht ist wichtig, Vegetation nicht zu idealisieren. Ein dichter Baumbestand kann durch Schatten und Verdunstung deutlich kühler wirken als ein trockener kurzrasiger Bereich. Eine sonnige, trockene Wiese kann dagegen deutlich wärmer erscheinen als Schülerinnen und Schüler zunächst erwarten.
 
-# Typische Temperaturtendenzen
+Wasserflächen reagieren träger als viele feste Oberflächen. Wasser hat eine hohe Wärmekapazität, verteilt Wärme im Wasserkörper und erwärmt sich am Tag oft langsamer als Asphalt, Beton oder trockener Boden. In LST-Karten können Rhein, Weiher oder Hafenbecken deshalb als kühlere Flächen erscheinen. Diese Wirkung ist aber zeitabhängig: Wasser speichert Wärme und kann sich im Tages- und Jahresgang anders verhalten als feste Oberflächen.
 
-Die folgende Übersicht dient als Erwartungsrahmen. Sie ist keine feste Regelkarte. Eine Wiese kann trocken und warm sein, ein Dach kann hell und vergleichsweise kühl erscheinen, und Wasserflächen folgen einer anderen Tagesdynamik als Asphalt. Die Übersicht hilft, erste Vermutungen zu bilden, die anschließend an der echten Karte geprüft werden.
+Unversiegelte offene Flächen sind die Klasse, an der einfache Regeln scheitern. Eine Baustelle, eine Schotterfläche oder trockener offener Boden kann sich stark erwärmen, obwohl die Fläche nicht bebaut ist. Feuchter Boden kann dagegen durch Verdunstung kühler bleiben. Für die Deutung zählt also nicht nur „bebaut oder unbebaut“, sondern die Kombination aus Material, Feuchte, Bewuchs und Sonnenexposition.
 
-![Materialien zeigen typische, aber nicht feste Temperaturtendenzen.](../images/figures/fig04_material_temperatur_matrix.png){fig-align="center" width="95%"}
+![Die vier Unterrichtsklassen bündeln reale Oberflächen: Plätze, Straßen, Dächer, Parks, Wiesen, Wasser, Boden und Schotter.](../images/figures/fig03_vier_oberflaechenklassen.png){fig-align="center" width="95%"}
 
-Didaktisch ist gerade die Abweichung interessant. Wenn eine erwartbar kühle Fläche warm erscheint, lohnt die Nachfrage: Ist die Fläche trocken? Liegt sie in voller Sonne? Ist sie wirklich Vegetation oder nur scheinbar grün? Wenn eine versiegelte Fläche weniger warm erscheint, können Schatten, Materialfarbe oder Mischpixel eine Rolle spielen.
+# Die vier Klassen als Arbeitsmodell
+
+Die Klasse **Versiegelung / Bebauung** bündelt alle stark befestigten und baulich geprägten Oberflächen: Straßen, Kreuzungen, Parkplätze, Plätze, Dächer, Gewerbe- und Industrieflächen, Bahnanlagen, befestigte Schulhöfe und Innenhöfe. In der LST-Karte erscheinen solche Flächen häufig warm bis sehr warm, besonders wenn sie groß, trocken und unbeschattet sind. Helle Materialien, Schatten, Dachaufbauten oder unterschiedliche Beläge können das Muster abschwächen.
+
+Die Klasse **Vegetation** bündelt alle Flächen, bei denen Pflanzen die thermische Wirkung prägen: Baumgruppen, Parks, Wiesen, Grünzüge, Friedhöfe, Alleen und begrünte Innenhöfe. Vegetation kann durch Schatten und Verdunstung kühlen. Die Wirkung hängt aber vom Zustand der Vegetation ab. Ein schattiger Baumbestand, eine bewässerte Wiese und eine trockene Rasenfläche sind im Luftbild alle „grün“, thermisch aber nicht identisch.
+
+Die Klasse **Wasser** bleibt eigenständig. Rhein, Weiher, Hafenbecken und Teiche sind keine Sonderform von „kühl“, sondern Oberflächen mit eigener thermischer Dynamik. Sie reagieren träge, können tagsüber kühl erscheinen und Wärme zeitlich verzögert speichern oder abgeben. Gerade am Rhein können Lernende gut sehen, dass eine Wasserfläche im LST-Bild oft anders reagiert als die angrenzende befestigte Uferzone.
+
+Die Klasse **unversiegelte offene Fläche** umfasst offene Böden, Baustellen, Schotter, Kies, Sand, trockene Brachen und wenig bewachsene Sport- oder Randflächen. Diese Klasse ist fachlich wichtig, weil sie verhindert, dass „nicht bebaut“ automatisch mit „kühl“ gleichgesetzt wird. Offene trockene Flächen können sehr warm erscheinen, während feuchte offene Böden vergleichsweise kühl bleiben können.
+
+# Verwendung der Landoberflächen Schablone
+
+Die automatische Maske wird im Unterricht nicht als Lösung gezeigt. Die Lernenden erhalten nur neutrale Umrisse. Sie sollen diese Umrisse zuerst im Luftbild interpretieren und anschließend dieselben Flächen mit der LST-Karte vergleichen. Die Klassennamen stehen nur in der Lehrkraftversion.
+
+Das hat einen fachlichen Grund. Fernerkundungsdaten liefern keine fertige Erklärung. Sie liefern Beobachtungen, die interpretiert werden müssen. Wenn die Karte sofort „Versiegelung“, „Vegetation“, „Wasser“ und „unversiegelte Fläche“ anzeigt, wird die Deutungsarbeit vorweggenommen. Wenn die Umrisse blind bleiben, müssen die Lernenden selbst begründen, welche Oberfläche sie erkennen und warum diese Oberfläche thermisch plausibel wärmer oder kühler erscheint.
+
+![Die Schablone trennt typisiert grob die Hauptklassen der Landoberflächen. Die SuS sehen die Flächen, die Lehrkraft hat die Klassenzuordnung der Fläche aus der automatisierten Erstellung.](../images/figures/fig04_layerlogik_blinde_maske.png){fig-align="center" width="95%"}
+
+Die Maske ist deshalb ein Arbeitsgerüst, kein Wahrheitslayer. Besonders wertvoll sind uneindeutige Flächen: Parkplätze mit Bäumen, helle Dächer, trockene Wiesen, Baustellen, schmale Uferzonen oder Mischbereiche zwischen Straße und Park. Dort wird sichtbar, dass Oberflächenklassen Vereinfachungen sind und reale Stadträume aus Mischflächen bestehen.
 
 # Unterrichtsablauf
 
-Die Unterrichtsstunde beginnt mit dem Luftbild. Die LST-Karte wird zunächst nicht gezeigt. Die Lernenden sollen erst selbst Oberflächen erkennen und markieren, bevor sie die Temperaturkarte als Prüfebene nutzen. Dadurch wird verhindert, dass sie nur Farben ablesen. Sie entwickeln zuerst eine eigene Hypothese über die Stadtoberfläche.
+Die Stunde beginnt mit dem Luftbild. Die LST-Karte bleibt zunächst verdeckt. Die Lernenden orientieren sich im Kölner Ausschnitt: Rhein, Parks, große Straßen, Plätze, dichte Bebauung, Gewerbeflächen, Parkplätze, Dachlandschaften und offene Flächen werden gesucht und beschrieben. Danach markieren sie auf Folie oder Transparentpapier Flächen, die sie für eher warm oder eher kühl halten.
 
-![Erst wird auf dem Luftbild markiert, danach mit der LST-Karte verglichen.](../images/figures/fig07_unterrichtsablauf.png){fig-align="center" width="95%"}
+Erst danach wird die LST-Karte aufgelegt. Jetzt prüfen die Lernenden ihre Vermutungen. Stimmen große versiegelte Flächen mit warmen Bereichen überein? Erscheinen Wasser und größere Vegetationsflächen kühler? Gibt es warme offene Böden oder überraschend kühle versiegelte Teilflächen? Der Unterrichtsgewinn liegt im Vergleich, nicht im bloßen Ablesen der Farbskala.
 
-Der Ablauf besteht aus fünf Schritten. Zuerst orientieren sich die Lernenden im Ausschnitt. Danach markieren sie unterschiedliche Oberflächen auf der Folie. Erst im dritten Schritt wird die LST-Karte aufgelegt. Im vierten Schritt werden heiße und kühle Bereiche begründet. Im fünften Schritt sichern die Lernenden vorsichtige Regeln und offene Fragen.
+![Der Ablauf führt von der sichtbaren Oberfläche zur thermischen Prüfung.](../images/figures/fig05_unterrichtsablauf.png){fig-align="center" width="95%"}
 
-![Der Standardweg benötigt zunächst nur das vorbereitete Paket.](../images/figures/fig10_standardweg_lehrkraft.svg){fig-align="center" width="95%"}
+Die Sicherung sollte nicht aus einer starren Tabelle bestehen. Ziel ist eine begründete Deutung. Eine gute Schüleraussage verbindet sichtbare Oberfläche, Temperaturtendenz, Prozess und Unsicherheit. Ein Beispiel wäre: „Diese Fläche wirkt wie ein großer Parkplatz. Sie erscheint in der LST-Karte warm. Das passt zu Versiegelung, Wärmespeicherung und geringer Verdunstung. Wenn ein Teil weniger warm ist, könnte dort Schatten oder ein anderes Material liegen.“
 
-Die technische Seite des Pakets ist damit nachgeordnet. Sie unterstützt die Vorbereitung, ersetzt aber nicht die fachliche Arbeit im Klassenraum. Für eine erste Durchführung sollte die Stunde analog bleiben: sehen, markieren, überlagern, begründen.
+# Das Materialpaket
 
-# Typische Fehlinterpretationen
+Das vorbereitete Paket enthält ein RGB-Luftbild, eine LST-hot-Karte, Folienvorlagen beziehungsweise blinde Umrisse und ein QGIS-Projekt. Für den direkten Unterrichtseinsatz reichen Luftbild, LST-Karte und transparente Markierebene. Das QGIS-Projekt ist für Anpassungen gedacht: Ausschnitt ändern, Ebenen ein- oder ausblenden, Layout neu drucken.
 
-Die häufigste Fehlinterpretation lautet: „Dort ist die Luft heißer.“ Präziser ist: „Die Oberfläche erscheint in dieser Szene wärmer.“ Diese Unterscheidung sollte wiederholt werden, weil sie den Kern der Fernerkundungsgröße betrifft.
+![Das Materialpaket trennt direkte Unterrichtsmaterialien von optionaler technischer Anpassung.](../images/figures/fig06_materialpaket.png){fig-align="center" width="95%"}
 
-Eine zweite Fehlinterpretation betrifft einzelne Pixel. Landsat-LST eignet sich nicht für die sichere Deutung einzelner kleiner Objekte wie eines einzelnen Baums, einer schmalen Straße oder eines kleinen Innenhofs. Die Karte ist stark genug für größere Muster: Stadtviertel, Parks, Gewerbeflächen, Flussräume, breite Verkehrsachsen oder größere Gebäudestrukturen.
+Alle Materialien müssen denselben Ausschnitt und denselben Maßstab verwenden. Die Lernenden markieren nicht auf der Karte selbst, sondern auf einer eigenen Ebene. Dadurch bleibt sichtbar, dass ihre Markierung eine Interpretation ist. Diese Interpretation kann zuerst auf das Luftbild und danach auf die LST-Karte gelegt werden.
 
-Eine dritte Fehlinterpretation betrifft einfache Ursachen. Versiegelung ist ein wichtiger Faktor, aber nicht allein entscheidend. Feuchte, Vegetation, Schatten, Material, Farbe, Gebäudeform, Gewässernähe und Tageszeit wirken zusammen. Deshalb sollen die Lernenden nicht „beweisen“, sondern plausibel erklären.
+# Fachliche Gesprächsführung
 
-# Ergebnis der Stunde
+Wenn Lernende sagen: „Dort ist die Luft heißer“, sollte die Lehrkraft präzisieren: „Die Karte zeigt die Oberfläche. Die Lufttemperatur ist eine andere Messgröße.“ Wenn Lernende sagen: „Alles Grüne ist kühl“, sollte die Antwort differenzieren: „Vegetation kann durch Schatten und Verdunstung kühlen, aber trockene oder kurzrasige Flächen können warm sein.“ Wenn Lernende sagen: „Unbebaute Flächen sind kühl“, lohnt der Blick auf offene Böden, Schotterflächen und Baustellen.
 
-Am Ende steht eine begründete Deutung. Die Lernenden benennen mindestens drei Oberflächenklassen, ordnen ihnen eine Temperaturtendenz zu und erklären ein räumliches Muster mit mindestens einem Prozess. Ein gutes Ergebnis enthält außerdem eine vorsichtig formulierte Regel und eine beobachtete Ausnahme.
+Die zentrale fachliche Sprache sollte vorsichtig bleiben. Geeignete Formulierungen sind: „erscheint wärmer“, „passt zu“, „könnte erklärt werden durch“, „abweichend davon“, „vermutlich wegen“. Ungeeignet sind absolute Sätze wie „Asphalt ist immer heiß“ oder „Wasser ist immer kalt“.
 
-Die kurze Sicherung könnte so lauten: Große versiegelte Flächen erscheinen in dieser Szene häufig wärmer als begrünte Flächen. Wasserflächen und größere Parkbereiche erscheinen eher kühl. Einzelne Abweichungen lassen sich durch Schatten, Feuchte, Material oder Mischflächen erklären.
+# Sicherung
+
+Am Ende steht keine perfekte Klassifikation, sondern eine fachlich begründete Deutung des Kartenausschnitts. Die Lernenden sollen mehrere Flächen beschreiben, ihre Temperaturtendenz aus der LST-Karte ablesen und eine plausible Ursache nennen. Eine gute Sicherung enthält außerdem eine Ausnahme oder Unsicherheit.
+
+Ein möglicher Sicherungssatz lautet: „Große versiegelte Flächen wie Straßenräume, Plätze, Parkplätze oder Dächer erscheinen in dieser Szene häufig wärmer als Vegetations- und Wasserflächen. Das passt zu Wärmespeicherung und geringer Verdunstung. Abweichungen können durch Schatten, Materialfarbe, Feuchte, Mischflächen oder Aufnahmezeitpunkt entstehen.“
+
+Ein zweiter Sicherungssatz lautet: „Vegetation und Wasser erscheinen häufig kühler, aber aus unterschiedlichen Gründen. Vegetation wirkt über Schatten und Verdunstung, Wasser über seine thermische Trägheit. Offene unversiegelte Flächen müssen gesondert geprüft werden, weil Feuchte und Material dort stark entscheiden.“
+
+# Quellen
+
+Stadt Köln. Stadtklima. Gebäude, Straßen und versiegelte Flächen erhitzen sich intensiver und speichern Wärme länger als unbebaute Landschaftsräume. <https://www.stadt-koeln.de/artikel/60838/index.html>
+
+Stadt Köln. Hitze-Portal Köln. Sommerliche Hitzeperioden nehmen im Klimawandel zu und können gesundheitlich belasten. <https://www.stadt-koeln.de/leben-in-koeln/umwelt-tiere/klima/hitzeportal/index.html>
+
+Stadt Köln. Der Hitzeknigge. Lokale Hinweise und Verhaltenstipps zum Umgang mit Hitze in Köln. <https://www.stadt-koeln.de/artikel/69221/index.html>
+
+ESA Climate Change Initiative. Land Surface Temperature. LST beschreibt Prozesse des Energie- und Wasseraustauschs zwischen Landoberfläche und Atmosphäre. <https://climate.esa.int/en/projects/land-surface-temperature/>
+
+NASA Earth Observatory. Vegetation Limits City Warming Effects. Impervious surfaces wie Asphalt, Beton, Stein und Stahl tragen zur städtischen Erwärmung bei; Vegetation wirkt kühlend. <https://science.nasa.gov/earth/earth-observatory/vegetation-limits-city-warming-effects-86440/>

@@ -3,11 +3,12 @@ title: "Warum sind manche Stadtflächen heißer?"
 subtitle: "Arbeitsseite für Lernende"
 author: "Rieke Ammoneit"
 date: "2026-06-05"
+title-block-banner: ../images/01-splash.png
+title-block-banner-color: white
 lang: de
 format:
   html:
-    toc: true
-    toc-depth: 3
+    toc: false
     number-sections: false
 execute:
   echo: false
@@ -15,71 +16,78 @@ execute:
   message: false
 ---
 
-# Eure Leitfrage
+# Leitfrage
 
-Stellt euch einen heißen Sommertag in der Stadt vor. Wo würdet ihr lieber stehen: auf einem großen Parkplatz, an einer breiten Straße, in einem Park, am Wasser oder unter Bäumen? Vermutlich habt ihr sofort eine Vermutung. In dieser Aufgabe prüft ihr diese Vermutung mit Karten.
+Warum werden manche Stadtflächen an heißen Sommertagen stärker aufgeheizt als andere?
 
-Ihr bekommt zwei Karten desselben Stadtgebiets. Die erste Karte ist ein RGB-Luftbild. Darauf seht ihr Gebäude, Straßen, Grünflächen, Wasser und andere Oberflächen. Die zweite Karte ist eine LST-Karte. LST bedeutet Land Surface Temperature, also Oberflächentemperatur. Diese Karte zeigt nicht die Lufttemperatur, sondern die Temperatur der Oberfläche in einer Satellitenszene.
+Stadt besteht aus unterschiedlichen Oberflächen: Asphalt, Dächer, Beton, Wiese, Bäume, Wasser, helle und dunkle Materialien. Diese Oberflächen nehmen Sonnenstrahlung unterschiedlich auf, speichern Wärme unterschiedlich stark und geben Wärme unterschiedlich schnell wieder ab. Deshalb entstehen räumliche Temperaturmuster in der Stadt.
 
-![Ihr arbeitet zuerst mit dem Luftbild, dann mit der LST-Karte.](../images/figures/fig07_unterrichtsablauf.png){fig-align="center" width="95%"}
+Die LST-Karte zeigt die **Oberflächentemperatur**. Sie zeigt nicht die Lufttemperatur. Eine rote Fläche bedeutet also: Die Oberfläche ist in dieser Satellitenszene warm oder heiß.
 
-# Eure Aufgabe
+![LST beschreibt die Oberfläche, nicht die Lufttemperatur.](../images/figures/fig02_lst_meteorologisch.png){fig-align="center" width="85%"}
 
-Ihr markiert zuerst sichtbare Oberflächen auf einer transparenten Folie. Danach legt ihr dieselbe Folie auf die LST-Karte. So könnt ihr prüfen, ob die von euch markierten Flächen eher heiß, mittel oder kühl erscheinen.
+# Arbeitsauftrag
 
-Wichtig ist: Ihr sollt nicht nur Farben ablesen. Ihr sollt erklären, warum ein Bereich wahrscheinlich wärmer oder kühler erscheint. Dafür verbindet ihr drei Dinge: Was erkennt ihr im Luftbild? Welche Temperaturtendenz zeigt die LST-Karte? Welcher Prozess könnte das Muster erklären?
+Ihr arbeitet mit zwei Karten desselben Stadtgebiets:
 
-![Eine gute Erklärung verbindet Beobachtung, Zuordnung, Vergleich und Prozess.](../images/figures/fig11_argumentationshilfe.svg){fig-align="center" width="95%"}
+1. **Luftbild:** Welche Oberflächen erkennt ihr?
+2. **LST-Karte:** Welche Flächen erscheinen heiß, mittel oder kühl?
 
-# Schritt 1: Orientieren
+Ziel ist eine einfache Erklärung:
 
-Schaut euch zuerst nur das Luftbild an. Sucht Orientierungspunkte wie einen Fluss, große Straßen, Parks, Bahnanlagen, größere Gebäude, Gewässer oder auffällige Stadtstrukturen. Ziel ist, dass ihr den Kartenausschnitt sicher lesen könnt, bevor ihr auf Temperaturen schaut.
+**Unterschiedliche Oberflächen erzeugen unterschiedliche Oberflächentemperaturen. Diese Unterschiede sind in der räumlichen Stadtstruktur sichtbar.**
 
-Notiert zwei bis drei Orientierungspunkte. Diese helfen euch später, eure Beobachtungen räumlich genau zu beschreiben.
+# Vorgehen in 4 Schritten
 
-# Schritt 2: Oberflächen markieren
+## 1. Im Luftbild orientieren
 
-Legt die transparente Folie auf das Luftbild. Markiert mindestens fünf unterschiedliche Oberflächen. Sinnvoll sind zum Beispiel große Dächer, breite Straßen, Parkflächen, Baumflächen, Wiesen, Wasserflächen, Bahnanlagen, Gewerbeflächen oder offene Böden.
+Sucht zuerst bekannte oder auffällige Strukturen:
 
-Nutzt unterschiedliche Farben oder Symbole. Schreibt eine kleine Legende auf die Folie. Achtet darauf, dass ihr größere Flächen markiert und nicht nur einzelne kleine Objekte.
+- Wasser
+- Parks oder Baumflächen
+- große Straßen
+- große Dächer
+- Parkplätze oder versiegelte Plätze
+- dichte Bebauung
 
-# Schritt 3: Mit der LST-Karte vergleichen
+## 2. Oberflächen auf Folie markieren
 
-Legt dieselbe Folie auf die LST-Karte. Vergleicht eure markierten Flächen mit der Temperaturdarstellung. Achtet auf größere Muster. Einzelne Pixel sind weniger wichtig als zusammenhängende warme oder kühle Bereiche.
+Legt die Folie auf das Luftbild. Markiert mindestens **fünf größere Flächen**.
 
-Beschreibt jede markierte Fläche mit einer vorsichtigen Temperaturtendenz: eher heiß, eher mittel oder eher kühl.
+Nutzt einfache Kategorien:
 
-# Schritt 4: Muster erklären
+| Zeichen | Oberfläche |
+|---|---|
+| G | Grünfläche / Bäume |
+| W | Wasser |
+| S | Straße / Parkplatz / versiegelt |
+| D | Dach / Gebäude |
+| M | Mischfläche |
 
-Wählt zwei warme und zwei kühle Bereiche aus. Beschreibt zuerst, was dort im Luftbild zu sehen ist. Danach erklärt ihr, warum die Fläche auf der LST-Karte so erscheint.
+## 3. Folie auf die LST-Karte legen
 
-Nützliche Begriffe sind Versiegelung, Wärmespeicherung, Verdunstung, Schatten, Wasser, Vegetation, Material, Feuchte und Bebauungsdichte.
+Vergleicht eure markierten Flächen mit der LST-Karte.
 
-# Schritt 5: Sichern
+Tragt ein:
 
-Füllt die Tabelle aus. Die letzte Spalte ist die wichtigste, weil dort aus der Beobachtung eine geographische Erklärung wird.
+| Nr. | Oberfläche | LST-Tendenz | kurze Erklärung |
+|---|---|---|---|
+| 1 |  | heiß / mittel / kühl |  |
+| 2 |  | heiß / mittel / kühl |  |
+| 3 |  | heiß / mittel / kühl |  |
+| 4 |  | heiß / mittel / kühl |  |
+| 5 |  | heiß / mittel / kühl |  |
 
-| Nr. | Ort / markierte Fläche | Oberfläche oder Nutzung | LST-Tendenz | plausible Erklärung |
-|---|---|---|---|---|
-| 1 |  |  | heiß / mittel / kühl |  |
-| 2 |  |  | heiß / mittel / kühl |  |
-| 3 |  |  | heiß / mittel / kühl |  |
-| 4 |  |  | heiß / mittel / kühl |  |
-| 5 |  |  | heiß / mittel / kühl |  |
+## 4. Regel formulieren
 
-# Satzstarter für eure Begründung
+Formuliert eine vorsichtige Regel:
 
-Eine gute Begründung kann so beginnen:
+> In unserem Kartenausschnitt erscheinen __________________ eher heiß, während __________________ eher kühl erscheinen.  
+> Eine plausible Erklärung ist: __________________.  
+> Eine Ausnahme ist: __________________.
 
-„Im Luftbild erkennen wir …“  
-„Auf der LST-Karte erscheint diese Fläche …“  
-„Eine plausible Erklärung ist …“  
-„Das passt zu der Annahme, dass …“  
-„Eine Ausnahme ist …, möglicherweise weil …“
+# Hilfe für die Erklärung
 
-Vermeidet zu starke Aussagen. Schreibt nicht: „Das ist dort heiß, weil es Asphalt ist.“ Besser ist: „Diese Fläche erscheint in der LST-Karte warm. Im Luftbild ist eine große versiegelte Fläche zu erkennen. Eine plausible Erklärung ist geringe Verdunstung und stärkere Wärmespeicherung.“
-
-# Begriffshilfe
 
 ![LST beschreibt die Oberfläche, nicht die Lufttemperatur.](../images/figures/fig02_lst_meteorologisch.png){fig-align="center" width="95%"}
 
@@ -87,8 +95,15 @@ Die Materialübersicht hilft euch beim ersten Vermuten. Sie ist keine Regel, die
 
 ![Die Übersicht zeigt typische Tendenzen verschiedener Oberflächen.](../images/figures/fig04_material_temperatur_matrix.png){fig-align="center" width="95%"}
 
-# Abschlussfrage
 
-Formuliert am Ende eine vorsichtige Regel und eine Ausnahme. Eine gute Antwort könnte so beginnen:
+Versiegelte Flächen wie Asphalt, große Dächer oder Parkplätze erscheinen oft wärmer, weil sie wenig Wasser verdunsten und Wärme gut speichern.
 
-„In unserem Ausschnitt erscheinen … häufig wärmer als … . Das könnte daran liegen, dass … . Eine Ausnahme ist … .“
+Grünflächen und Baumflächen erscheinen oft kühler, weil Pflanzen Wasser verdunsten und Schatten erzeugen.
+
+Wasserflächen erscheinen häufig kühl, können aber je nach Tageszeit anders reagieren als Landflächen.
+
+Dichte Stadtstrukturen können besonders warm erscheinen, wenn viele versiegelte Flächen dicht nebeneinander liegen.
+
+# Merksatz
+
+Die LST-Karte zeigt nicht einfach „wo es heiß ist“, sondern **welche Oberflächen sich stark oder schwach erwärmen**. Dadurch wird sichtbar, wie Stadtstruktur und Oberflächentemperatur zusammenhängen.

@@ -1,6 +1,10 @@
 ---
 title: "LST-Datenpaket konfigurieren"
 subtitle: "AOI, Zeitraum, Extremmodus und Luftbildquelle"
+author: "Rieke Ammoneit"
+date: "2026-06-05"
+title-block-banner: ../images/01-splash.png
+title-block-banner-color: white
 lang: de
 format:
   html:

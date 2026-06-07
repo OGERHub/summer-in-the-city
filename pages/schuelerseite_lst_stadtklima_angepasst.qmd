@@ -1,0 +1,211 @@
+---
+title: "Warum sind manche Stadtflächen heißer?"
+subtitle: "Arbeitsseite für Lernende"
+author: "Rieke Ammoneit"
+date: "2026-06-05"
+title-block-banner: ../images/01-splash.png
+title-block-banner-color: white
+lang: de
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Eure Leitfrage
+
+An einem heißen Sommertag fühlt sich Köln nicht überall gleich an. Ein großer Parkplatz, eine breite Teerstraße oder ein versiegelter Platz kann sich deutlich heißer anfühlen als ein Park, eine Baumgruppe oder ein Bereich am Wasser. In dieser Aufgabe prüft ihr diese Vermutung mit Karten.
+
+Ihr arbeitet mit demselben Stadtgebiet in drei Ansichten. Zuerst schaut ihr auf ein RGB-Luftbild. Dort erkennt ihr Gebäude, Straßen, Dächer, Parkplätze, Parks, Wiesen, Wasser und offene Flächen. Danach nutzt ihr eine Folienvorlage mit neutralen Umrissen. Am Ende legt ihr dieselben Flächen auf eine LST-Karte. LST bedeutet **Land Surface Temperature**, also **Oberflächentemperatur**. Die LST-Karte zeigt nicht direkt die Lufttemperatur, sondern die Temperatur der Oberfläche in einer Satellitenszene.
+
+![Bekannte Kölner Oberflächen dienen als Ausgangspunkt für eure Vermutungen.](../images/figures/fig01_koeln_hitze_einstieg.png){fig-align="center" width="95%"}
+
+Die Leitfrage lautet:
+
+**Welche Oberflächen erscheinen in der LST-Karte besonders warm oder besonders kühl, und wie lässt sich das erklären?**
+
+# Was ihr am Ende können sollt
+
+Am Ende sollt ihr nicht nur sagen: „Diese Fläche ist rot“ oder „Diese Fläche ist blau“. Ihr sollt eine begründete Erklärung formulieren. Eine gute Erklärung verbindet drei Dinge:
+
+Im Luftbild erkennt ihr eine Oberfläche oder Nutzung. In der LST-Karte ordnet ihr derselben Fläche eine Temperaturtendenz zu. Danach erklärt ihr mit einem passenden Prozess, warum diese Fläche eher warm oder eher kühl erscheint.
+
+Beispiel:
+
+> Diese Fläche wirkt wie ein großer Parkplatz. Auf der LST-Karte erscheint sie sehr warm. Das passt dazu, dass Asphalt und Fahrzeuge Wärme speichern und kaum Verdunstung ermöglichen.
+
+# Wichtig: Oberfläche und Luft sind nicht dasselbe
+
+Die LST-Karte zeigt die Temperatur der Oberfläche. Das ist nicht dasselbe wie die Lufttemperatur in zwei Metern Höhe. Eine Teerstraße oder ein Parkplatz kann in der LST-Karte sehr heiß erscheinen, obwohl die Luft darüber eine andere Temperatur hat.
+
+Für eure Formulierungen heißt das:
+
+Schreibt besser **„Die Oberfläche erscheint warm“** statt **„Dort ist die Luft heiß“**.
+
+![Die LST-Karte zeigt die Oberfläche. Die Lufttemperatur in 2 m Höhe ist eine andere Größe.](../images/figures/fig02_lst_vs_lufttemperatur.png){fig-align="center" width="95%"}
+
+# Welche Oberflächen sollt ihr suchen?
+
+Sucht nicht nur die vier großen Klassen. Sucht zuerst reale Oberflächen im Luftbild. Die vier großen Klassen entstehen erst danach aus euren Beobachtungen.
+
+| Reale Oberfläche im Luftbild | Gehört meist zu | Erwartung in der LST-Karte |
+|---|---|---|
+| Teerstraße | Versiegelung / Bebauung | oft sehr warm |
+| Parkplatz | Versiegelung / Bebauung | oft sehr warm |
+| versiegelter Platz | Versiegelung / Bebauung | oft warm bis sehr warm |
+| Kernbebauung / dichte Baublöcke | Versiegelung / Bebauung | oft warm |
+| Industrie- oder Gewerbedach | Versiegelung / Bebauung | häufig warm, je nach Material |
+| Park mit Bäumen | Vegetation | eher kühl |
+| Wiese / Rasenfläche | Vegetation | eher kühl, bei Trockenheit auch wärmer |
+| Baumgruppe / Allee | Vegetation | häufig kühl durch Schatten |
+| Rhein / Weiher / Wasserfläche | Wasser | meist kühl am Tag |
+| offener Boden / Schotter / Baustelle | unversiegelte offene Fläche | unterschiedlich, oft warm wenn trocken |
+
+Diese Übersicht ist keine Lösungsschablone. Sie hilft euch beim ersten Vermuten. Entscheidend ist, was ihr im konkreten Kartenausschnitt erkennt.
+
+![Die Übersicht zeigt typische Temperaturtendenzen realer Stadtoberflächen.](../images/figures/fig03_vier_oberflaechenklassen.png){fig-align="center" width="95%"}
+
+# Arbeitsauftrag
+
+Ihr arbeitet in fünf Schritten. Haltet euch an die Reihenfolge. Die LST-Karte kommt erst später dazu.
+
+![Erst wird die Oberfläche gedeutet, danach wird mit der LST-Karte geprüft.](../images/figures/fig05_unterrichtsablauf.png){fig-align="center" width="95%"}
+
+## Schritt 1: Im Luftbild orientieren
+
+Schaut euch zuerst nur das RGB-Luftbild an. Sucht große Orientierungspunkte: Rhein, Bahnflächen, große Straßen, Plätze, Parkflächen, dichte Bebauung, große Dächer, Wiesen oder auffällige offene Flächen.
+
+Notiert drei Orientierungspunkte:
+
+| Orientierungspunkt | Woran erkennt ihr ihn im Luftbild? |
+|---|---|
+| 1 |  |
+| 2 |  |
+| 3 |  |
+
+## Schritt 2: Oberflächen im Luftbild bestimmen
+
+Sucht mindestens sechs unterschiedliche Oberflächen. Wählt nicht nur kleine Einzelobjekte, sondern größere Flächen, die ihr später gut wiederfindet.
+
+Nutzt diese Suchliste:
+
+- Teerstraße
+- Parkplatz
+- versiegelter Platz
+- Kernbebauung oder dichte Dachflächen
+- Industrie- oder Gewerbedach
+- Park mit Bäumen
+- Wiese oder Rasenfläche
+- Baumgruppe oder Allee
+- Wasserfläche
+- offener Boden, Schotter oder Baustelle
+
+Tragt eure Flächen in die Tabelle ein. Die Spalte „erste Vermutung“ füllt ihr aus, bevor ihr die LST-Karte anschaut.
+
+| Nr. | Fläche im Luftbild | Woran erkennt ihr sie? | Erste Vermutung: warm / mittel / kühl |
+|---|---|---|---|
+| 1 |  |  |  |
+| 2 |  |  |  |
+| 3 |  |  |  |
+| 4 |  |  |  |
+| 5 |  |  |  |
+| 6 |  |  |  |
+
+## Schritt 3: Auf der Folienvorlage markieren
+
+Legt die Folienvorlage oder transparente Folie auf das Luftbild. Markiert die Flächen aus eurer Tabelle. Schreibt nur kurze Kürzel an die Flächen, zum Beispiel:
+
+- `STR` für Teerstraße
+- `P` für Parkplatz
+- `PL` für Platz
+- `D` für Dach / Gewerbedach
+- `PA` für Park
+- `WIE` für Wiese
+- `BA` für Baumgruppe
+- `WA` für Wasser
+- `BO` für Boden / Schotter / Baustelle
+
+Die Folie ist eure eigene Deutungsebene. Sie zeigt, welche Flächen ihr ausgewählt habt. Sie ist noch keine Lösung.
+
+![Die Umrisse helfen euch beim Wiederfinden der Flächen. Die Klassennamen müsst ihr selbst begründen.](../images/figures/fig04_layerlogik_blinde_maske.png){fig-align="center" width="95%"}
+
+## Schritt 4: Mit der LST-Karte prüfen
+
+Legt dieselbe Folie auf die LST-Karte. Prüft jede markierte Fläche. Achtet auf größere Muster, nicht auf einzelne Pixel.
+
+Ergänzt jetzt die tatsächliche LST-Tendenz:
+
+| Nr. | Fläche | Erste Vermutung | LST-Tendenz auf der Karte | passt / passt nicht / teilweise |
+|---|---|---|---|---|
+| 1 |  |  | heiß / mittel / kühl |  |
+| 2 |  |  | heiß / mittel / kühl |  |
+| 3 |  |  | heiß / mittel / kühl |  |
+| 4 |  |  | heiß / mittel / kühl |  |
+| 5 |  |  | heiß / mittel / kühl |  |
+| 6 |  |  | heiß / mittel / kühl |  |
+
+Wenn etwas nicht passt, ist das kein Fehler. Gerade Abweichungen sind interessant. Eine Wiese kann trocken sein. Ein Dach kann hell sein. Ein Parkplatz kann teilweise beschattet sein. Eine Fläche kann aus mehreren Materialien bestehen.
+
+## Schritt 5: Erklären
+
+Wählt drei Flächen aus: eine warme, eine kühle und eine überraschende oder uneindeutige Fläche. Formuliert für jede Fläche eine Erklärung.
+
+| Fläche | Was erkennt ihr im Luftbild? | Wie erscheint sie in der LST-Karte? | Erklärung |
+|---|---|---|---|
+| warme Fläche |  |  |  |
+| kühle Fläche |  |  |  |
+| überraschende Fläche |  |  |  |
+
+Nutzt für eure Erklärung passende Begriffe:
+
+**Wärmespeicherung**, **Versiegelung**, **geringe Verdunstung**, **Schatten**, **Vegetation**, **Wasser**, **Feuchte**, **Material**, **Bebauungsdichte**, **Mischfläche**.
+
+# Satzstarter
+
+Verwendet vorsichtige Formulierungen. Die Karte zeigt eine Satellitenszene, keine absolute Wahrheit für jeden Moment.
+
+Geeignete Satzstarter:
+
+> Im Luftbild erkennen wir ...
+
+> Diese Fläche sieht aus wie ...
+
+> Auf der LST-Karte erscheint die Oberfläche ...
+
+> Das passt dazu, dass ...
+
+> Eine plausible Erklärung ist ...
+
+> Eine Ausnahme könnte sein ...
+
+> Unsicher bleibt ...
+
+Schreibt nicht:
+
+> Dort ist die Luft heiß.
+
+Schreibt besser:
+
+> Diese Oberfläche erscheint in der LST-Karte warm.
+
+# Ergebnis
+
+Am Ende gebt ihr eine kurze Auswertung ab. Sie soll aus drei Teilen bestehen.
+
+Erstens beschreibt ihr eine warme Fläche und erklärt sie. Zweitens beschreibt ihr eine kühle Fläche und erklärt sie. Drittens beschreibt ihr eine Ausnahme oder eine Fläche, die nicht eindeutig ist.
+
+Eine mögliche Form ist:
+
+> In unserem Ausschnitt erscheinen ... besonders warm. Im Luftbild erkennt man dort ... . Das kann durch ... erklärt werden. Eher kühl erscheinen ... . Das passt zu ... . Eine interessante Ausnahme ist ... . Möglicherweise liegt das an ... .
+
+# Abschlussfrage
+
+Formuliert eine vorsichtige Regel für den untersuchten Kartenausschnitt:
+
+> In unserem Ausschnitt erscheinen ... häufig wärmer als ... . Das könnte daran liegen, dass ... . Eine Ausnahme ist ... .
+
