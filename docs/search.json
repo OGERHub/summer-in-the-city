@@ -55,9 +55,53 @@
   {
     "objectID": "pages/lehrerhandreichung_technisch.html",
     "href": "pages/lehrerhandreichung_technisch.html",
-    "title": "Oberflächentemperaturen in der Stadt",
+    "title": "Technische Dokumentation",
     "section": "",
-    "text": "Wofür diese Seite gedacht ist\nDiese Seite ist nicht notwendig, um die Unterrichtseinheit durchzuführen. Für den direkten Einsatz gibt es das vorbereitete Köln-Paket auf der inhaltlichen Lehrerhandreichung. Diese technische Seite richtet sich an Lehrkräfte, Projektbetreuung oder fortgeschrittene Gruppen, die eigene Datenpakete erzeugen möchten: für eine andere Stadt, einen anderen Zeitraum, einen kleineren Ausschnitt oder andere hot/cold-Einstellungen.\nDer technische Workflow hat eine klare Aufgabe. Er soll nicht Unterrichtsinhalt werden, sondern Material erzeugen: LST-Karten, ein RGB-Luftbild, Verwaltungsgrenzen und ein vorbereitetes QGIS-Projekt. Die Lernenden arbeiten anschließend mit dem Material, nicht mit dem Skript.\n\n\n\nDas Datenpaket entsteht aus AOI, Zeitraum und Extremmodus.\n\n\n\n\nStandardweg und Vertiefungsweg\nDer Standardweg für Lehrkräfte ist kurz: fertiges Paket herunterladen, Druckvorlagen nutzen, Stunde durchführen. Der technische Vertiefungsweg beginnt erst, wenn ein eigenes Paket erzeugt werden soll.\n\n\n\nDer technische Weg ist eine Erweiterung, nicht der Einstieg.\n\n\nWer eigene Daten erzeugt, arbeitet mit drei Komponenten: einer Konfiguration, dem R-Skript und dem erzeugten QGIS-Projekt. Die Konfiguration legt AOI, Zeitraum, Extremmodus und Luftbildoption fest. Das Skript lädt Landsat-LST, berechnet heiße oder kalte Komposite und schreibt eine portable QGIS-Projektdatei. QGIS wird danach nur noch zum Anzeigen, Prüfen und Drucken verwendet.\n\n\nWas das Skript erzeugt\nDas Skript legt für jedes Untersuchungsgebiet einen eigenen Ordner an. Der Ordnername wird aus aoi_name gebildet. Dadurch bleiben Daten für verschiedene Städte oder Stadtteile getrennt.\ndata/landsat_lst/&lt;aoi_name&gt;/\n├── 00_config/\n├── 01_aoi/\n├── 02_stac/\n├── 03_landsat_scenes/\n├── 04_extremes/\n├── 05_teaching_layers/\n├── 06_qgis_project/\n├── 99_logs/\n└── manifest.json\nDie wichtigste Datei für Lehrkräfte ist die QGIS-Projektdatei:\n06_qgis_project/&lt;aoi_name&gt;_lst_teaching_project.qgs\nSie kann direkt in QGIS geöffnet werden. Es ist kein PyQGIS-Aufruf, kein qgis --code und kein Terminal notwendig.\n\n\nLuftbild statt OSM als zentrale Orientierung\nFür diese Unterrichtseinheit ist das RGB-Luftbild wichtiger als OSM. Die Lernenden sollen Gebäude, Parks, Wasser, Straßen und offene Flächen im Luftbild erkennen. Ein farbiges Luftbild ist dafür didaktisch stärker und technisch stabiler als ein großer OSM-Download.\nDas Skript bindet deshalb standardmäßig den NRW-DOP-RGB-WMS ein und kann zusätzlich ein lokales georeferenziertes RGB-Übersichtsraster erzeugen. Die zentrale WMS-Einstellung lautet:\nurl=https://www.wms.nrw.de/geobasis/wms_nw_dop?language=ger\nlayers=nw_dop_rgb\nformat=image/png\ncrs=EPSG:25832\nOSM ist im Startworkflow nicht erforderlich. Wenn OSM später ergänzt wird, sollte es als optionale Zusatzebene verstanden werden, nicht als Grundlage der Stunde.\n\n\nLST-Produkte und Kartendarstellung\nAus den Landsat-Szenen werden lokale LST-Raster in Grad Celsius erzeugt. Wolken, Wolkenschatten, Cirrus, Schnee und ungültige Pixel werden über das QA-Band maskiert. Danach werden heiße oder kalte Extremprodukte ausgewählt und als Komposite exportiert.\nFür den Unterricht ist meist der hot-Modus am verständlichsten. Er zeigt besonders gut, welche Oberflächen in heißen Situationen stark hervortreten. Der cold-Modus kann ergänzend genutzt werden, wenn kühl wirksame Strukturen stärker untersucht werden sollen.\n\n\n\nHot, cold und both haben unterschiedliche didaktische Funktionen.\n\n\nIm QGIS-Projekt werden die hot-Layer als Pseudocolor mit Turbo-Farbverlauf und fünf Quantilklassen dargestellt. Cold-Layer werden mit einer Spectral-Farbtafel klassifiziert. Die Luftbildebene ist standardmäßig auf 35 Prozent Deckkraft gesetzt, damit LST und Stadtstruktur gemeinsam lesbar bleiben.\n\n\nKonfiguration\nDer Konfigurator erzeugt einen JSON- oder R-Konfigurationsblock. Er startet keine Berechnung im Browser. Die Konfiguration wird anschließend mit dem lokalen R-Skript verwendet.\nDie wichtigsten Entscheidungen sind AOI, Zeitraum, Extremmodus und Luftbildquelle. Für den Start empfiehlt sich:\naoi_name &lt;- \"koeln\"\naoi_mode &lt;- \"koeln_stadtbezirke\"\ndate_start &lt;- \"2020-01-01\"\nseasonal_months &lt;- c(4, 5, 6, 7, 8, 9)\nextreme_mode &lt;- \"hot\"\naerial_source_mode &lt;- \"both\"\nload_osm_layers &lt;- FALSE\naerial_source_mode &lt;- \"both\" erzeugt ein lokales RGB-Luftbild und bindet zusätzlich den Online-WMS ein. Für rein onlinebasierte Arbeit kann \"wms\" genutzt werden. Für Offline-Pakete ist \"local_rgb\" sinnvoll.\n\n\nTechnischer Datenfluss\n\n\n\nTechnischer Datenfluss vom AOI zur QGIS-Projektdatei.\n\n\nDie Landsat-Daten werden über STAC gesucht. Die signierten URLs des Planetary Computer werden nicht dauerhaft gespeichert, weil sie ablaufen. Stattdessen wird jede Szene unmittelbar vor dem Zugriff signiert. Bereits lokal verarbeitete Szenen werden wiederverwendet. Das ist wichtig, weil größere AOIs und längere Zeiträume sonst unnötig viele Remote-Zugriffe erzeugen.\nDas Ergebnis ist ein reproduzierbares Materialpaket. Die manifest.json dokumentiert, welche Dateien erzeugt wurden. Für normale Lehrkräfte ist diese Datei nicht wichtig; für Fehlersuche und Weiterentwicklung ist sie hilfreich.\n\n\nEmpfohlene Nutzung\nFür ein neues Paket sollte zuerst ein kleiner AOI getestet werden. Wenn das Ergebnis plausibel ist, kann der Ausschnitt vergrößert werden. Für ganze Städte ist das lokale RGB-Luftbild auf eine kontrollierte Maximalgröße begrenzt, damit das Paket nicht zu groß wird.\nDie Ausdrucke für den Unterricht sollten aus demselben QGIS-Projekt und demselben Layout exportiert werden. Nur dann passen Luftbild, LST-Karte und Folienmarkierung exakt übereinander.",
+    "text": "Diese Seite dokumentiert den technischen Workflow hinter dem Köln-Demo-Paket. Sie ist nicht für die Unterrichtsdurchführung notwendig. Für die Stunde selbst reichen die fertigen Druckprodukte und die inhaltliche Lehrerhandreichung. Diese Seite ist für Personen gedacht, die das Paket neu erzeugen, prüfen oder für einen anderen Ausschnitt anpassen wollen.\nDer Workflow erzeugt aus einem Untersuchungsgebiet, einem Zeitraum und einer DOP-CIR-basierten Oberflächenmaske ein QGIS-Projekt mit passgenauen Drucklayouts. Im Unterricht wird damit nicht gerechnet. Die Skripte erzeugen das Material, die Lernenden arbeiten anschließend mit Karten, Folien und Beobachtungen.\n\n\n\nDas Datenpaket entsteht aus AOI, Zeitraum und Extremmodus.",
+    "crumbs": [
+      "Material selbst erstellen",
+      "Technische Anleitung"
+    ]
+  },
+  {
+    "objectID": "pages/lehrerhandreichung_technisch.html#qgis-startet-aber-python-bricht-mit-sip--oder-qgis-importfehler-ab",
+    "href": "pages/lehrerhandreichung_technisch.html#qgis-startet-aber-python-bricht-mit-sip--oder-qgis-importfehler-ab",
+    "title": "Technische Dokumentation",
+    "section": "QGIS startet, aber Python bricht mit SIP- oder qgis-Importfehler ab",
+    "text": "QGIS startet, aber Python bricht mit SIP- oder qgis-Importfehler ab\nDann wurde QGIS wahrscheinlich aus einer kontaminierten Python-Umgebung gestartet. Der Launcher muss verwendet werden, nicht ein direkter Aufruf wie:\nqgis --code scripts/create_qgis_project.py\nDer Launcher setzt die QGIS-Pythonpfade und entfernt venv-/Reticulate-Einträge.",
+    "crumbs": [
+      "Material selbst erstellen",
+      "Technische Anleitung"
+    ]
+  },
+  {
+    "objectID": "pages/lehrerhandreichung_technisch.html#file__-ist-nicht-definiert",
+    "href": "pages/lehrerhandreichung_technisch.html#file__-ist-nicht-definiert",
+    "title": "Technische Dokumentation",
+    "section": "__file__ ist nicht definiert",
+    "text": "__file__ ist nicht definiert\nDas ist bei QGIS --code normal. Das Python-Skript darf daher keine Pfade über Path(__file__) ableiten. Stattdessen werden QGIS_SCRIPT_DIR und PROJECT_ROOT durch den Launcher gesetzt.",
+    "crumbs": [
+      "Material selbst erstellen",
+      "Technische Anleitung"
+    ]
+  },
+  {
+    "objectID": "pages/lehrerhandreichung_technisch.html#dop-wirkt-in-der-layoutvorschau-grob",
+    "href": "pages/lehrerhandreichung_technisch.html#dop-wirkt-in-der-layoutvorschau-grob",
+    "title": "Technische Dokumentation",
+    "section": "DOP wirkt in der Layoutvorschau grob",
+    "text": "DOP wirkt in der Layoutvorschau grob\nDie QGIS-Layoutvorschau kann WMS-Layer gröber darstellen. Entscheidend ist der exportierte PDF. Wenn auch der PDF zu grob ist, sollte das DOP für den exakten Layoutausschnitt als lokales, georeferenziertes Raster vorgerendert werden. Das betrifft nur die Druckqualität des Luftbildes, nicht die 30-m-DOP-CIR-Maske.",
+    "crumbs": [
+      "Material selbst erstellen",
+      "Technische Anleitung"
+    ]
+  },
+  {
+    "objectID": "pages/lehrerhandreichung_technisch.html#ausdrucke-passen-nicht-exakt-übereinander",
+    "href": "pages/lehrerhandreichung_technisch.html#ausdrucke-passen-nicht-exakt-übereinander",
+    "title": "Technische Dokumentation",
+    "section": "Ausdrucke passen nicht exakt übereinander",
+    "text": "Ausdrucke passen nicht exakt übereinander\nDann wurde wahrscheinlich mit Seitenskalierung gedruckt. Alle Ausdrucke müssen mit 100 % beziehungsweise tatsächliche Größe gedruckt werden. Automatische Anpassung an das Seitenformat zerstört die Passgenauigkeit.",
     "crumbs": [
       "Material selbst erstellen",
       "Technische Anleitung"

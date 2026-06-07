@@ -1,6 +1,6 @@
 ---
-title: "Oberflächentemperaturen in der Stadt"
-subtitle: "Technische Lehrerhandreichung"
+title: "Technische Dokumentation"
+subtitle: "Köln-Demo: LST, DOP-CIR-Oberflächenmaske und QGIS-Printpaket"
 author: "Rieke Ammoneit"
 date: "2026-06-05"
 title-block-banner: ../images/01-splash.png
@@ -18,100 +18,354 @@ execute:
   message: false
 ---
 
-# Wofür diese Seite gedacht ist
+# Zweck der technischen Seite
 
-Diese Seite ist nicht notwendig, um die Unterrichtseinheit durchzuführen. Für den direkten Einsatz gibt es das vorbereitete Köln-Paket auf der inhaltlichen Lehrerhandreichung. Diese technische Seite richtet sich an Lehrkräfte, Projektbetreuung oder fortgeschrittene Gruppen, die eigene Datenpakete erzeugen möchten: für eine andere Stadt, einen anderen Zeitraum, einen kleineren Ausschnitt oder andere hot/cold-Einstellungen.
+Diese Seite dokumentiert den technischen Workflow hinter dem Köln-Demo-Paket. Sie ist nicht für die Unterrichtsdurchführung notwendig. Für die Stunde selbst reichen die fertigen Druckprodukte und die inhaltliche Lehrerhandreichung. Diese Seite ist für Personen gedacht, die das Paket neu erzeugen, prüfen oder für einen anderen Ausschnitt anpassen wollen.
 
-Der technische Workflow hat eine klare Aufgabe. Er soll nicht Unterrichtsinhalt werden, sondern Material erzeugen: LST-Karten, ein RGB-Luftbild, Verwaltungsgrenzen und ein vorbereitetes QGIS-Projekt. Die Lernenden arbeiten anschließend mit dem Material, nicht mit dem Skript.
+Der Workflow erzeugt aus einem Untersuchungsgebiet, einem Zeitraum und einer DOP-CIR-basierten Oberflächenmaske ein QGIS-Projekt mit passgenauen Drucklayouts. Im Unterricht wird damit nicht gerechnet. Die Skripte erzeugen das Material, die Lernenden arbeiten anschließend mit Karten, Folien und Beobachtungen.
 
 ![Das Datenpaket entsteht aus AOI, Zeitraum und Extremmodus.](../images/figures/fig05_datenpaket.png){fig-align="center" width="95%"}
 
-# Standardweg und Vertiefungsweg
+# Standardweg und technischer Weg
 
-Der Standardweg für Lehrkräfte ist kurz: fertiges Paket herunterladen, Druckvorlagen nutzen, Stunde durchführen. Der technische Vertiefungsweg beginnt erst, wenn ein eigenes Paket erzeugt werden soll.
+Der Standardweg bleibt: fertiges Materialpaket verwenden, Karten ausdrucken, Stunde durchführen. Der technische Weg beginnt erst, wenn ein eigenes Datenpaket erzeugt oder das bestehende Köln-Paket reproduziert werden soll.
 
 ![Der technische Weg ist eine Erweiterung, nicht der Einstieg.](../images/figures/fig10_standardweg_lehrkraft.svg){fig-align="center" width="95%"}
 
-Wer eigene Daten erzeugt, arbeitet mit drei Komponenten: einer Konfiguration, dem R-Skript und dem erzeugten QGIS-Projekt. Die Konfiguration legt AOI, Zeitraum, Extremmodus und Luftbildoption fest. Das Skript lädt Landsat-LST, berechnet heiße oder kalte Komposite und schreibt eine portable QGIS-Projektdatei. QGIS wird danach nur noch zum Anzeigen, Prüfen und Drucken verwendet.
+Für den technischen Weg gibt es drei Ebenen:
 
-# Was das Skript erzeugt
+1. `00_run_lst_oberflaechenmaske_dop_cir.R` ist der zentrale Einstieg.
+2. `landsat_lst_mit_dop_cir_oberflaechenmaske.R` erzeugt AOI, Landsat-LST-Produkte, Extremkomposite und Teaching-Layer.
+3. `create_qgis_project.py` erzeugt danach das QGIS-Projekt, Layerstyling und die Drucklayouts.
 
-Das Skript legt für jedes Untersuchungsgebiet einen eigenen Ordner an. Der Ordnername wird aus `aoi_name` gebildet. Dadurch bleiben Daten für verschiedene Städte oder Stadtteile getrennt.
+Das QGIS-Projekt wird nicht mehr manuell aus einem separaten Ordner gestartet. Der `00`-Runner kann am Ende den QGIS-Launcher aufrufen. Unter Linux wird `scripts/run_create_qgis_project.sh` verwendet, unter Windows `scripts/run_create_qgis_project.bat`.
+
+# Projektstruktur
+
+Die Skripte erwarten diese Grundstruktur:
 
 ```text
-data/landsat_lst/<aoi_name>/
-├── 00_config/
+project_root/
+├── scripts/
+│   ├── 00_run_lst_oberflaechenmaske_dop_cir.R
+│   ├── landsat_lst_mit_dop_cir_oberflaechenmaske.R
+│   ├── dop_cir_oberflaechenmaske_modul.R
+│   ├── create_qgis_project.py
+│   ├── run_create_qgis_project.sh
+│   └── run_create_qgis_project.bat
+└── data/
+    └── landsat_lst/
+        └── koeln/
+```
+
+Für das Untersuchungsgebiet `koeln` werden die erzeugten Daten unterhalb von `data/landsat_lst/koeln/` abgelegt:
+
+```text
+data/landsat_lst/koeln/
 ├── 01_aoi/
 ├── 02_stac/
 ├── 03_landsat_scenes/
 ├── 04_extremes/
 ├── 05_teaching_layers/
+│   ├── projected_lst/
+│   └── dop_cir_surface_mask/
 ├── 06_qgis_project/
-├── 99_logs/
-└── manifest.json
+│   └── print_exports/
+└── 99_logs/
 ```
 
-Die wichtigste Datei für Lehrkräfte ist die QGIS-Projektdatei:
+Wichtig für das Unterrichtspaket sind vor allem:
 
 ```text
-06_qgis_project/<aoi_name>_lst_teaching_project.qgs
+05_teaching_layers/projected_lst/koeln_LST_hot_q90_C_EPSG25832.tif
+05_teaching_layers/dop_cir_surface_mask/koeln_dop_cir_30m_3klassen.gpkg
+06_qgis_project/koeln_lst_oberflaechenmaske.qgz
+06_qgis_project/print_exports/
 ```
 
-Sie kann direkt in QGIS geöffnet werden. Es ist kein PyQGIS-Aufruf, kein `qgis --code` und kein Terminal notwendig.
+# Zentrale Parameter im 00-Runner
 
-# Luftbild statt OSM als zentrale Orientierung
-
-Für diese Unterrichtseinheit ist das RGB-Luftbild wichtiger als OSM. Die Lernenden sollen Gebäude, Parks, Wasser, Straßen und offene Flächen im Luftbild erkennen. Ein farbiges Luftbild ist dafür didaktisch stärker und technisch stabiler als ein großer OSM-Download.
-
-Das Skript bindet deshalb standardmäßig den NRW-DOP-RGB-WMS ein und kann zusätzlich ein lokales georeferenziertes RGB-Übersichtsraster erzeugen. Die zentrale WMS-Einstellung lautet:
-
-```text
-url=https://www.wms.nrw.de/geobasis/wms_nw_dop?language=ger
-layers=nw_dop_rgb
-format=image/png
-crs=EPSG:25832
-```
-
-OSM ist im Startworkflow nicht erforderlich. Wenn OSM später ergänzt wird, sollte es als optionale Zusatzebene verstanden werden, nicht als Grundlage der Stunde.
-
-# LST-Produkte und Kartendarstellung
-
-Aus den Landsat-Szenen werden lokale LST-Raster in Grad Celsius erzeugt. Wolken, Wolkenschatten, Cirrus, Schnee und ungültige Pixel werden über das QA-Band maskiert. Danach werden heiße oder kalte Extremprodukte ausgewählt und als Komposite exportiert.
-
-Für den Unterricht ist meist der hot-Modus am verständlichsten. Er zeigt besonders gut, welche Oberflächen in heißen Situationen stark hervortreten. Der cold-Modus kann ergänzend genutzt werden, wenn kühl wirksame Strukturen stärker untersucht werden sollen.
-
-![Hot, cold und both haben unterschiedliche didaktische Funktionen.](../images/figures/fig12_hot_cold_modus.svg){fig-align="center" width="95%"}
-
-Im QGIS-Projekt werden die hot-Layer als Pseudocolor mit Turbo-Farbverlauf und fünf Quantilklassen dargestellt. Cold-Layer werden mit einer Spectral-Farbtafel klassifiziert. Die Luftbildebene ist standardmäßig auf 35 Prozent Deckkraft gesetzt, damit LST und Stadtstruktur gemeinsam lesbar bleiben.
-
-# Konfiguration
-
-Der Konfigurator erzeugt einen JSON- oder R-Konfigurationsblock. Er startet keine Berechnung im Browser. Die Konfiguration wird anschließend mit dem lokalen R-Skript verwendet.
-
-Die wichtigsten Entscheidungen sind AOI, Zeitraum, Extremmodus und Luftbildquelle. Für den Start empfiehlt sich:
+Die wichtigsten Einstellungen stehen im Einstiegsskript `00_run_lst_oberflaechenmaske_dop_cir.R`. Für die Köln-Demo ist der Workflow auf hot-LST und DOP-CIR-Oberflächenmaske ausgerichtet:
 
 ```r
 aoi_name <- "koeln"
 aoi_mode <- "koeln_stadtbezirke"
-date_start <- "2020-01-01"
-seasonal_months <- c(4, 5, 6, 7, 8, 9)
+
+date_start <- "2023-01-01"
+date_end   <- "2026-01-01"
+
+seasonal_months <- 6:8
 extreme_mode <- "hot"
+hot_metric <- "q90_C"
+n_hot <- 10
+
+crs_qgis <- 25832
+crs_lucc <- 3035
+
 aerial_source_mode <- "both"
-load_osm_layers <- FALSE
+run_qgis_project_creation <- FALSE
 ```
 
-`aerial_source_mode <- "both"` erzeugt ein lokales RGB-Luftbild und bindet zusätzlich den Online-WMS ein. Für rein onlinebasierte Arbeit kann `"wms"` genutzt werden. Für Offline-Pakete ist `"local_rgb"` sinnvoll.
+`run_qgis_project_creation <- FALSE` verhindert einen älteren internen QGIS-Projektaufruf. Das QGIS-Projekt wird stattdessen am Ende des `00`-Runners über den separaten Launcher erzeugt. Dadurch bleibt die QGIS-Layoutlogik im PyQGIS-Skript und wird nicht mit der Landsat-Verarbeitung vermischt.
+
+# DOP-CIR-Oberflächenmaske
+
+Die Oberflächenmaske wird aus dem DOP-CIR-WMS NRW erzeugt. Sie dient als didaktische Grobmaske für drei Oberflächenklassen:
+
+```text
+1 Vegetation
+2 Wasser
+3 Versiegelung / Bebauung
+```
+
+Die Maske ist keine wissenschaftliche Landcover-Klassifikation. Sie ist eine robuste Unterrichtsvereinfachung, um sichtbare Oberflächen mit LST-Mustern zu vergleichen. Grundlage ist ein DOP-CIR-Bild, das als RGB-Bild über den WMS geladen wird. Die Klassifikation nutzt eine restitutierte RGB-/Excess-Logik, keine HSV-Klassifikation.
+
+Der WMS-Zugriff erfolgt über:
+
+```text
+https://www.wms.nrw.de/geobasis/wms_nw_dop?language=ger
+Layer: nw_dop_cir
+CRS: EPSG:25832
+```
+
+Die erzeugte Maske wird auf 30 m Zielauflösung gebracht, weil sie didaktisch zur Landsat-LST-Maßstabsebene passen soll. Danach folgen optional Majority-Filter, klassenspezifische Sieve-Filter für Wasser und Vegetation sowie eine kartographische Vektorglättung. Diese Schritte betreffen die Maske, nicht das RGB-DOP für die Orientierung.
+
+Die drei Klassen sind fachlich so gedacht:
+
+| Klasse | Bedeutung im Unterricht | Erwartete thermische Tendenz |
+|---|---|---|
+| Vegetation | Parks, Bäume, Wiesen, Grünzüge, begrünte Innenhöfe | häufig kühler durch Schatten und Verdunstung |
+| Wasser | Rhein, Hafenbecken, Weiher, Teiche | häufig kühler bzw. thermisch träger |
+| Versiegelung / Bebauung | Straßen, Plätze, Dächer, Bahnanlagen, Gewerbe, Parkplätze | häufig wärmer durch geringe Verdunstung und Wärmespeicherung |
+
+Offene Böden, Schotter, Baustellen oder trockene Brachen werden nicht als eigene Hauptklasse geführt. Sie sind Grenzfälle, die im Unterrichtsgespräch thematisiert werden können.
+
+# Landsat-LST-Verarbeitung
+
+Die Landsat-Szenen werden über den Planetary Computer STAC gesucht. Verwendet werden Landsat 8 und Landsat 9, Level-2-Produkte mit thermischem Band und QA-Pixel-Band. Aus dem thermischen Band wird LST in Grad Celsius berechnet. Ungültige Pixel, Wolken, Wolkenschatten, Cirrus und weitere QA-Probleme werden maskiert.
+
+Der Workflow erzeugt zunächst einzelne lokale LST-Szenen und berechnet danach Extremkomposite. Für die Köln-Demo steht der hot-Modus im Zentrum. Es werden die heißesten Szenen nach `q90_C` ausgewählt und daraus Komposite berechnet.
+
+![Hot, cold und both haben unterschiedliche didaktische Funktionen.](../images/figures/fig12_hot_cold_modus.svg){fig-align="center" width="95%"}
+
+Für das aktuelle Unterrichtspaket werden zwar mehrere Hot-Produkte erzeugt, im QGIS-Projekt wird aber nur das zentrale Produkt verwendet:
+
+```text
+koeln_LST_hot_q90_C_EPSG25832.tif
+```
+
+Dieses Produkt wird als „hottest hot“ genutzt. Es zeigt die robuste obere Temperaturtendenz der ausgewählten heißen Szenen und eignet sich für den Vergleich mit Stadtstruktur, Vegetation und Wasser.
+
+# QGIS-Projekt und Layerlogik
+
+Das QGIS-Projekt wird durch `scripts/create_qgis_project.py` erzeugt. Weil QGIS `--code` intern per `exec(f.read())` ausführt, wird im Python-Skript nicht mit `__file__` gearbeitet. Der Launcher setzt stattdessen:
+
+```text
+QGIS_SCRIPT_DIR
+PROJECT_ROOT
+```
+
+Die Layerreihenfolge im Projekt ist bewusst reduziert:
+
+```text
+oben
+  04 Oberflächenmaske Linien
+  03 Kartenrahmen
+  02 Hot LST q90
+  01 DOP RGB
+  00 Orientierung
+unten
+```
+
+Im QGIS-Projekt bleibt das DOP RGB mit voller Deckkraft sichtbar. Der LST-Layer kann im Projekt transparent oder deckend geführt werden, je nach gewünschter Lesbarkeit. Für die finalen Printlayouts wird die LST-Karte eigenständig gedruckt, damit die Farbklassen nicht durch das DOP gedämpft werden.
+
+Das QGIS-Projekt enthält nur noch das q90-Hot-Produkt, nicht mehr median, q10 oder cold. Dadurch bleibt das Projekt übersichtlich und entspricht der Unterrichtslogik: Es geht um den Zusammenhang zwischen Oberfläche, Stadtstruktur und warmen Oberflächentemperaturen.
+
+# Printlayouts und Export
+
+Das PyQGIS-Skript erzeugt vier Layouts:
+
+```text
+Print 01 DOP
+Print 02 Hot LST q90
+Print 03 Maskenoverlay
+Print 04 Rahmen Graticule
+```
+
+Die Layouts haben denselben Kartenausschnitt und denselben Kartenrahmen. Dadurch können Ausdrucke oder Folien übereinandergelegt werden. Die Legenden sind bewusst minimal, weil die eigentliche Arbeit in der räumlichen Zuordnung liegt, nicht in einer vollwertigen kartographischen Legende.
+
+Die Exportdateien liegen unter:
+
+```text
+data/landsat_lst/koeln/06_qgis_project/print_exports/
+```
+
+Erzeugt werden:
+
+```text
+koeln_print_01_dop.pdf
+koeln_print_02_lst_hot_q90.pdf
+koeln_print_03_mask_overlay.pdf
+koeln_print_04_frame_graticule.pdf
+koeln_print_03_mask_overlay_transparent.png
+koeln_print_04_frame_graticule_transparent.png
+```
+
+Beim Druck muss immer mit tatsächlicher Größe gedruckt werden:
+
+```text
+100 %
+nicht an Seite anpassen
+keine automatische Skalierung
+```
+
+Nur dann liegen DOP, LST, Maske und Passfolie deckungsgleich übereinander.
+
+# Kartenausschnitt und Gitternetz
+
+Der Kartenausschnitt wird im Python-Skript über `MAP_EXTENT_25832` gesteuert:
+
+```python
+MAP_EXTENT_25832 = (353000.00, 5642500.00, 358500.00, 5647500.00)
+```
+
+Die Werte sind Koordinaten in EPSG:25832. Für einen anderen Ausschnitt kann in QGIS der gewünschte Kartenausschnitt eingestellt und dann in der Python-Konsole ausgelesen werden:
+
+```python
+e = iface.mapCanvas().extent()
+print((e.xMinimum(), e.yMinimum(), e.xMaximum(), e.yMaximum()))
+```
+
+Die ausgegebenen vier Werte werden anschließend in `MAP_EXTENT_25832` eingetragen.
+
+Das Gitternetz wird über `GRID_INTERVAL_M` gesteuert:
+
+```python
+GRID_INTERVAL_M = 1000
+```
+
+Für gröbere Passmarken kann hier z. B. `2000` gesetzt werden. Für die Unterrichtsausdrucke ist ein zu dichtes Gitternetz ungünstig, weil es die Bildinterpretation stören kann. Der Rahmen- und Graticule-Layer dient vor allem dazu, Ausdrucke und Folien exakt auszurichten.
+
+# Linux-Start
+
+Unter Linux startet der zentrale R-Workflow alles:
+
+```bash
+Rscript scripts/00_run_lst_oberflaechenmaske_dop_cir.R
+```
+
+Am Ende ruft der Runner den QGIS-Launcher auf:
+
+```bash
+scripts/run_create_qgis_project.sh
+```
+
+Der Launcher setzt die QGIS-Python-Umgebung bewusst explizit:
+
+```bash
+export PYTHONNOUSERSITE=1
+export PYTHONPATH="/usr/share/qgis/python:/usr/lib/python3/dist-packages"
+```
+
+Außerdem entfernt er fremde Python-/Reticulate-/venv-Variablen, damit QGIS nicht mit einer Projekt-venv gestartet wird. Das ist notwendig, weil QGIS sein eigenes Python-/SIP-Umfeld benötigt.
+
+# Windows-Start
+
+Unter Windows ruft der `00`-Runner diesen Launcher auf:
+
+```text
+scripts/run_create_qgis_project.bat
+```
+
+Die BAT-Datei sucht nach typischen QGIS-Installationen. Wenn QGIS nicht automatisch gefunden wird, muss `QGIS_BIN` manuell gesetzt werden, zum Beispiel:
+
+```bat
+set QGIS_BIN=C:\Program Files\QGIS 3.34.4\bin\qgis-bin.exe
+```
+
+oder bei OSGeo4W:
+
+```bat
+set QGIS_BIN=C:\OSGeo4W\bin\qgis-ltr-bin.exe
+```
+
+Die BAT-Datei setzt wie der Linux-Launcher:
+
+```text
+QGIS_SCRIPT_DIR
+PROJECT_ROOT
+```
+
+und startet dann:
+
+```bat
+"%QGIS_BIN%" --noplugins --code "%QGIS_SCRIPT%"
+```
 
 # Technischer Datenfluss
 
 ![Technischer Datenfluss vom AOI zur QGIS-Projektdatei.](../images/figures/fig08_technischer_datenfluss.png){fig-align="center" width="95%"}
 
-Die Landsat-Daten werden über STAC gesucht. Die signierten URLs des Planetary Computer werden nicht dauerhaft gespeichert, weil sie ablaufen. Stattdessen wird jede Szene unmittelbar vor dem Zugriff signiert. Bereits lokal verarbeitete Szenen werden wiederverwendet. Das ist wichtig, weil größere AOIs und längere Zeiträume sonst unnötig viele Remote-Zugriffe erzeugen.
+Der technische Ablauf lässt sich so zusammenfassen:
 
-Das Ergebnis ist ein reproduzierbares Materialpaket. Die `manifest.json` dokumentiert, welche Dateien erzeugt wurden. Für normale Lehrkräfte ist diese Datei nicht wichtig; für Fehlersuche und Weiterentwicklung ist sie hilfreich.
+```text
+AOI / Köln-Stadtbezirke
+→ Landsat-STAC-Suche
+→ LST-Szenen in Grad Celsius
+→ Auswahl heißer Szenen nach q90_C
+→ Hot-LST-Komposite
+→ DOP-CIR-Oberflächenmaske
+→ Teaching-Layer
+→ QGIS-Projekt
+→ vier passgleiche Printlayouts
+```
 
-# Empfohlene Nutzung
+Das DOP-RGB dient der Orientierung, die LST-Karte zeigt die Temperaturmuster, die DOP-CIR-Maske liefert die reduzierten Oberflächenklassen und die Passfolie kontrolliert die deckungsgleiche Lage der Ausdrucke.
 
-Für ein neues Paket sollte zuerst ein kleiner AOI getestet werden. Wenn das Ergebnis plausibel ist, kann der Ausschnitt vergrößert werden. Für ganze Städte ist das lokale RGB-Luftbild auf eine kontrollierte Maximalgröße begrenzt, damit das Paket nicht zu groß wird.
+# Fehlerquellen
 
-Die Ausdrucke für den Unterricht sollten aus demselben QGIS-Projekt und demselben Layout exportiert werden. Nur dann passen Luftbild, LST-Karte und Folienmarkierung exakt übereinander.
+## QGIS startet, aber Python bricht mit SIP- oder `qgis`-Importfehler ab
+
+Dann wurde QGIS wahrscheinlich aus einer kontaminierten Python-Umgebung gestartet. Der Launcher muss verwendet werden, nicht ein direkter Aufruf wie:
+
+```bash
+qgis --code scripts/create_qgis_project.py
+```
+
+Der Launcher setzt die QGIS-Pythonpfade und entfernt venv-/Reticulate-Einträge.
+
+## `__file__` ist nicht definiert
+
+Das ist bei QGIS `--code` normal. Das Python-Skript darf daher keine Pfade über `Path(__file__)` ableiten. Stattdessen werden `QGIS_SCRIPT_DIR` und `PROJECT_ROOT` durch den Launcher gesetzt.
+
+## DOP wirkt in der Layoutvorschau grob
+
+Die QGIS-Layoutvorschau kann WMS-Layer gröber darstellen. Entscheidend ist der exportierte PDF. Wenn auch der PDF zu grob ist, sollte das DOP für den exakten Layoutausschnitt als lokales, georeferenziertes Raster vorgerendert werden. Das betrifft nur die Druckqualität des Luftbildes, nicht die 30-m-DOP-CIR-Maske.
+
+## Ausdrucke passen nicht exakt übereinander
+
+Dann wurde wahrscheinlich mit Seitenskalierung gedruckt. Alle Ausdrucke müssen mit `100 %` beziehungsweise `tatsächliche Größe` gedruckt werden. Automatische Anpassung an das Seitenformat zerstört die Passgenauigkeit.
+
+# Pflegehinweise
+
+Die erzeugten Daten gehören nicht ins Git-Repository. Mindestens diese Ordner sollten ignoriert werden:
+
+```gitignore
+/data/
+/.venv-folienvorlage/
+```
+
+Das Repository sollte die Skripte, Quarto-Seiten und Abbildungen enthalten, nicht die erzeugten Landsat-, DOP-, QGIS- oder Printprodukte.
+
+# Kurzfassung
+
+Die technische Seite beschreibt nicht die Unterrichtsstunde, sondern die Materialproduktion. Der aktuelle Stand ist:
+
+```text
+R-Workflow erzeugt Daten
+DOP-CIR-Modul erzeugt 3-Klassen-Oberflächenmaske
+QGIS-Python-Skript erzeugt q90-Hot-Projekt
+QGIS-Launcher erzeugt vier passgenaue Printlayouts
+```
+
+Die didaktische Reduktion bleibt konsequent: Vegetation, Wasser und versiegelte beziehungsweise bebaute Flächen werden mit Oberflächentemperaturen verglichen. Das technische System dient nur dazu, diese räumliche Beziehung sauber sichtbar und druckbar zu machen.

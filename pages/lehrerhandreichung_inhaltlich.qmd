@@ -96,7 +96,7 @@ Das vorbereitete Paket enthält ein RGB-Luftbild, eine LST-hot-Karte, Folienvorl
 
 ![Das Materialpaket trennt direkte Unterrichtsmaterialien von optionaler technischer Anpassung.](../images/figures/fig06_materialpaket.png){fig-align="center" width="95%"}
 
-[Materialpaket Köln-Demo herunterladen](../downoads/lst_materialpaket_koeln_demo.zip)
+[Materialpaket Köln-Demo herunterladen](../downloads/lst_materialpaket_koeln_demo.zip)
 
 Alle Materialien müssen denselben Ausschnitt und denselben Maßstab verwenden. Die Lernenden markieren nicht auf der Karte selbst, sondern auf einer eigenen Ebene. Dadurch bleibt sichtbar, dass ihre Markierung eine Interpretation ist. Diese Interpretation kann zuerst auf das Luftbild und danach auf die LST-Karte gelegt werden.
 
