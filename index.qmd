@@ -1,13 +1,14 @@
 ---
 title: "Summer in the City"
+title-block-banner: images/01-splash.jpg
+title-block-banner-color: white
 open-graph:
   description: "Unterrichtsmaterial zu städtischen Oberflächentemperaturen mit Luftbild, Folie und LST-Karte"
-  image: images/figures/fig01_projektidee.png
+  image: images/01-splash.jpg
 twitter-card:
   description: "Unterrichtsmaterial zu städtischen Oberflächentemperaturen mit Luftbild, Folie und LST-Karte"
-  image: images/figures/fig01_projektidee.png
-title-block-banner: images/figures/fig01_projektidee.png
-title-block-banner-color: black
+  image: images/01-splash.jpg
+
 lang: de
 comments: false
 ---
