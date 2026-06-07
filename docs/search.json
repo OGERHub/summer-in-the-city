@@ -57,18 +57,29 @@
     "href": "pages/lehrerhandreichung_technisch.html",
     "title": "Technische Dokumentation",
     "section": "",
-    "text": "Diese Seite dokumentiert den technischen Workflow hinter dem Köln-Demo-Paket. Sie ist nicht für die Unterrichtsdurchführung notwendig. Für die Stunde selbst reichen die fertigen Druckprodukte und die inhaltliche Lehrerhandreichung. Diese Seite ist für Personen gedacht, die das Paket neu erzeugen, prüfen oder für einen anderen Ausschnitt anpassen wollen.\nDer Workflow erzeugt aus einem Untersuchungsgebiet, einem Zeitraum und einer DOP-CIR-basierten Oberflächenmaske ein QGIS-Projekt mit passgenauen Drucklayouts. Im Unterricht wird damit nicht gerechnet. Die Skripte erzeugen das Material, die Lernenden arbeiten anschließend mit Karten, Folien und Beobachtungen.\n\n\n\nDas Datenpaket entsteht aus AOI, Zeitraum und Extremmodus.",
+    "text": "Diese Seite dokumentiert die lokale Materialproduktion für das Köln-Demo-Paket. Sie richtet sich an Personen, die die Datenprodukte, das QGIS-Projekt und die Drucklayouts neu erzeugen, prüfen oder für einen anderen Ausschnitt anpassen wollen.\nDer Workflow erzeugt aus einem Untersuchungsgebiet, einem Zeitraum und einer DOP-CIR-basierten Oberflächenmaske ein QGIS-Projekt mit passgenauen Drucklayouts. Die Skripte erzeugen das Material. Im Unterricht liegen anschließend fertige Karten, Folien und Beobachtungsaufgaben vor.\n\n\n\nDas Datenpaket entsteht aus AOI, Zeitraum und Extremmodus.",
     "crumbs": [
       "Material selbst erstellen",
       "Technische Anleitung"
     ]
   },
   {
-    "objectID": "pages/lehrerhandreichung_technisch.html#qgis-startet-aber-python-bricht-mit-sip--oder-qgis-importfehler-ab",
-    "href": "pages/lehrerhandreichung_technisch.html#qgis-startet-aber-python-bricht-mit-sip--oder-qgis-importfehler-ab",
+    "objectID": "pages/lehrerhandreichung_technisch.html#qgis-wird-nicht-gefunden",
+    "href": "pages/lehrerhandreichung_technisch.html#qgis-wird-nicht-gefunden",
     "title": "Technische Dokumentation",
-    "section": "QGIS startet, aber Python bricht mit SIP- oder qgis-Importfehler ab",
-    "text": "QGIS startet, aber Python bricht mit SIP- oder qgis-Importfehler ab\nDann wurde QGIS wahrscheinlich aus einer kontaminierten Python-Umgebung gestartet. Der Launcher muss verwendet werden, nicht ein direkter Aufruf wie:\nqgis --code scripts/create_qgis_project.py\nDer Launcher setzt die QGIS-Pythonpfade und entfernt venv-/Reticulate-Einträge.",
+    "section": "QGIS wird nicht gefunden",
+    "text": "QGIS wird nicht gefunden\nWenn der R-Workflow am Ende bei run_create_qgis_project.bat abbricht, ist meist QGIS_BIN nicht korrekt gesetzt. Dann zuerst prüfen, wo QGIS installiert ist. Typische Pfade sind:\nC:\\Program Files\\QGIS 3.34.4\\bin\\qgis-bin.exe\nC:\\OSGeo4W\\bin\\qgis-ltr-bin.exe\nDer Pfad wird vor dem Start gesetzt:\nset QGIS_BIN=C:\\Program Files\\QGIS 3.34.4\\bin\\qgis-bin.exe\nRscript scripts\\00_run_lst_oberflaechenmaske_dop_cir.R",
+    "crumbs": [
+      "Material selbst erstellen",
+      "Technische Anleitung"
+    ]
+  },
+  {
+    "objectID": "pages/lehrerhandreichung_technisch.html#pyqgis-importfehler",
+    "href": "pages/lehrerhandreichung_technisch.html#pyqgis-importfehler",
+    "title": "Technische Dokumentation",
+    "section": "PyQGIS-Importfehler",
+    "text": "PyQGIS-Importfehler\nEin Fehler wie ModuleNotFoundError: No module named 'qgis' bedeutet: Das Skript wurde mit normalem Python gestartet oder QGIS hat eine falsche Python-Umgebung geerbt. Der Aufruf muss über die BAT-Datei laufen:\nscripts\\run_create_qgis_project.bat\nNicht über:\npython scripts\\create_qgis_project.py\nDie BAT-Datei leert PYTHONHOME, PYTHONPATH, VIRTUAL_ENV, RETICULATE_PYTHON und RETICULATE_PYTHON_FALLBACK, damit QGIS seine eigene Python-Umgebung nutzt.",
     "crumbs": [
       "Material selbst erstellen",
       "Technische Anleitung"
@@ -79,18 +90,29 @@
     "href": "pages/lehrerhandreichung_technisch.html#file__-ist-nicht-definiert",
     "title": "Technische Dokumentation",
     "section": "__file__ ist nicht definiert",
-    "text": "__file__ ist nicht definiert\nDas ist bei QGIS --code normal. Das Python-Skript darf daher keine Pfade über Path(__file__) ableiten. Stattdessen werden QGIS_SCRIPT_DIR und PROJECT_ROOT durch den Launcher gesetzt.",
+    "text": "__file__ ist nicht definiert\nQGIS --code setzt kein __file__. Die BAT-Datei setzt deshalb:\nQGIS_SCRIPT_DIR\nPROJECT_ROOT\nund das Python-Skript liest genau diese Variablen. Path(__file__) darf in diesem Skript nicht verwendet werden.",
     "crumbs": [
       "Material selbst erstellen",
       "Technische Anleitung"
     ]
   },
   {
-    "objectID": "pages/lehrerhandreichung_technisch.html#dop-wirkt-in-der-layoutvorschau-grob",
-    "href": "pages/lehrerhandreichung_technisch.html#dop-wirkt-in-der-layoutvorschau-grob",
+    "objectID": "pages/lehrerhandreichung_technisch.html#r-pakete-fehlen",
+    "href": "pages/lehrerhandreichung_technisch.html#r-pakete-fehlen",
     "title": "Technische Dokumentation",
-    "section": "DOP wirkt in der Layoutvorschau grob",
-    "text": "DOP wirkt in der Layoutvorschau grob\nDie QGIS-Layoutvorschau kann WMS-Layer gröber darstellen. Entscheidend ist der exportierte PDF. Wenn auch der PDF zu grob ist, sollte das DOP für den exakten Layoutausschnitt als lokales, georeferenziertes Raster vorgerendert werden. Das betrifft nur die Druckqualität des Luftbildes, nicht die 30-m-DOP-CIR-Maske.",
+    "section": "R-Pakete fehlen",
+    "text": "R-Pakete fehlen\nDer R-Workflow benötigt unter anderem:\nsf\nterra\nrstac\ndplyr\npurrr\ntibble\nreadr\njsonlite\npng\nhere\nFehlende Pakete werden installiert oder müssen manuell installiert werden:\ninstall.packages(c(\n  \"sf\", \"terra\", \"rstac\", \"dplyr\", \"purrr\",\n  \"tibble\", \"readr\", \"jsonlite\", \"png\", \"here\"\n))\nBei Paketinstallationen aus Quellcode wird Rtools passend zur R-Version benötigt. CRAN-Binaries vermeiden diesen Schritt meist.",
+    "crumbs": [
+      "Material selbst erstellen",
+      "Technische Anleitung"
+    ]
+  },
+  {
+    "objectID": "pages/lehrerhandreichung_technisch.html#keine-oder-leere-printprodukte",
+    "href": "pages/lehrerhandreichung_technisch.html#keine-oder-leere-printprodukte",
+    "title": "Technische Dokumentation",
+    "section": "Keine oder leere Printprodukte",
+    "text": "Keine oder leere Printprodukte\nZuerst die Eingabedateien prüfen:\ndata/landsat_lst/koeln/05_teaching_layers/projected_lst/koeln_LST_hot_q90_C_EPSG25832.tif\ndata/landsat_lst/koeln/05_teaching_layers/dop_cir_surface_mask/koeln_dop_cir_30m_3klassen.gpkg\nDanach prüfen, ob die Exporte geschrieben wurden:\ndata/landsat_lst/koeln/06_qgis_project/print_exports/\nEin erzeugtes QGIS-Projekt ohne PDFs verweist auf den PyQGIS-Layoutteil als Fehlerort.",
     "crumbs": [
       "Material selbst erstellen",
       "Technische Anleitung"
@@ -101,7 +123,7 @@
     "href": "pages/lehrerhandreichung_technisch.html#ausdrucke-passen-nicht-exakt-übereinander",
     "title": "Technische Dokumentation",
     "section": "Ausdrucke passen nicht exakt übereinander",
-    "text": "Ausdrucke passen nicht exakt übereinander\nDann wurde wahrscheinlich mit Seitenskalierung gedruckt. Alle Ausdrucke müssen mit 100 % beziehungsweise tatsächliche Größe gedruckt werden. Automatische Anpassung an das Seitenformat zerstört die Passgenauigkeit.",
+    "text": "Ausdrucke passen nicht exakt übereinander\nSeitenskalierung zerstört die Passgenauigkeit. Alle Ausdrucke müssen mit 100 % beziehungsweise tatsächliche Größe gedruckt werden.",
     "crumbs": [
       "Material selbst erstellen",
       "Technische Anleitung"
