@@ -146,7 +146,7 @@ Die Landsat-Szenen werden über den Planetary Computer STAC gesucht. Verwendet w
 
 Der Workflow erzeugt zunächst einzelne lokale LST-Szenen und berechnet danach Extremkomposite. Für die Köln-Demo steht der hot-Modus im Zentrum. Es werden die heißesten Szenen nach `q90_C` ausgewählt und daraus Komposite berechnet.
 
-![Hot, cold und both haben unterschiedliche didaktische Funktionen.](../images/figures/fig12_hot_cold_modus.svg){fig-align="center" width="95%"}
+![Hot, cold und both haben unterschiedliche didaktische Funktionen.](../images/figures/hot-cold.png){fig-align="center" width="95%"}
 
 Für das aktuelle Unterrichtspaket werden zwar mehrere Hot-Produkte erzeugt, im QGIS-Projekt wird aber nur das zentrale Produkt verwendet:
 
