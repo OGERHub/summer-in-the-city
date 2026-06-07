@@ -34,9 +34,9 @@ Für Schülerinnen und Schüler ist Stadthitze zunächst eine Alltagserfahrung. 
 
 Ein großer Platz kann aus hellem Pflaster bestehen, wenig Schatten haben und sich stark aufheizen. Eine breite Straße ist nicht nur Verkehrsraum, sondern eine dunkle, trockene, versiegelte Oberfläche. Ein Parkplatz kombiniert Asphalt, Blech, wenig Verdunstung und oft wenig Schatten. Ein Gewerbe- oder Industriegebiet besteht häufig aus großen Dachflächen, Zufahrten, Ladeflächen und Parkplätzen. Ein Park enthält dagegen Baumkronen, Rasen, Wege, trockene Wiesen, beschattete Bereiche und manchmal Wasser. Genau diese Mischung macht den Vergleich von Luftbild und LST-Karte fachlich interessant.
 
-Aus diesen realen Oberflächen werden für die Stunde vier Arbeitsklassen gebildet. **Versiegelung / Bebauung** umfasst Straßen, Parkplätze, Plätze, Dächer, Gewerbe- und Industrieflächen, Bahnanlagen, befestigte Innenhöfe und stark versiegelte Schulhöfe. **Vegetation** umfasst Parks, Wiesen, Baumgruppen, Alleen, Friedhöfe, Grünzüge und begrünte Innenhöfe. **Wasser** umfasst Rhein, Hafenbecken, Weiher, Teiche und größere offene Wasserflächen. **Unversiegelte offene Fläche** umfasst trockene Böden, Schotter, Baustellen, Kies, Sand, offene Sportflächen und wenig bewachsene Brachen.
+Aus diesen realen Oberflächen werden für die Stunde drei Arbeitsklassen gebildet. **Versiegelung / Bebauung** umfasst Straßen, Parkplätze, Plätze, Dächer, Gewerbe- und Industrieflächen, Bahnanlagen, befestigte Innenhöfe und stark versiegelte Schulhöfe. **Vegetation** umfasst Parks, Wiesen, Baumgruppen, Alleen, Friedhöfe, Grünzüge und begrünte Innenhöfe. **Wasser** umfasst Rhein, Hafenbecken, Weiher, Teiche und größere offene Wasserflächen.
 
-Diese vier Klassen sind kein Ersatz für eine vollständige Stadtklimaanalyse. Sie sind ein Unterrichtsmodell, mit dem Lernende sichtbare Oberflächen in eine thermische Deutung übersetzen können.
+Diese drei Klassen sind kein Ersatz für eine vollständige Stadtklimaanalyse. Sie sind ein bewusst reduziertes Unterrichtsmodell: Die Lernenden sollen die drei dominanten Oberflächentypen erkennen und prüfen, wie sie sich in der LST-Karte räumlich niederschlagen. Offene Böden, Schotter, Baustellen oder trockene Brachen werden nicht als vierte Hauptklasse geführt, sondern als Misch- und Grenzfälle im Gespräch aufgegriffen, wenn sie im Ausschnitt auffallen.
 
 # Was Oberflächentemperaturen (LST) messen
 
@@ -58,11 +58,11 @@ Vegetation kann die Erwärmung abschwächen, weil sie Schatten erzeugt und Wasse
 
 Wasserflächen reagieren träger als viele feste Oberflächen. Wasser hat eine hohe Wärmekapazität, verteilt Wärme im Wasserkörper und erwärmt sich am Tag oft langsamer als Asphalt, Beton oder trockener Boden. In LST-Karten können Rhein, Weiher oder Hafenbecken deshalb als kühlere Flächen erscheinen. Diese Wirkung ist aber zeitabhängig: Wasser speichert Wärme und kann sich im Tages- und Jahresgang anders verhalten als feste Oberflächen.
 
-Unversiegelte offene Flächen sind die Klasse, an der einfache Regeln scheitern. Eine Baustelle, eine Schotterfläche oder trockener offener Boden kann sich stark erwärmen, obwohl die Fläche nicht bebaut ist. Feuchter Boden kann dagegen durch Verdunstung kühler bleiben. Für die Deutung zählt also nicht nur „bebaut oder unbebaut“, sondern die Kombination aus Material, Feuchte, Bewuchs und Sonnenexposition.
+Offene Böden, Schotterflächen oder Baustellen bleiben als Grenzfälle wichtig. Sie werden in diesem Unterrichtsmaterial nicht als eigene Hauptklasse geführt, weil die Stunde auf die drei zentralen Kontraste fokussiert: versiegelt/bebaut, Vegetation und Wasser. Fachlich sind solche Grenzflächen wertvoll, weil sie zeigen, dass „nicht bebaut“ nicht automatisch „kühl“ bedeutet. Entscheidend bleiben Material, Feuchte, Bewuchs und Sonnenexposition.
 
-![Die vier Unterrichtsklassen bündeln reale Oberflächen: Plätze, Straßen, Dächer, Parks, Wiesen, Wasser, Boden und Schotter.](../images/figures/fig03_vier_oberflaechenklassen.png){fig-align="center" width="95%"}
+![Die drei Unterrichtsklassen bündeln reale Oberflächen: versiegelte und bebaute Flächen, Vegetation und Wasser.](../images/figures/fig03_vier_oberflaechenklassen.png){fig-align="center" width="95%"}
 
-# Die vier Klassen als Arbeitsmodell
+# Die drei Oberflächenklassen als Arbeitsmodell
 
 Die Klasse **Versiegelung / Bebauung** bündelt alle stark befestigten und baulich geprägten Oberflächen: Straßen, Kreuzungen, Parkplätze, Plätze, Dächer, Gewerbe- und Industrieflächen, Bahnanlagen, befestigte Schulhöfe und Innenhöfe. In der LST-Karte erscheinen solche Flächen häufig warm bis sehr warm, besonders wenn sie groß, trocken und unbeschattet sind. Helle Materialien, Schatten, Dachaufbauten oder unterschiedliche Beläge können das Muster abschwächen.
 
@@ -70,13 +70,11 @@ Die Klasse **Vegetation** bündelt alle Flächen, bei denen Pflanzen die thermis
 
 Die Klasse **Wasser** bleibt eigenständig. Rhein, Weiher, Hafenbecken und Teiche sind keine Sonderform von „kühl“, sondern Oberflächen mit eigener thermischer Dynamik. Sie reagieren träge, können tagsüber kühl erscheinen und Wärme zeitlich verzögert speichern oder abgeben. Gerade am Rhein können Lernende gut sehen, dass eine Wasserfläche im LST-Bild oft anders reagiert als die angrenzende befestigte Uferzone.
 
-Die Klasse **unversiegelte offene Fläche** umfasst offene Böden, Baustellen, Schotter, Kies, Sand, trockene Brachen und wenig bewachsene Sport- oder Randflächen. Diese Klasse ist fachlich wichtig, weil sie verhindert, dass „nicht bebaut“ automatisch mit „kühl“ gleichgesetzt wird. Offene trockene Flächen können sehr warm erscheinen, während feuchte offene Böden vergleichsweise kühl bleiben können.
-
 # Verwendung der Landoberflächen Schablone
 
 Die automatische Maske wird im Unterricht nicht als Lösung gezeigt. Die Lernenden erhalten nur neutrale Umrisse. Sie sollen diese Umrisse zuerst im Luftbild interpretieren und anschließend dieselben Flächen mit der LST-Karte vergleichen. Die Klassennamen stehen nur in der Lehrkraftversion.
 
-Das hat einen fachlichen Grund. Fernerkundungsdaten liefern keine fertige Erklärung. Sie liefern Beobachtungen, die interpretiert werden müssen. Wenn die Karte sofort „Versiegelung“, „Vegetation“, „Wasser“ und „unversiegelte Fläche“ anzeigt, wird die Deutungsarbeit vorweggenommen. Wenn die Umrisse blind bleiben, müssen die Lernenden selbst begründen, welche Oberfläche sie erkennen und warum diese Oberfläche thermisch plausibel wärmer oder kühler erscheint.
+Das hat einen fachlichen Grund. Fernerkundungsdaten liefern keine fertige Erklärung. Sie liefern Beobachtungen, die interpretiert werden müssen. Wenn die Karte sofort „Versiegelung / Bebauung“, „Vegetation“ und „Wasser“ anzeigt, wird die Deutungsarbeit vorweggenommen. Wenn die Umrisse blind bleiben, müssen die Lernenden selbst begründen, welche Oberfläche sie erkennen und warum diese Oberfläche thermisch plausibel wärmer oder kühler erscheint.
 
 ![Die Schablone trennt typisiert grob die Hauptklassen der Landoberflächen. Die SuS sehen die Flächen, die Lehrkraft hat die Klassenzuordnung der Fläche aus der automatisierten Erstellung.](../images/figures/fig04_layerlogik_blinde_maske.png){fig-align="center" width="95%"}
 
@@ -84,9 +82,9 @@ Die Maske ist deshalb ein Arbeitsgerüst, kein Wahrheitslayer. Besonders wertvol
 
 # Unterrichtsablauf
 
-Die Stunde beginnt mit dem Luftbild. Die LST-Karte bleibt zunächst verdeckt. Die Lernenden orientieren sich im Kölner Ausschnitt: Rhein, Parks, große Straßen, Plätze, dichte Bebauung, Gewerbeflächen, Parkplätze, Dachlandschaften und offene Flächen werden gesucht und beschrieben. Danach markieren sie auf Folie oder Transparentpapier Flächen, die sie für eher warm oder eher kühl halten.
+Die Stunde beginnt mit dem Luftbild. Die LST-Karte bleibt zunächst verdeckt. Die Lernenden orientieren sich im Kölner Ausschnitt: Rhein, Parks, große Straßen, Plätze, dichte Bebauung, Gewerbeflächen, Parkplätze und Dachlandschaften werden gesucht und beschrieben. Danach markieren sie auf Folie oder Transparentpapier Flächen, die sie für eher warm oder eher kühl halten.
 
-Erst danach wird die LST-Karte aufgelegt. Jetzt prüfen die Lernenden ihre Vermutungen. Stimmen große versiegelte Flächen mit warmen Bereichen überein? Erscheinen Wasser und größere Vegetationsflächen kühler? Gibt es warme offene Böden oder überraschend kühle versiegelte Teilflächen? Der Unterrichtsgewinn liegt im Vergleich, nicht im bloßen Ablesen der Farbskala.
+Erst danach wird die LST-Karte aufgelegt. Jetzt prüfen die Lernenden ihre Vermutungen. Stimmen große versiegelte Flächen mit warmen Bereichen überein? Erscheinen Wasser und größere Vegetationsflächen kühler? Gibt es überraschend warme Rand- oder Mischflächen oder überraschend kühle versiegelte Teilflächen? Der Unterrichtsgewinn liegt im Vergleich, nicht im bloßen Ablesen der Farbskala.
 
 ![Der Ablauf führt von der sichtbaren Oberfläche zur thermischen Prüfung.](../images/figures/fig05_unterrichtsablauf.png){fig-align="center" width="95%"}
 
@@ -98,11 +96,13 @@ Das vorbereitete Paket enthält ein RGB-Luftbild, eine LST-hot-Karte, Folienvorl
 
 ![Das Materialpaket trennt direkte Unterrichtsmaterialien von optionaler technischer Anpassung.](../images/figures/fig06_materialpaket.png){fig-align="center" width="95%"}
 
+[Materialpaket Köln-Demo herunterladen](../downoads/lst_materialpaket_koeln_demo.zip)
+
 Alle Materialien müssen denselben Ausschnitt und denselben Maßstab verwenden. Die Lernenden markieren nicht auf der Karte selbst, sondern auf einer eigenen Ebene. Dadurch bleibt sichtbar, dass ihre Markierung eine Interpretation ist. Diese Interpretation kann zuerst auf das Luftbild und danach auf die LST-Karte gelegt werden.
 
 # Fachliche Gesprächsführung
 
-Wenn Lernende sagen: „Dort ist die Luft heißer“, sollte die Lehrkraft präzisieren: „Die Karte zeigt die Oberfläche. Die Lufttemperatur ist eine andere Messgröße.“ Wenn Lernende sagen: „Alles Grüne ist kühl“, sollte die Antwort differenzieren: „Vegetation kann durch Schatten und Verdunstung kühlen, aber trockene oder kurzrasige Flächen können warm sein.“ Wenn Lernende sagen: „Unbebaute Flächen sind kühl“, lohnt der Blick auf offene Böden, Schotterflächen und Baustellen.
+Wenn Lernende sagen: „Dort ist die Luft heißer“, sollte die Lehrkraft präzisieren: „Die Karte zeigt die Oberfläche. Die Lufttemperatur ist eine andere Messgröße.“ Wenn Lernende sagen: „Alles Grüne ist kühl“, sollte die Antwort differenzieren: „Vegetation kann durch Schatten und Verdunstung kühlen, aber trockene oder kurzrasige Flächen können warm sein.“ Wenn Lernende sagen: „Alles, was nicht Straße oder Dach ist, ist kühl“, lohnt der Blick auf Mischflächen, trockene Randflächen, Schotter, Baustellen oder kurzrasige Bereiche. Diese Flächen werden nicht als eigene Hauptklasse geführt, müssen aber im Gespräch als mögliche Abweichungen benannt werden.
 
 Die zentrale fachliche Sprache sollte vorsichtig bleiben. Geeignete Formulierungen sind: „erscheint wärmer“, „passt zu“, „könnte erklärt werden durch“, „abweichend davon“, „vermutlich wegen“. Ungeeignet sind absolute Sätze wie „Asphalt ist immer heiß“ oder „Wasser ist immer kalt“.
 
@@ -112,7 +112,7 @@ Am Ende steht keine perfekte Klassifikation, sondern eine fachlich begründete D
 
 Ein möglicher Sicherungssatz lautet: „Große versiegelte Flächen wie Straßenräume, Plätze, Parkplätze oder Dächer erscheinen in dieser Szene häufig wärmer als Vegetations- und Wasserflächen. Das passt zu Wärmespeicherung und geringer Verdunstung. Abweichungen können durch Schatten, Materialfarbe, Feuchte, Mischflächen oder Aufnahmezeitpunkt entstehen.“
 
-Ein zweiter Sicherungssatz lautet: „Vegetation und Wasser erscheinen häufig kühler, aber aus unterschiedlichen Gründen. Vegetation wirkt über Schatten und Verdunstung, Wasser über seine thermische Trägheit. Offene unversiegelte Flächen müssen gesondert geprüft werden, weil Feuchte und Material dort stark entscheiden.“
+Ein zweiter Sicherungssatz lautet: „Vegetation und Wasser erscheinen häufig kühler, aber aus unterschiedlichen Gründen. Vegetation wirkt über Schatten und Verdunstung, Wasser über seine thermische Trägheit. Grenzflächen wie Schotter, trockener Boden oder Baustellen müssen gesondert beschrieben werden, weil Feuchte und Material dort stark entscheiden.“
 
 # Quellen
 
